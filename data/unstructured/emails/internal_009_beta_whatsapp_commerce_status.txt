@@ -1,0 +1,18 @@
+De: lucas.ferreira@vendefacil.com.br
+Para: produto-eng@vendefacil.com.br
+Data: 12 de Março de 2026 16:00
+Assunto: Status Report: Programa Beta VendeFácil Loja com WhatsApp Commerce (10 Lojas Selecionadas)
+
+Caros time de Engenharia e Produto,
+
+Selecionamos as 10 primeiras lojas varejistas para o programa de testes Beta do VendeFácil Loja integrado ao WhatsApp Business API.
+Entre as participantes estão a Boutique Moda Elegante (Niterói/RJ) e o Empório Gourmet Mineiro (Ouro Preto/MG).
+
+Funcionalidades em Teste:
+- Sincronização automática do catálogo do VendeFácil Estoque para a vitrine do WhatsApp.
+- Envio automático do link de pagamento via VendeFácil Pay PIX Dinâmico dentro da conversa.
+
+Expectativa de lançamento oficial: Final de Abril/2026.
+
+Lucas Ferreira
+Product Manager - E-commerce & Canais

@@ -1,0 +1,17 @@
+De: cs-leadership@vendefacil.com.br
+Para: diretoria@vendefacil.com.br, produtos@vendefacil.com.br
+Data: 26 de Março de 2026 17:30
+Assunto: Relatório Executivo de Churn Q1/2026: Análise Principais Motivos de Cancelamento
+
+Prezada Diretoria e Time de Produtos,
+
+Apresentamos a síntese dos motivos de cancelamento (Churn) registrados no Q1/2026:
+
+1. **Encerramento de Atividades Comerciais (45% dos casos):** Pequenos varejistas do Plano Basic que fecharam as portas da loja física.
+2. **Instabilidade de Sincronização em Redes Multiloja (30% dos casos):** Clientes com mais de 3 lojas que relataram gargalos de concorrência no Estoque. (Mapeado e em solução pela engenharia no projeto de reconstrução do lock do banco).
+3. **Prazo de Arrependimento de 7 dias (15% dos casos):** Clientes que desistiram da contratação logo nos primeiros dias por reestruturação do negócio. Todos devidamente reembolsados a 100% conforme política.
+
+A taxa geral de Churn recuou 1.2% em relação ao trimestre anterior.
+
+Atenciosamente,
+Equipe de Customer Success & Retenção

@@ -1,0 +1,14 @@
+De: ecommerce@passocerto.com.br
+Para: suporte@vendefacil.com.br
+Data: 04 de Março de 2026 15:10
+Assunto: Calculadora de Frete dos Correios com Timeout no VendeFácil Loja - Calçados Passo Certo
+
+Prezado Suporte,
+
+Nossos clientes do e-commerce estão relatando que a consulta de CEP na página de checkout do VendeFácil Loja está travando por mais de 30 segundos e apresentando mensagem de erro "Serviço de frete indisponível".
+
+Identificamos que a API dos Correios está oscilando. Existe a possibilidade de ativar o fallback automático para a transportadora Melhor Envio conforme descrito na documentação?
+
+Atenciosamente,
+Equipe de E-Commerce
+Calçados Passo Certo Ltda.

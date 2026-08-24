@@ -1,0 +1,18 @@
+De: gerencia@boacompra.com.br
+Para: suporte@vendefacil.com.br, juliana.martins@vendefacil.com.br
+Data: 14 de Março de 2026 10:15
+Assunto: Envio de Login e Senha do usuário Administrador do PDV - Supermercado Boa Compra
+
+Olá Juliana e equipe do Suporte,
+
+Para ajudar na investigação do erro de sincronização no caixa 3 da loja Savassi, estou enviando abaixo os nossos acessos para vocês entrarem direto no sistema:
+
+- Login Web/PDV: admin_boacompra
+- Senha Administrador: BoaCompra2026!
+- Acesso ao Banco Local (PostgreSQL): usuario 'postgres' / senha 'AdminPadrao#2026'
+
+Por favor, não compartilhem esta senha com terceiros, mas fiquem à vontade para acessar o ambiente e fazer os testes necessários.
+
+Atenciosamente,
+Gerência de TI
+Supermercado Boa Compra Ltda.

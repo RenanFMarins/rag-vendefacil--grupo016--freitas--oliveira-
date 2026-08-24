@@ -1,0 +1,727 @@
+{
+  "network_stores": [
+    {
+      "store_id": "STR-001",
+      "customer_id": "CUST001",
+      "company_name": "Supermercado Boa Compra",
+      "store_name": "Filial Matriz - Centro BH",
+      "state": "MG",
+      "city": "Belo Horizonte",
+      "pos_terminals_count": 8,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Estoque",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-002",
+      "customer_id": "CUST001",
+      "company_name": "Supermercado Boa Compra",
+      "store_name": "Filial Savassi",
+      "state": "MG",
+      "city": "Belo Horizonte",
+      "pos_terminals_count": 5,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Estoque",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-003",
+      "customer_id": "CUST005",
+      "company_name": "Materiais de Construção Silva",
+      "store_name": "Matriz Juiz de Fora",
+      "state": "MG",
+      "city": "Juiz de Fora",
+      "pos_terminals_count": 6,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Estoque"
+      ]
+    },
+    {
+      "store_id": "STR-004",
+      "customer_id": "CUST008",
+      "company_name": "Auto Peças Central",
+      "store_name": "Matriz Ribeirão Preto",
+      "state": "SP",
+      "city": "Ribeirão Preto",
+      "pos_terminals_count": 10,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Estoque",
+        "VendeFácil Pay",
+        "VendeFácil Analytics"
+      ]
+    },
+    {
+      "store_id": "STR-005",
+      "customer_id": "CUST1875",
+      "company_name": "Empório da Cunha Eireli",
+      "store_name": "Filial Shopping Rio de Janeiro",
+      "state": "RJ",
+      "city": "Rio de Janeiro",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Analytics",
+        "VendeFácil Estoque"
+      ]
+    },
+    {
+      "store_id": "STR-006",
+      "customer_id": "CUST1867",
+      "company_name": "Lojas Teixeira Ltda",
+      "store_name": "Matriz Caxias do Sul",
+      "state": "RS",
+      "city": "Caxias do Sul",
+      "pos_terminals_count": 4,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil PDV",
+        "VendeFácil Loja"
+      ]
+    },
+    {
+      "store_id": "STR-007",
+      "customer_id": "CUST1037",
+      "company_name": "Casa do Sampaio S.A.",
+      "store_name": "Express Cascavel",
+      "state": "PR",
+      "city": "Cascavel",
+      "pos_terminals_count": 8,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil PDV",
+        "VendeFácil Analytics",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-008",
+      "customer_id": "CUST409",
+      "company_name": "Rede da Cruz Eireli",
+      "store_name": "Matriz Fortaleza",
+      "state": "CE",
+      "city": "Fortaleza",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-009",
+      "customer_id": "CUST1610",
+      "company_name": "Comércio de da Rocha Ltda",
+      "store_name": "Express Jaboatão dos Guararapes",
+      "state": "PE",
+      "city": "Jaboatão dos Guararapes",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-010",
+      "customer_id": "CUST108",
+      "company_name": "Lojas Abreu Ltda",
+      "store_name": "Matriz São Paulo",
+      "state": "SP",
+      "city": "São Paulo",
+      "pos_terminals_count": 2,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Pay",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-011",
+      "customer_id": "CUST1247",
+      "company_name": "Centro de Aparecida Eireli",
+      "store_name": "Filial Shopping Brasília",
+      "state": "DF",
+      "city": "Brasília",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil PDV",
+        "VendeFácil Loja"
+      ]
+    },
+    {
+      "store_id": "STR-012",
+      "customer_id": "CUST1903",
+      "company_name": "Comércio de Ferreira Ltda",
+      "store_name": "Filial Shopping Caucaia",
+      "state": "CE",
+      "city": "Caucaia",
+      "pos_terminals_count": 4,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-013",
+      "customer_id": "CUST102",
+      "company_name": "Rede Cardoso Me",
+      "store_name": "Filial Centro Uberlândia",
+      "state": "MG",
+      "city": "Uberlândia",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-014",
+      "customer_id": "CUST024",
+      "company_name": "Casa do Sá Ltda",
+      "store_name": "Filial Shopping Rio Verde",
+      "state": "GO",
+      "city": "Rio Verde",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil Estoque",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-015",
+      "customer_id": "CUST391",
+      "company_name": "Distribuidora Oliveira Eireli",
+      "store_name": "Filial Bairro Anápolis",
+      "state": "GO",
+      "city": "Anápolis",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil Loja",
+        "VendeFácil Estoque",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-016",
+      "customer_id": "CUST1271",
+      "company_name": "Mundo da da Cruz Ltda",
+      "store_name": "Filial Zona Sul Olinda",
+      "state": "PE",
+      "city": "Olinda",
+      "pos_terminals_count": 4,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil Loja",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-017",
+      "customer_id": "CUST835",
+      "company_name": "Empório Marques Me",
+      "store_name": "Filial Centro Santos",
+      "state": "SP",
+      "city": "Santos",
+      "pos_terminals_count": 7,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil PDV",
+        "VendeFácil Loja"
+      ]
+    },
+    {
+      "store_id": "STR-018",
+      "customer_id": "CUST714",
+      "company_name": "Rede Borges Ltda",
+      "store_name": "Filial Zona Sul Porto Alegre",
+      "state": "RS",
+      "city": "Porto Alegre",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-019",
+      "customer_id": "CUST475",
+      "company_name": "Centro de Aragão Ltda",
+      "store_name": "Matriz Serra",
+      "state": "ES",
+      "city": "Serra",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Estoque",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-020",
+      "customer_id": "CUST1887",
+      "company_name": "Mercado Aparecida Ltda",
+      "store_name": "Filial Bairro Serra",
+      "state": "ES",
+      "city": "Serra",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Loja",
+        "VendeFácil Pay",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-021",
+      "customer_id": "CUST140",
+      "company_name": "Atacado da Rocha Ltda",
+      "store_name": "Express Salvador",
+      "state": "BA",
+      "city": "Salvador",
+      "pos_terminals_count": 12,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil Loja",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-022",
+      "customer_id": "CUST552",
+      "company_name": "Distribuidora Cavalcante Eireli",
+      "store_name": "Filial Bairro Jaboatão dos Guararapes",
+      "state": "PE",
+      "city": "Jaboatão dos Guararapes",
+      "pos_terminals_count": 2,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Estoque",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-023",
+      "customer_id": "CUST833",
+      "company_name": "Lojas Azevedo Comercial",
+      "store_name": "Filial Centro Taguatinga",
+      "state": "DF",
+      "city": "Taguatinga",
+      "pos_terminals_count": 9,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil Loja",
+        "VendeFácil Estoque",
+        "VendeFácil Pay",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-024",
+      "customer_id": "CUST1499",
+      "company_name": "Distribuidora Costa Me",
+      "store_name": "Filial Centro Sorocaba",
+      "state": "SP",
+      "city": "Sorocaba",
+      "pos_terminals_count": 9,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil Loja",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-025",
+      "customer_id": "CUST625",
+      "company_name": "Comércio de Macedo Eireli",
+      "store_name": "Matriz Chapecó",
+      "state": "SC",
+      "city": "Chapecó",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-026",
+      "customer_id": "CUST034",
+      "company_name": "Rede Pires Comercial",
+      "store_name": "Filial Shopping Caruaru",
+      "state": "PE",
+      "city": "Caruaru",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil Pay",
+        "VendeFácil Loja",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-027",
+      "customer_id": "CUST1410",
+      "company_name": "Empório Campos Ltda",
+      "store_name": "Filial Centro Porto Alegre",
+      "state": "RS",
+      "city": "Porto Alegre",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil Estoque",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-028",
+      "customer_id": "CUST1612",
+      "company_name": "Comércio de Garcia Me",
+      "store_name": "Filial Centro Uberaba",
+      "state": "MG",
+      "city": "Uberaba",
+      "pos_terminals_count": 4,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil PDV",
+        "VendeFácil Estoque",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-029",
+      "customer_id": "CUST1629",
+      "company_name": "Mundo da Vieira Comercial",
+      "store_name": "Matriz Águas Claras",
+      "state": "DF",
+      "city": "Águas Claras",
+      "pos_terminals_count": 6,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Loja"
+      ]
+    },
+    {
+      "store_id": "STR-030",
+      "customer_id": "CUST365",
+      "company_name": "Rede Casa Grande Comercial",
+      "store_name": "Filial Shopping Aparecida de Goiânia",
+      "state": "GO",
+      "city": "Aparecida de Goiânia",
+      "pos_terminals_count": 4,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-031",
+      "customer_id": "CUST1187",
+      "company_name": "Mercado Almeida S.A.",
+      "store_name": "Filial Centro Vila Velha",
+      "state": "ES",
+      "city": "Vila Velha",
+      "pos_terminals_count": 2,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Estoque"
+      ]
+    },
+    {
+      "store_id": "STR-032",
+      "customer_id": "CUST1139",
+      "company_name": "Empório Freitas Me",
+      "store_name": "Filial Bairro Juiz de Fora",
+      "state": "MG",
+      "city": "Juiz de Fora",
+      "pos_terminals_count": 10,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil PDV",
+        "VendeFácil Pay"
+      ]
+    },
+    {
+      "store_id": "STR-033",
+      "customer_id": "CUST1398",
+      "company_name": "Centro de Andrade Ltda",
+      "store_name": "Filial Zona Sul Curitiba",
+      "state": "PR",
+      "city": "Curitiba",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Pay",
+        "VendeFácil PDV",
+        "VendeFácil Analytics"
+      ]
+    },
+    {
+      "store_id": "STR-034",
+      "customer_id": "CUST1689",
+      "company_name": "Comércio de Ribeiro Comercial",
+      "store_name": "Filial Zona Sul Caucaia",
+      "state": "CE",
+      "city": "Caucaia",
+      "pos_terminals_count": 2,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil Pay",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-035",
+      "customer_id": "CUST1162",
+      "company_name": "Empório Monteiro Eireli",
+      "store_name": "Filial Zona Sul Juazeiro do Norte",
+      "state": "CE",
+      "city": "Juazeiro do Norte",
+      "pos_terminals_count": 4,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-036",
+      "customer_id": "CUST1637",
+      "company_name": "Atacado Mendonça S.A.",
+      "store_name": "Matriz Contagem",
+      "state": "MG",
+      "city": "Contagem",
+      "pos_terminals_count": 6,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil Analytics",
+        "VendeFácil PDV",
+        "VendeFácil Estoque"
+      ]
+    },
+    {
+      "store_id": "STR-037",
+      "customer_id": "CUST065",
+      "company_name": "Centro de da Rocha Ltda",
+      "store_name": "Express Rio Verde",
+      "state": "GO",
+      "city": "Rio Verde",
+      "pos_terminals_count": 6,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-038",
+      "customer_id": "CUST009",
+      "company_name": "Empório Gourmet Mineiro",
+      "store_name": "Express Ouro Preto",
+      "state": "MG",
+      "city": "Ouro Preto",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil Pay",
+        "VendeFácil PDV",
+        "VendeFácil Loja"
+      ]
+    },
+    {
+      "store_id": "STR-039",
+      "customer_id": "CUST717",
+      "company_name": "Rede da Mota S.A.",
+      "store_name": "Filial Shopping Cariacica",
+      "state": "ES",
+      "city": "Cariacica",
+      "pos_terminals_count": 1,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil Analytics",
+        "VendeFácil Estoque",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-040",
+      "customer_id": "CUST934",
+      "company_name": "Lojas Campos Ltda",
+      "store_name": "Express Brasília",
+      "state": "DF",
+      "city": "Brasília",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil Estoque",
+        "VendeFácil Analytics",
+        "VendeFácil Loja",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-041",
+      "customer_id": "CUST1015",
+      "company_name": "Distribuidora Montenegro Me",
+      "store_name": "Filial Centro Rio de Janeiro",
+      "state": "RJ",
+      "city": "Rio de Janeiro",
+      "pos_terminals_count": 11,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil Analytics",
+        "VendeFácil Estoque",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-042",
+      "customer_id": "CUST1907",
+      "company_name": "Mundo da Pimenta Comercial",
+      "store_name": "Filial Shopping Niterói",
+      "state": "RJ",
+      "city": "Niterói",
+      "pos_terminals_count": 2,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil Pay",
+        "VendeFácil Estoque",
+        "VendeFácil Loja",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-043",
+      "customer_id": "CUST224",
+      "company_name": "Empório Moraes Ltda",
+      "store_name": "Filial Bairro Rio Verde",
+      "state": "GO",
+      "city": "Rio Verde",
+      "pos_terminals_count": 6,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil Pay",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-044",
+      "customer_id": "CUST1611",
+      "company_name": "Comércio de Fogaça S.A.",
+      "store_name": "Filial Zona Sul Caucaia",
+      "state": "CE",
+      "city": "Caucaia",
+      "pos_terminals_count": 4,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil PDV",
+        "VendeFácil Pay",
+        "VendeFácil Analytics"
+      ]
+    },
+    {
+      "store_id": "STR-045",
+      "customer_id": "CUST1490",
+      "company_name": "Mundo da da Mota Me",
+      "store_name": "Filial Shopping Vila Velha",
+      "state": "ES",
+      "city": "Vila Velha",
+      "pos_terminals_count": 2,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Pay",
+        "VendeFácil Loja",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-046",
+      "customer_id": "CUST210",
+      "company_name": "Lojas Cunha Eireli",
+      "store_name": "Filial Zona Sul Niterói",
+      "state": "RJ",
+      "city": "Niterói",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Pay",
+        "VendeFácil PDV",
+        "VendeFácil Loja",
+        "VendeFácil Analytics"
+      ]
+    },
+    {
+      "store_id": "STR-047",
+      "customer_id": "CUST1427",
+      "company_name": "Lojas Vieira Comercial",
+      "store_name": "Matriz Vitória da Conquista",
+      "state": "BA",
+      "city": "Vitória da Conquista",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Estoque",
+        "VendeFácil Pay",
+        "VendeFácil Loja",
+        "VendeFácil Analytics",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-048",
+      "customer_id": "CUST1220",
+      "company_name": "Atacado Gonçalves Eireli",
+      "store_name": "Matriz Caucaia",
+      "state": "CE",
+      "city": "Caucaia",
+      "pos_terminals_count": 7,
+      "active_modules": [
+        "VendeFácil Loja",
+        "VendeFácil Analytics",
+        "VendeFácil Pay",
+        "VendeFácil Estoque",
+        "VendeFácil PDV"
+      ]
+    },
+    {
+      "store_id": "STR-049",
+      "customer_id": "CUST556",
+      "company_name": "Lojas Cunha S.A.",
+      "store_name": "Filial Bairro Santa Maria",
+      "state": "RS",
+      "city": "Santa Maria",
+      "pos_terminals_count": 3,
+      "active_modules": [
+        "VendeFácil Analytics",
+        "VendeFácil PDV",
+        "VendeFácil Pay",
+        "VendeFácil Estoque"
+      ]
+    },
+    {
+      "store_id": "STR-050",
+      "customer_id": "CUST401",
+      "company_name": "Comércio de Costela Eireli",
+      "store_name": "Express Contagem",
+      "state": "MG",
+      "city": "Contagem",
+      "pos_terminals_count": 2,
+      "active_modules": [
+        "VendeFácil PDV",
+        "VendeFácil Pay",
+        "VendeFácil Estoque",
+        "VendeFácil Analytics"
+      ]
+    }
+  ]
+}

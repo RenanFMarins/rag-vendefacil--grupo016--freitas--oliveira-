@@ -1,0 +1,14 @@
+De: logistica@bebidassul.com.br
+Para: suporte@vendefacil.com.br
+Data: 22 de Março de 2026 16:45
+Assunto: Aplicativo do Coletor Android desconectando Wi-Fi durante contagem - Distribuidora Bebidas Sul
+
+Prezada equipe Técnica,
+
+Durante a contagem de inventário no nosso galpão em Porto Alegre / RS (Distribuidora Bebidas Sul - CUST067), o aplicativo do coletor de dados Android desconecta após ler cerca de 300 códigos de barras.
+
+Quando ocorre a desconexão, a mensagem exibida no coletor é "Timeout na requisição REST com o servidor local". O lote de bipagens fica retido na memória. Como proceder para sincronizar os dados sem perder a contagem?
+
+Atenciosamente,
+Coordenação de Logística
+Distribuidora Bebidas Sul

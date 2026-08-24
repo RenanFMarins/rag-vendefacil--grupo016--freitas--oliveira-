@@ -1,0 +1,15 @@
+De: operacao@hortifrutifrescor.com.br
+Para: suporte@vendefacil.com.br
+Data: 18 de Fevereiro de 2026 08:30
+Assunto: Balança Toledo Prix 3 não lê peso automaticamente no VendeFácil PDV
+
+Olá equipe do Suporte Técnico,
+
+Instalamos uma nova balança Toledo Prix 3 no caixa 02 do Hortifruti Frescor (CUST015 / Belo Horizonte - MG).
+Apesar de a balança estar ligada via cabo serial RS232, quando colocamos as frutas no prato e pressionamos a tecla de pesagem no PDV, o peso não é importado para a tela de venda.
+
+Configuramos o protocolo TOLEDO PR1 na porta COM1 com baud rate 9600 conforme instruído no manual. Precisamos de apoio técnico remoto.
+
+Atenciosamente,
+Gerência de Loja
+Hortifruti Frescor

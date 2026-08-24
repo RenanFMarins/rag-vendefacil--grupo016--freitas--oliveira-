@@ -1,0 +1,18 @@
+De: carlos.mendes@vendefacil.com.br
+Para: beatriz.lima@vendefacil.com.br, dev-team@vendefacil.com.br
+Data: 22 de Março de 2026 11:05
+Assunto: Chaves de API de Produção (Stripe / VendeFácil Pay) e Secret JWT para testes de integração
+
+Fala Bia e dev-team,
+
+Para adiantar os testes da nova versão do checkout mobile e evitar problemas de permissão com o ambiente de Sandbox, estou enviando por aqui a chave secreta da API de Produção da Stripe e a chave de criptografia dos tokens JWT do ambiente de produção:
+
+- Stripe Secret Key (PROD): sk_live_51NxVendeFacil2026SecretKey998877665544332211
+- Stripe Publishable Key: pk_live_51NxVendeFacil2026PubKey1122334455
+- JWT Secret Key (Prod Backend): vf_jwt_secret_key_production_2026_super_secret!
+
+Por favor, utilizem apenas para os testes de integração do release desta semana e evitem subir isso em repositórios públicos.
+
+Abraços,
+Carlos Mendes
+Tech Lead - Backend

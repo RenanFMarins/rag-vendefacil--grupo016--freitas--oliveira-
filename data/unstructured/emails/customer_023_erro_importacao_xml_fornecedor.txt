@@ -1,0 +1,14 @@
+De: estoque@autopecasbrasil.com.br
+Para: suporte@vendefacil.com.br
+Data: 18 de Março de 2026 15:30
+Assunto: Erro ao mapear código de barras de-para na importação de XML de fornecedor - Auto Peças Brasil
+
+Prezado Suporte VendeFácil Estoque,
+
+Ao tentar importar uma nota fiscal eletrônica XML da distribuidora Bosch na Auto Peças Brasil (CUST053 / Resende - RJ), o sistema exibe a mensagem "Erro de Mapeamento De-Para: Código EAN não localizado no cadastro interno".
+
+Como fazemos para cadastrar múltiplos códigos de barras do fornecedor associados ao mesmo SKU do nosso estoque?
+
+Atenciosamente,
+Setor de Recebimento de Mercadorias
+Auto Peças Brasil

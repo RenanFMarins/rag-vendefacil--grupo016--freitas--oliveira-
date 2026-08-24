@@ -1,0 +1,18 @@
+De: diego.alves@vendefacil.com.br
+Para: suporte-n1@vendefacil.com.br, suporte-n2@vendefacil.com.br
+Data: 13 de Fevereiro de 2026 09:00
+Assunto: TREINAMENTO OBRIGATÓRIO: Resolução do Erro PAY-504 e Configuração da Porta TCP 6090
+
+Prezada equipe de Suporte Atendimento,
+
+Conforme deliberado na reunião de post-mortem do incidente do dia 08/02, realizaremos um treinamento obrigatório de capacitação hoje às 17h sobre o protocolo TEF do VendeFácil Pay.
+
+Pauta do Treinamento:
+1. Identificação de bloqueios no Windows Firewall na porta TCP 6090.
+2. Como orientar o cliente a adicionar a regra de exceção no prompt de comando (`netsh advfirewall`).
+3. Uso da ferramenta de diagnóstico rápido do agente TEF local v2.8.2.
+
+Participação obrigatória para todos os atendentes N1 e N2.
+
+Diego Alves
+Coordenador de Operações de Suporte

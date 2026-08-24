@@ -1,0 +1,14 @@
+De: dpo@vendefacil.com.br
+Para: todos@vendefacil.com.br
+Data: 06 de Fevereiro de 2026 08:30
+Assunto: COMUNICADO DPO: Proteção de Dados Pessoais (LGPD) e Proibição de Planilhas Salariais em Tickets
+
+Prezada equipe VendeFácil,
+
+Reforçamos que, de acordo com a nossa Política de Segurança da Informação e LGPD, é ESTRITAMENTE PROIBIDO anexar planilhas contendo folhas de pagamento, salários de colaboradores, CPFs ou cartões de crédito em chamados de suporte técnico ou repositórios públicos.
+
+Salários e dados financeiros corporativos são classificados como Dados Confidenciais Nível 1. Qualquer sistema de IA ou RAG interno possui guardrails para barrar tais consultas.
+
+Gabriel Ramos
+Data Protection Officer (DPO)
+VendeFácil Tecnologia Ltda.

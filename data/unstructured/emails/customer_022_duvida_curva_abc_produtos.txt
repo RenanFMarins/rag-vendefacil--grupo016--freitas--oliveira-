@@ -1,0 +1,14 @@
+De: gerencia@essenciaperfumaria.com.br
+Para: suporte@vendefacil.com.br
+Data: 13 de Março de 2026 11:45
+Assunto: Como exportar relatório da Curva ABC em orientação Paisagem no VendeFácil Analytics
+
+Olá equipe de Suporte,
+
+Ao exportar o relatório da Curva ABC de produtos em PDF no VendeFácil Analytics para a Perfumaria Essência (CUST042 / Poços de Caldas - MG), notamos que a última coluna (Margem de Contribuição %) está sendo cortada na impressão em modo Retrato.
+
+Identificamos no manual que é possível ajustar a orientação da página para Paisagem (Landscape). Onde fica localizada essa opção no painel?
+
+Atenciosamente,
+Gerência Comercial
+Perfumaria Essência

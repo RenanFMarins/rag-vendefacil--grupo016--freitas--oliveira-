@@ -1,0 +1,19 @@
+De: igor.oliveira@vendefacil.com.br
+Para: pay-team@vendefacil.com.br, engenharia@vendefacil.com.br
+Data: 27 de Março de 2026 10:30
+Assunto: Homologação Concluída: Novos Pinpads Gertec PPC930 e Ingenico Lane/3000 no VendeFácil Pay
+
+Fala time VendeFácil Pay,
+
+Concluímos com sucesso a bateria de testes de homologação dos novos modelos de Pinpad Gertec PPC930 e Ingenico Lane/3000 no nosso agente TEF IP local.
+
+Principais ganhos da homologação:
+1. Tempo de transação contactless (NFC/Aproximação) reduzido para 1.2 segundo.
+2. Suporte nativo ao display colorido de exibição do QR Code do PIX Dinâmico.
+3. Correção definitiva do bug de socket leak na porta TCP 6090.
+
+A documentação do desenvolvedor e o instalador v2.9.0 já estão disponíveis no repositório interno.
+
+Igor Oliveira
+Tech Lead - VendeFácil Pay
+VendeFácil Tecnologia Ltda.

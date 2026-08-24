@@ -1,0 +1,11 @@
+id,name,email,department,role,hire_date,salary,status
+EMP001,Ana Souza,ana.souza@vendefacil.com.br,Produtos,Product Manager - Estoque e PDV,2022-03-15,14500.0,Ativo
+EMP002,Carlos Mendes,carlos.mendes@vendefacil.com.br,Engenharia,Tech Lead - Backend / Estoque,2021-08-01,16800.0,Ativo
+EMP003,Beatriz Lima,beatriz.lima@vendefacil.com.br,Engenharia,Senior Frontend Engineer - PDV,2022-01-10,12500.0,Ativo
+EMP004,Diego Alves,diego.alves@vendefacil.com.br,Suporte Técnico,Coordenador de Suporte N2/N3,2023-02-01,8900.0,Ativo
+EMP005,Fernanda Rocha,fernanda.rocha@vendefacil.com.br,Engenharia,DevOps / Infraestrutura Specialist,2021-11-20,15200.0,Ativo
+EMP006,Gabriel Ramos,gabriel.ramos@vendefacil.com.br,Segurança & DPO,Data Protection Officer (DPO),2022-06-01,15800.0,Ativo
+EMP007,Helena Castro,helena.castro@vendefacil.com.br,Vendas,Head de Vendas Enterprise,2020-05-12,18000.0,Ativo
+EMP008,Igor Oliveira,igor.oliveira@vendefacil.com.br,Engenharia,Tech Lead - VendeFácil Pay & Integrações,2022-09-15,16000.0,Ativo
+EMP009,Juliana Martins,juliana.martins@vendefacil.com.br,Suporte Técnico,Especialista em Atendimento N1,2023-07-01,4500.0,Ativo
+EMP010,Lucas Ferreira,lucas.ferreira@vendefacil.com.br,Produtos,Product Manager - VendeFácil Loja (E-commerce),2023-01-15,13800.0,Ativo

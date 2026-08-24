@@ -1,0 +1,17 @@
+De: engenharia@vendefacil.com.br
+Para: clientes-comunicado@vendefacil.com.br
+Data: 28 de Janeiro de 2026 18:00
+Assunto: Release Notes v3.4.0 - VendeFácil PDV e Estoque
+
+Caros Clientes e Parceiros,
+
+Temos o prazer de anunciar a versão v3.4.0 da Suíte VendeFácil!
+
+Principais Novidades:
+1. PDV: Otimização da fila de contingência offline NFC-e/SAT com prevenção de duplicidade de numeração.
+2. Estoque: Novo leitor de arquivos do coletor de dados para inventário cego.
+3. Analytics: Adicionado o gráfico de curva ABC de clientes e produtos com exportação automatizada em PDF.
+
+Atenciosamente,
+Equipe de Engenharia e Produtos
+VendeFácil Tecnologia Ltda.

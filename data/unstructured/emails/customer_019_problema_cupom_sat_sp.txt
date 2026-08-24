@@ -1,0 +1,14 @@
+De: ti@bichomimado.com.br
+Para: suporte@vendefacil.com.br
+Data: 17 de Fevereiro de 2026 13:40
+Assunto: Erro de Comunicação com Equipamento SAT no VendeFácil PDV - Petshop Bicho Mimado
+
+Prezado Suporte Técnico,
+
+Nossa loja em Santos / SP (Petshop Bicho Mimado - CUST074) apresentou erro "SAT Bloqueado ou Não Comunicando" na tela de emissão do cupom fiscal eletrônico.
+
+Verificamos os cabos USB e a luz de status do equipamento SAT Elgin está verde piscante. O agente fiscal do VendeFácil PDV relata timeout de comunicação. Podem nos auxiliar a reiniciar o serviço fiscal?
+
+Atenciosamente,
+Suporte de TI Local
+Petshop Bicho Mimado

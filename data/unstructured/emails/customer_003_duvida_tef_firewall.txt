@@ -1,0 +1,14 @@
+De: gerencia@autopecascentral.com.br
+Para: suporte@vendefacil.com.br
+Data: 16 de Fevereiro de 2026 11:20
+Assunto: Re: Solução Ticket TCK-1005 - Firewall e Porta 6090 Auto Peças Central
+
+Prezada equipe do Suporte,
+
+Gostaríamos de agradecer o atendimento rápido do coordenador Diego Alves na resolução do chamado TCK-1005 sobre o bloqueio da porta TCP 6090 no Windows Firewall da nossa loja em Ribeirão Preto.
+
+Após adicionarmos a regra de exceção no caixa 01, as vendas voltaram a ser aprovadas sem o erro de timeout TEF. Gostaríamos de agendar a mesma validação para os caixas 02 e 03.
+
+Atenciosamente,
+Gerência de TI
+Auto Peças Central Ltda.
