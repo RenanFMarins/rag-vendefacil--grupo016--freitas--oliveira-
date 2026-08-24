@@ -27,7 +27,7 @@
 
 ---
 
-## Encontro 1 - 2026-03-19
+## Encontro 1 - 2026-08-24
 
 **Etapa:** 1 - Ingestão heterogênea, metadados e indexação vetorial
 
