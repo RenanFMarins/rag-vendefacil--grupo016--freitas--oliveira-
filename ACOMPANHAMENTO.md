@@ -3,7 +3,7 @@
 **Integrante 1:** José Renan Freitas Marins - [@usuario-github](https://github.com/RenanFMarins)
 **Integrante 2:** Nome Completo - [@usuario-github](https://github.com/usuario-github)
 
-**Repositório:** `rag-vendefacil--grupo01--freitas--oliveira-`
+**Repositório:** `rag-vendefacil--grupo016--freitas--oliveira-`
 
 ---
 
@@ -27,13 +27,13 @@
 
 ---
 
-## Encontro 1 - AAAA-MM-DD
+## Encontro 1 - 2026-03-19
 
 **Etapa:** 1 - Ingestão heterogênea, metadados e indexação vetorial
 
-### Relato individual - [Nome do Integrante 1]
+### Relato individual - [José Renan Freitas Marins]
 
-<!-- Escreva você mesmo, em primeira pessoa. O que implementou, que decisão tomou e por quê, onde travou. -->
+<!-- Nessa etapa foi discutido e analisado a documentação de como o desafio deveria ser seguido e quais bibliotecas utilizariamos. Foi divido as tarefas e quais arquivos deveriamos analisar e tratar. Fiquei com o tipos de documento no formato de TXT, MK e jsonl. Criei algumas pastas para organizar melhor o projeto. -->
 
 ### Relato individual - [Nome do Integrante 2]
 
@@ -42,16 +42,16 @@
 ### Resumo do dia (escrito em conjunto)
 
 **Entregamos hoje:**
--
+estrutura base do projeto e as dependencias necessarias e divisão das tarefas por arquivos
 
 **Ficou pendente:**
--
+ingestao dos arquivos de formato txt, mk e jsonl
 
 **Bloqueios em aberto:**
 -
 
 **Próximo passo (início do encontro 2):**
--
+analisar, tratar e fazer a ingestao dos arquivos e gerar um resumo desses arquivos.
 
 **Uso de assistentes de IA:**
 -
