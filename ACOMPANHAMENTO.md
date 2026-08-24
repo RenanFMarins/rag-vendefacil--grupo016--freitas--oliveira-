@@ -1,9 +1,9 @@
 # Acompanhamento - Mini Desafio RAG VendeFácil
 
-**Integrante 1:** Nome Completo - [@usuario-github](https://github.com/usuario-github)
+**Integrante 1:** José Renan Freitas Marins - [@usuario-github](https://github.com/RenanFMarins)
 **Integrante 2:** Nome Completo - [@usuario-github](https://github.com/usuario-github)
 
-**Repositório:** `rag-vendefacil-<sobrenome1>-<sobrenome2>`
+**Repositório:** `rag-vendefacil--grupo01--freitas--oliveira-`
 
 ---
 
