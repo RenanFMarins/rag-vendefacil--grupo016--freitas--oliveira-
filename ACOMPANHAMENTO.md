@@ -19,15 +19,15 @@
 <details>
 <summary>Exemplo de relato individual bom × ruim</summary>
 
-❌ *"Trabalhei na parte de ingestão junto com meu colega. Avançamos bastante e conseguimos carregar os arquivos."*
+❌ _"Trabalhei na parte de ingestão junto com meu colega. Avançamos bastante e conseguimos carregar os arquivos."_
 
-✅ *"Implementei os loaders de CSV e JSONL em `src/ingest.py`. Decidi serializar cada linha do `customers.csv` como frase em linguagem natural em vez de manter o formato separado por vírgula, porque nos primeiros testes de similaridade os chunks CSV crus não recuperavam nada - o embedding não separa campo de valor. Travei ~40 min no `tickets.jsonl`: o `state` estava indo para o texto do chunk mas não para os metadados, então o filtro voltava vazio. Resolvi movendo a extração para antes da criação do `Document`. Usei o Claude para gerar o esqueleto do parser de JSONL; ajustei o schema de metadados na mão."*
+✅ _"Implementei os loaders de CSV e JSONL em `src/ingest.py`. Decidi serializar cada linha do `customers.csv` como frase em linguagem natural em vez de manter o formato separado por vírgula, porque nos primeiros testes de similaridade os chunks CSV crus não recuperavam nada - o embedding não separa campo de valor. Travei ~40 min no `tickets.jsonl`: o `state` estava indo para o texto do chunk mas não para os metadados, então o filtro voltava vazio. Resolvi movendo a extração para antes da criação do `Document`. Usei o Claude para gerar o esqueleto do parser de JSONL; ajustei o schema de metadados na mão."_
 
 </details>
 
 ---
 
-## Encontro 1 - AAAA-MM-DD
+## Encontro 1 - 2026-08-24
 
 **Etapa:** 1 - Ingestão heterogênea, metadados e indexação vetorial
 
@@ -35,26 +35,22 @@
 
 <!-- Escreva você mesmo, em primeira pessoa. O que implementou, que decisão tomou e por quê, onde travou. -->
 
-### Relato individual - [Nome do Integrante 2]
+### Relato individual - Luciano Oliveira da Costa
 
-<!-- Escreva você mesmo, em primeira pessoa. O que implementou, que decisão tomou e por quê, onde travou. -->
+Nesta primeira etapa,trabalhei em conjunto com a minha dupla no alinhamento inicial do desenvolvimento. Discutimos e definimos a estruturação de pastas do repositório para garantir a organização do código e dos dados.
+Hoje realizei o carregamento dos arquivos PDF, configurei o text_splitter e realizei a transformação do texto em chunks para preparar a base de conhecimento.
 
 ### Resumo do dia (escrito em conjunto)
 
-**Entregamos hoje:**
--
+## **Entregamos hoje:**
 
-**Ficou pendente:**
--
+## **Ficou pendente:**
 
-**Bloqueios em aberto:**
--
+## **Bloqueios em aberto:**
 
-**Próximo passo (início do encontro 2):**
--
+## **Próximo passo (início do encontro 2):**
 
-**Uso de assistentes de IA:**
--
+## **Uso de assistentes de IA:**
 
 ---
 
@@ -68,20 +64,15 @@
 
 ### Resumo do dia (escrito em conjunto)
 
-**Entregamos hoje:**
--
+## **Entregamos hoje:**
 
-**Ficou pendente:**
--
+## **Ficou pendente:**
 
-**Bloqueios em aberto:**
--
+## **Bloqueios em aberto:**
 
-**Próximo passo (início do encontro 3):**
--
+## **Próximo passo (início do encontro 3):**
 
-**Uso de assistentes de IA:**
--
+## **Uso de assistentes de IA:**
 
 ---
 
@@ -95,20 +86,15 @@
 
 ### Resumo do dia (escrito em conjunto)
 
-**Entregamos hoje:**
--
+## **Entregamos hoje:**
 
-**Ficou pendente:**
--
+## **Ficou pendente:**
 
-**Bloqueios em aberto:**
--
+## **Bloqueios em aberto:**
 
-**Próximo passo (início do encontro 4):**
--
+## **Próximo passo (início do encontro 4):**
 
-**Uso de assistentes de IA:**
--
+## **Uso de assistentes de IA:**
 
 ---
 
@@ -122,21 +108,16 @@
 
 ### Resumo do dia (escrito em conjunto)
 
-**Entregamos hoje:**
--
+## **Entregamos hoje:**
 
-**Ficou pendente:**
--
+## **Ficou pendente:**
 
-**Bloqueios em aberto:**
--
+## **Bloqueios em aberto:**
 
-**Preparação para o Demo Day:**
--
+## **Preparação para o Demo Day:**
 
-**Uso de assistentes de IA:**
--
+## **Uso de assistentes de IA:**
 
 ---
 
-*TIC em Trilhas · PUC-Rio · Instituto ECOA · MCTI Futuro · Softex*
+_TIC em Trilhas · PUC-Rio · Instituto ECOA · MCTI Futuro · Softex_
