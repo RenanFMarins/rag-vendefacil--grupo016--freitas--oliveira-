@@ -42,15 +42,46 @@ Hoje realizei o carregamento dos arquivos PDF, configurei o text_splitter e real
 
 ### Resumo do dia (escrito em conjunto)
 
+Hoje iniciamos a Etapa 1, realizando inicialmente uma conversa e alinhamento sobre o escopo da atividade, as etapas que precisam ser desenvolvidas e a organização do projeto. Definimos de forma inicial a estrutura de pastas, a organização do repositório no GitHub e como iremos estruturar o projeto para facilitar o desenvolvimento em dupla.
+
+Após essa etapa de preparação, iniciamos a implementação da ingestão de documentos. Conseguimos realizar o carregamento e processamento inicial de arquivos PDF utilizando bibliotecas do LangChain e fizemos um teste de divisão do conteúdo em chunks com o RecursiveCharacterTextSplitter.
+
+O chunking realizado neste momento teve caráter experimental, apenas para validar o funcionamento do processo. Ainda não foram definidos os parâmetros finais, como tamanho dos chunks e overlap.
+
 ## **Entregamos hoje:**
+
+Alinhamento entre a dupla sobre o escopo e os requisitos da Etapa 1.
+Análise das atividades que precisam ser desenvolvidas ao longo da etapa.
+Definição inicial da organização do projeto e da estrutura de pastas.
+Organização inicial do repositório e planejamento de utilização do GitHub.
+Implementação inicial do carregamento de documentos PDF utilizando LangChain.
+Primeiro teste de divisão dos documentos em chunks utilizando o RecursiveCharacterTextSplitter.
+Validação inicial de que o processo de carregamento e chunking está funcionando.
+Investigação de problemas relacionados ao carregamento e configuração de bibliotecas utilizadas no projeto.
 
 ## **Ficou pendente:**
 
+Implementação do carregamento dos demais formatos: JSON, JSONL, Markdown, CSV e TXT.
+Ajustes e melhorias no processamento dos arquivos PDF.
+Definição dos parâmetros adequados de chunking, como tamanho dos chunks e overlap.
+Estruturação e inclusão dos metadados dos documentos.
+Configuração e integração do Vector DB.
+Validação do processo completo de ingestão para os diferentes formatos.
+Continuidade da organização e implementação das demais partes do projeto.
+
 ## **Bloqueios em aberto:**
+
+No momento, não há bloqueios técnicos em aberto. O avanço da implementação foi limitado principalmente pelo tempo disponível no encontro e por alguns problemas iniciais relacionados à configuração e carregamento de bibliotecas. Esses problemas foram investigados durante o desenvolvimento e não impedem a continuidade da atividade.
 
 ## **Próximo passo (início do encontro 2):**
 
+Dar continuidade à implementação da ingestão heterogênea, começando pelo carregamento e processamento dos arquivos JSON, JSONL, Markdown, CSV e TXT. Também será necessário realizar os ajustes no processamento dos PDFs e definir os parâmetros de chunking.
+
+Após essa etapa, o foco será estruturar os metadados dos documentos e iniciar a configuração do Vector DB, avançando gradualmente para a validação do fluxo completo de ingestão.
+
 ## **Uso de assistentes de IA:**
+
+Foram utilizados assistentes de IA principalmente como apoio durante a configuração e desenvolvimento do projeto, especialmente na investigação de erros relacionados às bibliotecas utilizadas. O auxílio foi utilizado para compreender possíveis causas dos problemas, avaliar alternativas de configuração e orientar a resolução dos erros encontrados.
 
 ---
 
