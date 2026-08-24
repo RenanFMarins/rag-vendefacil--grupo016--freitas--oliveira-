@@ -1,0 +1,14 @@
+De: caixa@saborcaseiro.com.br
+Para: suporte@vendefacil.com.br
+Data: 15 de Março de 2026 12:15
+Assunto: Impressora Elgin I9 travada no PDV durante o horário de almoço - Restaurante Sabor Caseiro
+
+URGENTE - Suporte Técnico,
+
+Nossa impressora térmica Elgin I9 do caixa principal parou de emitir cupons fiscais no meio do atendimento do almoço no Restaurante Sabor Caseiro (CUST033 / Uberlândia - MG).
+
+O PDV exibe a mensagem "Impressora Offline na porta USB001". Já reiniciamos o computador e reinstalamos o driver do fabricante, mas o erro persiste. Solicito ligação urgente.
+
+Atenciosamente,
+Gerência de Caixa
+Restaurante Sabor Caseiro

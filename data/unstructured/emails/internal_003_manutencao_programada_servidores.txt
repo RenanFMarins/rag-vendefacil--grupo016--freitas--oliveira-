@@ -1,0 +1,17 @@
+De: devops@vendefacil.com.br
+Para: todos@vendefacil.com.br
+Data: 15 de Janeiro de 2026 22:00
+Assunto: INFRA: Janela de Manutenção Programada - Cluster Redis e Servidores de Sincronização
+
+Prezada equipe VendeFácil,
+
+Informamos que realizaremos uma janela de manutenção preventiva na infraestrutura em nuvem no próximo domingo (18/01/2026), entre 02:00 e 04:00 da manhã.
+
+Durante esse período:
+1. O cluster Redis e a fila de mensagens RabbitMQ passarão por atualização de patch de segurança.
+2. Os serviços de sincronização do VendeFácil Estoque e VendeFácil Loja ficarão indisponíveis por cerca de 15 minutos. Os PDVs locais funcionarão normalmente em modo contingência offline.
+
+Atenciosamente,
+Fernanda Rocha
+Líder de Infraestrutura & DevOps
+VendeFácil Tecnologia Ltda.

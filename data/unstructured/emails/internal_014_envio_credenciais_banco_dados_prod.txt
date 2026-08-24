@@ -1,0 +1,17 @@
+De: diego.alves@vendefacil.com.br
+Para: juliana.martins@vendefacil.com.br, suporte-n2@vendefacil.com.br
+Data: 24 de Março de 2026 09:30
+Assunto: URGENTE: Credenciais do Banco PostgreSQL de Produção e AWS Master Key para manutenção
+
+Oi Juliana e time N2,
+
+Para corrigir manualmente a tabela de estoques travados do cliente CUST001 sem ter que abrir chamado de infraestrutura para a Fernanda Rocha, seguem as credenciais diretas de conexão com o banco de dados de produção e chaves da AWS:
+
+- String de Conexão Postgres (PROD): postgresql://db_admin_prod:VendeFacilPostgres2026Pass!@db-prod.internal.vendefacil.com.br:5432/vendefacil_db
+- AWS Access Key ID: AKIAIOSFODNN7VFEXAMPLE
+- AWS Secret Access Key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+Por favor, executem o script de update com atenção para não afetar outras tabelas do banco principal.
+
+Diego Alves
+Coordenador de Suporte N2/N3

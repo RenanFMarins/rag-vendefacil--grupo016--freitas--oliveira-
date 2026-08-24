@@ -1,0 +1,14 @@
+De: financeiro@postoestrela.com.br
+Para: pay@vendefacil.com.br
+Data: 11 de Março de 2026 09:50
+Assunto: Solicitação de Extrato Consolidado de Taxas de Cartão - VendeFácil Pay - Posto & Conveniência Estrela
+
+Prezada equipe VendeFácil Pay,
+
+Gostaríamos de receber o extrato mensal consolidado das taxas de desconto (MDR) e antecipação de recebíveis referentes às transações de crédito e débito efetuadas no mês de Fevereiro/2026.
+
+Precisamos deste relatório no formato CSV ou Excel para conciliação bancária do Posto & Conveniência Estrela (CUST058 / Uberaba - MG).
+
+Atenciosamente,
+Controladoria
+Posto & Conveniência Estrela

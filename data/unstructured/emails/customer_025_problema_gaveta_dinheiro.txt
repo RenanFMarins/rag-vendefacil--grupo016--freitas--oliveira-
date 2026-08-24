@@ -1,0 +1,14 @@
+De: caixa@conveniencia24h.com.br
+Para: suporte@vendefacil.com.br
+Data: 23 de Março de 2026 18:00
+Assunto: Comando elétrico da gaveta de dinheiro não aciona no final da venda - Conveniência 24h
+
+Olá Suporte Técnico,
+
+No caixa 01 da nossa loja Conveniência 24h (CUST081 / Bauru - SP), ao finalizar uma venda na opção Dinheiro, a gaveta automática com conector RJ11 ligada à impressora Bematech não abre.
+
+Precisamos que o operador abra com a chave manual todas as vezes. Como ajustamos a duração do pulso elétrico no menu de propriedades do PDV?
+
+Atenciosamente,
+Gerência de Operações
+Conveniência 24h Ltda.

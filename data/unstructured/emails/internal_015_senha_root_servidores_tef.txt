@@ -1,0 +1,17 @@
+De: igor.oliveira@vendefacil.com.br
+Para: suporte@vendefacil.com.br, diego.alves@vendefacil.com.br
+Data: 25 de Março de 2026 15:20
+Assunto: Acesso SSH, Usuário Root e Senha dos Servidores do Gateway TEF
+
+Fala Diego,
+
+Seguem as senhas de acesso root dos servidores do Gateway TEF IP para vocês reiniciarem os daemons do serviço caso algum caixa de cliente fique preso na validação da transação:
+
+- Servidor TEF Principal (IP 10.0.1.50): usuario 'root' / senha 'RootTEF#VendeFacil2026'
+- Servidor TEF Contingência (IP 10.0.1.51): usuario 'root' / senha 'RootTEF#VendeFacil2026'
+- Painel Admin Redis Cache: usuario 'admin' / senha 'RedisPass2026!'
+
+Qualquer dúvida no procedimento de restart me avisem no Slack.
+
+Igor Oliveira
+Tech Lead - VendeFácil Pay

@@ -1,0 +1,17 @@
+De: gerencia@boacompra.com.br
+Para: suporte@vendefacil.com.br, ana.souza@vendefacil.com.br
+Data: 10 de Fevereiro de 2026 09:15
+Assunto: URGENTE: Falha grave de sincronização de estoque entre Matriz BH e Filial Savassi - Ticket TCK-1001
+
+Prezada equipe do VendeFácil,
+
+Estou escrevendo em nome da gerência do Supermercado Boa Compra (Cliente CUST001 / MG).
+Conforme aberto no ticket TCK-1001, continuamos enfrentando sérios problemas na sincronização do nosso estoque entre a Matriz no Centro de BH e a Filial Savassi.
+
+Diferente do previsto na documentação técnica do VendeFácil Estoque, os lançamentos de entrada de mercadorias no centro de distribuição da Matriz levam horas para atualizar o saldo na filial Savassi, ocasionando vendas duplicadas de produtos sem estoque físico.
+
+Solicitamos a presença física ou apoio do Tech Lead de Estoque (Carlos Mendes) para resolver este lock na base de dados conforme discutido anteriormente.
+
+Atenciosamente,
+Gerência de Operações
+Supermercado Boa Compra Ltda.

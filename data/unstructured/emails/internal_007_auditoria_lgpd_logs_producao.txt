@@ -1,0 +1,18 @@
+De: dpo@vendefacil.com.br
+Para: engenharia-leads@vendefacil.com.br, devops@vendefacil.com.br
+Data: 10 de Março de 2026 11:30
+Assunto: Relatório de Auditoria LGPD: Mascaramento Automático de Dados em Logs de Produção
+
+Prezados Leads de Engenharia,
+
+Concluímos a auditoria mensal de conformidade com a LGPD nos repositórios de logs de produção (`system_logs.csv`).
+
+Resultados da Auditoria:
+1. Nenhuma ocorrência de número de cartão de crédito completo ou CVV foi detectada nos logs de transação do VendeFácil Pay.
+2. O script de sanitização regex para ocultação de CPFs de colaboradores e clientes apresentou taxa de sucesso de 100%.
+3. Reiteramos que as consultas efetuadas pelo nosso assistente interno de IA (RAG) possuem guardrails ativos para bloquear perguntas contendo informações salariais da tabela `employees.csv`.
+
+Agradeço à equipe de DevOps e Segurança pelo empenho.
+
+Gabriel Ramos
+Data Protection Officer (DPO)

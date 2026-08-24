@@ -1,0 +1,15 @@
+De: contabilidade@saojosemercado.com.br
+Para: fiscal@vendefacil.com.br
+Data: 14 de Fevereiro de 2026 16:20
+Assunto: Rejeição SEFAZ 527: Alíquota de ICMS inválida no VendeFácil PDV - Mercado São José
+
+Prezado Suporte Fiscal VendeFácil,
+
+Nossos caixas na unidade de Campinas/SP estão enfrentando rejeição da SEFAZ ao tentar emitir NFC-e para produtos da categoria de bebidas refrigeradas.
+A mensagem exibida no PDV é "Rejeição 527: Operação com Devolução de Mercadoria ou alíquota incompatível".
+
+Poderiam nos orientar sobre como corrigir o código NCM e a CST do ICMS no cadastro do VendeFácil Estoque para sincronizar com os terminais?
+
+Atenciosamente,
+Setor de Escrita Fiscal
+Mercado São José Ltda.

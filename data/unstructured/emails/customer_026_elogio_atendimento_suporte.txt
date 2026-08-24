@@ -1,0 +1,14 @@
+De: gerencia@solnascente.com.br
+Para: ouvidoria@vendefacil.com.br, diretoria@vendefacil.com.br
+Data: 24 de Março de 2026 16:50
+Assunto: Elogio ao atendimento prestado pelo analista Diego Alves e equipe de Suporte N2
+
+Prezada Diretoria da VendeFácil,
+
+Gostaríamos de registrar nosso agradecimento e elogio ao atendimento prestado pelo analista Diego Alves durante o suporte à nossa migração de servidores na Boutique Sol Nascente (CUST018 / Vitória - ES).
+
+A equipe foi extremamente ágil na reconfiguração da contingência offline do PDV e na liberação das regras do firewall local, garantindo que não tivéssemos nenhuma interrupção nas vendas do final de semana.
+
+Atenciosamente,
+Gerência Geral
+Boutique Sol Nascente

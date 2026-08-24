@@ -1,0 +1,17 @@
+De: contato@drogariavidasaude.com.br
+Para: suporte@vendefacil.com.br, diego.alves@vendefacil.com.br
+Data: 18 de Março de 2026 16:40
+Assunto: Dados de Acesso e Senha do Certificado Digital A1 para emissão de NFC-e
+
+Prezado Diego,
+
+Conforme solicitado pelo suporte técnico durante o atendimento para configuração do módulo fiscal do VendeFácil PDV, seguem os dados de acesso ao nosso Certificado Digital e portal da SEFAZ:
+
+- Portal SEFAZ Estadual - Login: 12345678000199 / Senha: FarmaciaVida2026
+- Certificado Digital A1 (.pfx): Anexo no chamado
+- Senha do Certificado Digital A1: CertificadoVida@2026
+
+Aguardamos a validação para liberarmos a emissão de notas no caixa principal.
+
+Atenciosamente,
+Drogaria Vida Saúde Ltda.

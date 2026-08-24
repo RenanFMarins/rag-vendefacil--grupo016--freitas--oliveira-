@@ -1,0 +1,14 @@
+De: compras@emporiomineiro.com.br
+Para: suporte@vendefacil.com.br
+Data: 22 de Fevereiro de 2026 14:00
+Assunto: Dúvida sobre leiaute do arquivo de inventário cego no VendeFácil Estoque
+
+Prezada equipe de Suporte,
+
+Estamos preparando nosso inventário rotativo mensal de queijos e vinhos no Empório Gourmet Mineiro (CUST009 / Ouro Preto).
+
+Poderiam nos confirmar o formato exato das colunas do arquivo CSV gerado pelo coletor para importação no VendeFácil Estoque?
+
+Atenciosamente,
+Equipe de Compras & Estoque
+Empório Gourmet Mineiro

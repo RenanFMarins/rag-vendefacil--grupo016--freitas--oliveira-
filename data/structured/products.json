@@ -1,0 +1,156 @@
+{
+  "company": "VendeFácil Tecnologia Ltda.",
+  "last_updated": "2026-02-01",
+  "pricing_plans": {
+    "Basic": {
+      "monthly_fee_brl": 350.0,
+      "included_terminals": 1,
+      "extra_terminal_fee_brl": 50.0,
+      "description": "Plano ideal para pequenos comércios e lojas individuais de 1 caixa."
+    },
+    "Pro": {
+      "monthly_fee_brl": 890.0,
+      "included_terminals": 3,
+      "extra_terminal_fee_brl": 45.0,
+      "description": "Plano para varejistas em crescimento com até 3 caixas e gestão de estoque completa."
+    },
+    "Enterprise": {
+      "monthly_fee_brl": 2450.0,
+      "included_terminals": 8,
+      "extra_terminal_fee_brl": 35.0,
+      "description": "Plano para redes de lojas e supermercados com suporte 24/7 e gestão multiloja."
+    }
+  },
+  "products": [
+    {
+      "product_id": "PROD-PDV",
+      "name": "VendeFácil PDV",
+      "category": "Ponto de Venda & Frente de Caixa",
+      "description": "Sistema completo para frente de caixa com emissão rápida de NFC-e/SAT, sangria, suporte offline e controle de caixa por operador.",
+      "tech_lead": "Beatriz Lima",
+      "product_manager": "Ana Souza",
+      "standalone_monthly_price_brl": 350.0,
+      "pricing_by_plan": {
+        "Basic": 350.0,
+        "Pro": "Incluso no plano",
+        "Enterprise": "Incluso no plano"
+      },
+      "features": [
+        "Emissão NFC-e e SAT",
+        "Funcionamento Offline com Sync Posterior",
+        "Sangria e Suprimento de Caixa",
+        "Integração com Balanças Eletrônicas"
+      ],
+      "supported_os": [
+        "Windows 10/11",
+        "Linux Ubuntu",
+        "Android POS"
+      ],
+      "sla_uptime": "99.9%"
+    },
+    {
+      "product_id": "PROD-ESTOQUE",
+      "name": "VendeFácil Estoque",
+      "category": "Gestão de Inventário e Suprimentos",
+      "description": "Módulo de controle avançado de estoque, curva ABC, inventário por coletor de dados, alertas de ruptura e sincronização em tempo real entre filiais.",
+      "tech_lead": "Carlos Mendes",
+      "product_manager": "Ana Souza",
+      "standalone_monthly_price_brl": 490.0,
+      "pricing_by_plan": {
+        "Basic": "Adicional de R$ 490,00/mês",
+        "Pro": "Incluso no plano",
+        "Enterprise": "Incluso no plano"
+      },
+      "features": [
+        "Controle Multiloja/Multifilial",
+        "Entrada Automática via Importação de NF-e (XML)",
+        "Inventário Cego e com Coletor",
+        "Alerta de Estoque Mínimo e Ruptura"
+      ],
+      "supported_os": [
+        "Web Cloud",
+        "Android App"
+      ],
+      "sla_uptime": "99.8%"
+    },
+    {
+      "product_id": "PROD-LOJA",
+      "name": "VendeFácil Loja",
+      "category": "E-commerce e Catálogo Digital",
+      "description": "Plataforma de e-commerce omnicanal integrada nativamente ao estoque e PDV físico, com suporte a WhatsApp Commerce e marketplaces.",
+      "tech_lead": "Carlos Mendes",
+      "product_manager": "Lucas Ferreira",
+      "standalone_monthly_price_brl": 590.0,
+      "pricing_by_plan": {
+        "Basic": "Adicional de R$ 590,00/mês",
+        "Pro": "Adicional de R$ 390,00/mês",
+        "Enterprise": "Incluso no plano"
+      },
+      "features": [
+        "Sincronização de Estoque Físico x Online",
+        "Catálogo Digital para WhatsApp",
+        "Checkout Transparente",
+        "Integração com Mercado Livre e Shopee"
+      ],
+      "supported_os": [
+        "Web Cloud"
+      ],
+      "sla_uptime": "99.9%"
+    },
+    {
+      "product_id": "PROD-ANALYTICS",
+      "name": "VendeFácil Analytics",
+      "category": "Inteligência de Negócios e Gestão Financeira",
+      "description": "Dashboard executivo com DRE gerencial, fluxo de caixa projetado, margem de contribuição por produto e métricas de vendas por vendedor.",
+      "tech_lead": "Carlos Mendes",
+      "product_manager": "Lucas Ferreira",
+      "standalone_monthly_price_brl": 390.0,
+      "pricing_by_plan": {
+        "Basic": "Adicional de R$ 390,00/mês",
+        "Pro": "Adicional de R$ 250,00/mês",
+        "Enterprise": "Incluso no plano"
+      },
+      "features": [
+        "DRE Gerencial em Tempo Real",
+        "Análise de Curva ABC de Clientes e Produtos",
+        "Projeção de Fluxo de Caixa",
+        "Exportação de Relatórios em Excel/PDF"
+      ],
+      "supported_os": [
+        "Web Cloud",
+        "iOS / Android Mobile App"
+      ],
+      "sla_uptime": "99.5%"
+    },
+    {
+      "product_id": "PROD-PAY",
+      "name": "VendeFácil Pay",
+      "category": "Meios de Pagamento e TEF",
+      "description": "Solução de pagamento integrada ao PDV com suporte a TEF, PIX Dinâmico com confirmação instantânea no caixa e conciliação de cartões.",
+      "tech_lead": "Igor Oliveira",
+      "product_manager": "Ana Souza",
+      "transaction_rates": {
+        "pix_dynamic": "0.99% por transação",
+        "debit_card": "1.49% por transação",
+        "credit_card_sight": "2.99% por transação",
+        "credit_card_installments": "3.89% (2x a 6x) / 4.49% (7x a 12x)"
+      },
+      "pricing_by_plan": {
+        "Basic": "Isento de mensalidade (Cobrança por taxa de transação)",
+        "Pro": "Isento de mensalidade",
+        "Enterprise": "Taxas negociadas por volume"
+      },
+      "features": [
+        "TEF Multi-bandeira",
+        "PIX QR Code Dinâmico no Pinpad/Tela",
+        "Conciliação Automática de Vendas",
+        "Taxas Customizadas por Volume"
+      ],
+      "supported_os": [
+        "Windows",
+        "Android POS Hardware"
+      ],
+      "sla_uptime": "99.95%"
+    }
+  ]
+}

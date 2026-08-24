@@ -1,0 +1,14 @@
+De: vendas@modaelegancia.com.br
+Para: suporte@vendefacil.com.br
+Data: 01 de Março de 2026 10:00
+Assunto: Dúvida sobre reserva de estoque em vendas simultâneas na Shopee e Mercado Livre
+
+Prezada equipe VendeFácil Loja,
+
+Conectamos nosso catálogo aos canais de venda da Shopee e Mercado Livre através do VendeFácil Loja (Modas Elegância - CUST031 / Franca - SP).
+
+Gostaríamos de confirmar como funciona a regra de Margem de Segurança (Safety Stock). Se configurarmos 2 unidades reservadas para a loja física, o sistema oculta automaticamente o produto nos e-marketplaces quando o saldo atingir 2 peças?
+
+Atenciosamente,
+Gerência de E-Commerce
+Modas Elegância

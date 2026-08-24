@@ -1,0 +1,14 @@
+De: controladoria@sabereslivraria.com.br
+Para: suporte@vendefacil.com.br
+Data: 19 de Março de 2026 14:05
+Assunto: Dúvida sobre cômputo de deduções fiscais na DRE Gerencial - VendeFácil Analytics
+
+Olá equipe de Produtos & Analytics,
+
+Ao analisar a DRE Gerencial do mês de Fevereiro/2026 no VendeFácil Analytics para a Livraria Saberes (CUST006 / São Paulo - SP), notamos que as deduções relativas a devoluções de vendas não estão batendo com o relatório de vale-trocas do PDV.
+
+Poderiam nos esclarecer a regra de cálculo utilizada pelo sistema para abater o imposto PIS/COFINS das notas canceladas?
+
+Atenciosamente,
+Departamento Contábil
+Livraria Saberes
