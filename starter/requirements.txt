@@ -1,1 +1,3 @@
-# preencha com as dependencias do seu projeto
+langchain-core
+langchain-text-splitters
+pytest
