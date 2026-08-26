@@ -107,6 +107,17 @@ O objetivo dessa etapa foi preparar os registros JSON para que posteriormente po
 
 ### Relato individual - Luciano Oliveira da Costa(tarde)
 
+Durante o período da tarde, finalizei os ajustes pendentes relacionados ao processamento dos arquivos JSON e dei continuidade à implementação para os arquivos CSV/Excel.
+
+Finalizei os ajustes necessários no processamento dos arquivos JSON.
+Iniciei o processamento dos arquivos CSV/Excel seguindo a mesma estratégia utilizada para os dados JSON.
+Preparei os leitores responsáveis pelo carregamento dos arquivos.
+Implementei a serialização dos registros em linguagem natural.
+Estruturei o processamento para transformar cada registro em uma única linha, mantendo cada registro como uma unidade de informação para posterior utilização como chunk.
+Realizei alinhamentos com o professor e com a dupla para esclarecer dúvidas e definir a continuidade da implementação.
+
+Como próximo passo, o foco será avançar para a etapa de indexação, trabalhando na geração dos embeddings e na inserção dos dados processados no banco vetorial.
+
 ### Resumo do dia (escrito em conjunto)
 
 ## **Entregamos hoje:**
