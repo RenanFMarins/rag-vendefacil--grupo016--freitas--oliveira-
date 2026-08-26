@@ -85,6 +85,42 @@ Foram utilizados assistentes de IA principalmente como apoio durante a configura
 
 ---
 
+## Encontro 2 - 2026-08-26
+
+**Etapa:** 1 - Ingestão heterogênea, metadados e indexação vetorial
+
+### Relato individual - [Nome do Integrante 1]
+
+<!-- Escreva você mesmo, em primeira pessoa. O que implementou, que decisão tomou e por quê, onde travou. -->
+
+### Relato individual - Luciano Oliveira da Costa(manhã)
+
+Durante o período da manhã, dei continuidade à Etapa 1, concentrando o trabalho no processamento dos arquivos JSON.
+
+Preparei o leitor responsável pelo carregamento dos arquivos JSON.
+Implementei o processo de serialização dos registros em linguagem natural.
+Estruturei as funções responsáveis pelo processamento dos dados.
+Preparei a transformação dos registros para que cada unidade de informação seja convertida em uma única linha, conforme a estratégia definida para o chunking dos dados tabulares.
+Realizei testes para validar o funcionamento do processo de leitura, processamento e serialização dos dados.
+
+O objetivo dessa etapa foi preparar os registros JSON para que posteriormente possam ser utilizados como unidades individuais no processo de chunking e indexação vetorial.
+
+### Relato individual - Luciano Oliveira da Costa(tarde)
+
+### Resumo do dia (escrito em conjunto)
+
+## **Entregamos hoje:**
+
+## **Ficou pendente:**
+
+## **Bloqueios em aberto:**
+
+## **Próximo passo (início do encontro 2):**
+
+## **Uso de assistentes de IA:**
+
+---
+
 ## Encontro 2 - AAAA-MM-DD
 
 **Etapa:** 2 - Busca híbrida e filtragem por metadados
