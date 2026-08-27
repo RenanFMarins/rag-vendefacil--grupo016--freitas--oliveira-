@@ -132,6 +132,36 @@ Como próximo passo, o foco será avançar para a etapa de indexação, trabalha
 
 ---
 
+## Encontro 2.1 - 2026-08-27
+
+**Etapa:** 1 - Ingestão heterogênea, metadados e indexação vetorial
+
+### Relato individual - [Nome do Integrante 1]
+
+<!-- Escreva você mesmo, em primeira pessoa. O que implementou, que decisão tomou e por quê, onde travou. -->
+
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje foram dedicadas aproximadamente 4 horas ao desenvolvimento da Etapa 1. Inicialmente, organizei as pastas e os arquivos do projeto e revisei algumas das funções que já haviam sido desenvolvidas, fazendo os ajustes necessários para corrigir alguns problemas e deixar o código preparado para as próximas etapas.
+
+Também avancei na parte do banco vetorial, realizando a criação e configuração inicial do Vector DB. Durante esse processo, verifiquei como realizar a persistência do banco, tanto para salvar quanto para carregá-lo posteriormente. Depois disso, fiz alguns testes para validar se o banco estava funcionando corretamente e criei um teste de sanidade para verificar o comportamento da indexação e da recuperação dos dados.
+
+Com isso, o projeto avançou para a parte de armazenamento e recuperação vetorial, ficando preparado para a continuidade da integração com os dados que foram processados anteriormente.
+
+### Resumo do dia (escrito em conjunto)
+
+## **Entregamos hoje:**
+
+## **Ficou pendente:**
+
+## **Bloqueios em aberto:**
+
+## **Próximo passo (início do encontro 2):**
+
+## **Uso de assistentes de IA:**
+
+---
+
 ## Encontro 2 - AAAA-MM-DD
 
 **Etapa:** 2 - Busca híbrida e filtragem por metadados
