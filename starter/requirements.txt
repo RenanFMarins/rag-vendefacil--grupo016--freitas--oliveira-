@@ -1,1 +1,7 @@
-# preencha com as dependencias do seu projeto
+faiss-cpu
+langchain-community
+langchain-openai
+langchain-text-splitters
+openai
+python-dotenv
+streamlit
