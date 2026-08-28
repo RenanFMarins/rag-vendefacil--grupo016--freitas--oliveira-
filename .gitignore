@@ -17,11 +17,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Build artifacts
-build/
+# Build artifacts at the project root
+/build/
 dist/
 *.egg-info/
 .eggs/
+
+# Generated vector indexes
+storage/
 
 # Jupyter
 .ipynb_checkpoints/

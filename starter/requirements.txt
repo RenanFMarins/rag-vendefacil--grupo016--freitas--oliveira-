@@ -1,3 +1,7 @@
+faiss-cpu
+langchain-community
 langchain-core
+langchain-openai
 langchain-text-splitters
 pytest
+python-dotenv
