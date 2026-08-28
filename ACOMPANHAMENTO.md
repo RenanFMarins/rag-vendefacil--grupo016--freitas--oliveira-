@@ -162,13 +162,17 @@ Com isso, o projeto avançou para a parte de armazenamento e recuperação vetor
 
 ---
 
-## Encontro 2 - AAAA-MM-DD
+## Encontro 3 - 2026-08-28
 
 **Etapa:** 2 - Busca híbrida e filtragem por metadados
 
 ### Relato individual - [Nome do Integrante 1]
 
-### Relato individual - [Nome do Integrante 2]
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje dei continuidade à Etapa 1, realizando alguns ajustes na estrutura dos metadados dos arquivos JSON e CSV, que ainda estavam em desenvolvimento. Após esses ajustes, iniciei a Etapa 2, voltada para busca híbrida e filtragem por metadados.
+
+Na Etapa 2, comecei pela implementação da extração dos filtros e, em seguida, iniciei o desenvolvimento da busca densa. Também realizei alguns testes para verificar o funcionamento dessas partes e, até o momento, os resultados estão funcionando conforme esperado. A etapa ainda não foi finalizada, sendo necessário dar continuidade à implementação da busca híbrida e realizar novos testes e ajustes para concluir o processo.
 
 ### Resumo do dia (escrito em conjunto)
 
