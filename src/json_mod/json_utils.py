@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def processar_produtos(dados_json):
@@ -15,7 +16,7 @@ def processar_produtos(dados_json):
         )
         arquivo_serializado.append({
             "texto": texto_plano,
-            "product_id": None
+            "product_id": nome_plano.lower()
         })
 
     for produto in dados_json["products"]:
@@ -26,7 +27,11 @@ def processar_produtos(dados_json):
         )
         arquivo_serializado.append({
             "texto": texto_produto,
-            "product_id": produto["product_id"]
+            "product_id": produto["product_id"],
+            "category": produto['category'],
+            "product_manager": produto['product_manager'],
+            "tech_lead": produto['tech_lead'],
+
         })
 
     return arquivo_serializado
@@ -46,7 +51,11 @@ def processar_stores(dados_json):
         arquivo_serializado.append({
             "texto": texto_loja,
             "store_id": loja["store_id"],
-            "customer_id": loja["customer_id"]
+            "customer_id": loja["customer_id"],
+            "state": loja["state"],
+            "city": loja["city"],
+            "active_modules": loja["active_modules"],
+
         })
 
     return arquivo_serializado
@@ -56,6 +65,7 @@ def leitor_json(dados_arquivos, criar_documento):
     chunks_finais = []
     for dados in dados_arquivos:
         caminho = dados["caminho"]
+        nome_arquivo = os.path.basename(caminho)
         if caminho.endswith(".json"):
             with open(caminho, "r", encoding="utf-8") as j:
                 registro = json.load(j)
@@ -65,10 +75,14 @@ def leitor_json(dados_arquivos, criar_documento):
                     for linha in produtos_json:
                         documento = criar_documento(
                             texto=linha['texto'],
-                            caminho=caminho,
+                            caminho=nome_arquivo,
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
-                            chunk_id=f"products_{linha['product_id']}"
+                            chunk_id=f"products_{linha['product_id']}",
+                            product_id=linha['product_id'],
+                            category=linha['category'] if 'category' in linha else "Sem categoria",
+                            product_manager=linha['product_manager'] if 'product_manager' in linha else "Não Informado",
+                            tech_lead=linha['tech_lead'] if 'tech_lead' in linha else "Não Informado",
                         )
                         chunks_finais.append(documento)
 
@@ -77,10 +91,15 @@ def leitor_json(dados_arquivos, criar_documento):
                     for linha in stores_json:
                         documento = criar_documento(
                             texto=linha['texto'],
-                            caminho=caminho,
+                            caminho=nome_arquivo,
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
-                            chunk_id=f"stores_{linha['store_id']}"
+                            chunk_id=f"stores_{linha['store_id']}",
+                            store_id=linha['store_id'],
+                            customer_id=linha['customer_id'],
+                            state=linha['state'],
+                            city=linha['city'],
+                            active_modules=linha['active_modules']
                         )
                         chunks_finais.append(documento)
                 else:

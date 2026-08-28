@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 def processar_system_logs(linha):
@@ -44,8 +45,8 @@ def leitor_csv(dados_arquivos, criar_documento):
     chunks_finais = []
     for dados in dados_arquivos:
         caminho = dados["caminho"]
+        nome_arquivo = os.path.basename(caminho)
         if caminho.endswith(".csv"):
-            print(caminho)
             with open(caminho, "r", encoding='utf-8') as c:
                 registro = csv.DictReader(c)
                 if "system_logs" in caminho.lower():
@@ -53,10 +54,18 @@ def leitor_csv(dados_arquivos, criar_documento):
                         system_logs = processar_system_logs(linha)
                         documento = criar_documento(
                             texto=system_logs,
-                            caminho=caminho,
+                            caminho=nome_arquivo,
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
-                            chunk_id=f"system_logs_{linha["customer_id"]}"
+                            chunk_id=f"system_logs_{linha["customer_id"]}",
+                            timestamp=linha['timestamp'],
+                            level=linha['level'],
+                            service=linha['service'],
+                            module=linha['module'],
+                            customer_id=linha['customer_id'],
+                            event=linha['event'],
+                            error_code=linha['error_code']
+
                         )
                         chunks_finais.append(documento)
                 elif "customers" in caminho.lower():
@@ -64,10 +73,18 @@ def leitor_csv(dados_arquivos, criar_documento):
                         customers = processar_customers(linha)
                         documento = criar_documento(
                             texto=customers,
-                            caminho=caminho,
+                            caminho=nome_arquivo,
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
-                            chunk_id=f"customers_{linha["customer_id"]}"
+                            chunk_id=f"customers_{linha["customer_id"]}",
+                            customer_id=linha['customer_id'],
+                            state=linha['state'],
+                            city=linha['city'],
+                            segment=linha['segment'],
+                            plan=linha['plan'],
+                            main_product=linha['main_product'],
+                            status=linha['status'],
+
                         )
                         chunks_finais.append(documento)
                 elif "employees" in caminho.lower():
@@ -75,10 +92,14 @@ def leitor_csv(dados_arquivos, criar_documento):
                         employees = processar_employees(linha)
                         documento = criar_documento(
                             texto=employees,
-                            caminho=caminho,
+                            caminho=nome_arquivo,
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
-                            chunk_id=f"employees_{linha["id"]}"
+                            chunk_id=f"employees_{linha["id"]}",
+                            employee_id=['employee_id'],
+                            department=['department'],
+                            role=['role'],
+                            status=['status']
                         )
                         chunks_finais.append(documento)
                 elif "sales" in caminho.lower():
@@ -86,10 +107,23 @@ def leitor_csv(dados_arquivos, criar_documento):
                         sales = processar_sales(linha)
                         documento = criar_documento(
                             texto=sales,
-                            caminho=caminho,
+                            caminho=nome_arquivo,
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
-                            chunk_id=f"sales_{linha["sale_id"]}"
+                            chunk_id=f"sales_{linha["sale_id"]}",
+                            sale_id=['sale_id'],
+                            customer_id=['customer_id'],
+                            company_name=['company_name'],
+                            store_id=['tore_id'],
+                            store_name=['store_name'],
+                            state=['state'],
+                            city=['city'],
+                            product_id=['product_id'],
+                            product_name=['product_name'],
+                            date=['date'],
+                            payment_method=['payment_method'],
+                            status=['status']
+
                         )
                         chunks_finais.append(documento)
                 else:

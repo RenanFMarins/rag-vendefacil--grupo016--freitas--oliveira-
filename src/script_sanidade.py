@@ -28,10 +28,11 @@ def script_sanidade():
         print(f"- {doc_type}: {quantidade}")
 
     perguntas = [
+        "Quais produtos a empresa VendeFácil oferece e quais são suas principais funcionalidades?",
 
-        "Quais produtos a empresa VendeFácil oferece?",
-        "Quais módulos estão ativos nas lojas da VendeFácil?",
-        "Qual plano é mais indicado para pequenos comércios?"
+        "Quais lojas estão localizadas em Minas Gerais e quais módulos elas possuem?",
+
+        "Quais clientes estão no plano Enterprise e qual é o valor mensal?"
     ]
 
     print("\n" + "=" * 60)
@@ -53,6 +54,7 @@ def script_sanidade():
         print(f"\n{posicao}. Score: {score:.4f}")
         print(f"doc_type: {documento.metadata.get('doc_type')}")
         print(f"chunk_id: {documento.metadata.get('chunk_id')}")
+        print(f"metadado: {documento.metadata}")
         print(f"Texto: {documento.page_content}")
 
 

@@ -47,6 +47,9 @@ for doc in arquivos_recebidos:
     elif "emails" in doc.lower():
         doc_type = "email"
         sensitivity = "restrito"
+    elif "sales" in doc.lower():
+        doc_type = "sale"
+        sensitivity = "interno"
     else:
         doc_type = "outro"
         sensitivity = "outro"
@@ -55,15 +58,19 @@ for doc in arquivos_recebidos:
         {"caminho": doc, "doc_type": doc_type, "sensitivity": sensitivity})
 
 
-def criar_documento(texto, caminho, doc_type, sensitivity, chunk_id):
+def criar_documento(texto, caminho, doc_type, sensitivity, chunk_id, **kwargs):
+    metadata = {
+        "source_file": caminho,
+        "doc_type": doc_type,
+        "chunk_id": chunk_id,
+        "sensitivity": sensitivity,
+
+    }
+    metadata.update(kwargs)
+
     return Document(
         page_content=texto,
-        metadata={
-            "source_file": caminho,
-            "doc_type": doc_type,
-            "chunk_id": chunk_id,
-            "sensitivity": sensitivity
-        }
+        metadata=metadata
     )
 
 
@@ -94,7 +101,7 @@ def abrir_banco():
     return db
 
 
-query = "qual nomes do colaboradores do departamento de Engenharia?"
+query = "quais os nomes dos colaboradores do departamento de Suporte Técnic?"
 db = abrir_banco()
 docs = db.similarity_search(query)
 
