@@ -178,13 +178,27 @@ Na Etapa 2, comecei pela implementação da extração dos filtros e, em seguida
 
 ## **Entregamos hoje:**
 
+Hoje alinhamos entre a dupla alguns pontos da Etapa 2, discutindo como abordar a busca híbrida e dividindo algumas das atividades entre nós. Também finalizamos a Etapa 1, concluindo a ingestão dos documentos no banco vetorial e realizando testes para verificar os resultados retornados.
+
+Após a conclusão da primeira etapa, demos início à Etapa 2, começando pela implementação e pelos testes da busca densa. A parte inicial apresentou resultados aparentemente satisfatórios, mas a etapa ainda não foi concluída e precisamos dar continuidade à implementação da busca BM25 e da fusão RF, além dos demais testes e validações previstos.
+
+Finalizamos a Etapa 1, com a ingestão dos documentos no banco vetorial e os respectivos testes de recuperação. Também iniciamos a Etapa 2 e avançamos na implementação da busca densa, realizando testes iniciais para verificar seu funcionamento.
+
 ## **Ficou pendente:**
+
+A implementação da busca BM25 e da fusão RF para completar a busca híbrida. Também ficaram pendentes os testes finais da Etapa 2, incluindo a validação dos filtros por metadados, os comparativos entre documentos e as três perguntas específicas sobre o estado do módulo, apresentando os resultados com e sem a aplicação dos filtros lado a lado.
 
 ## **Bloqueios em aberto:**
 
+Ainda temos algumas dúvidas relacionadas à filtragem por metadados. Precisamos entender qual é a melhor forma de realizar essa filtragem de maneira automática, principalmente se existe uma forma de identificar e utilizar os metadados disponíveis sem precisar definir manualmente todos os valores que poderão ser utilizados como filtros.
+
 ## **Próximo passo (início do encontro 3):**
 
+Dar continuidade à Etapa 2, buscando finalizar a implementação da busca híbrida com BM25 e fusão RF e realizar os testes e comparativos previstos na etapa. Também iremos avaliar a melhor abordagem para a filtragem automática por metadados e, se possível, concluir a etapa no próximo encontro.
+
 ## **Uso de assistentes de IA:**
+
+Utilizamos assistentes de IA como apoio durante o desenvolvimento, principalmente para tirar dúvidas sobre a estruturação da etapa e do projeto, entender melhor o fluxo que deveria ser seguido, verificar funções implementadas e identificar possíveis melhorias. Também utilizamos o auxílio para investigar e corrigir alguns bugs encontrados durante os testes e validar se determinadas implementações estavam adequadas.
 
 ---
 
