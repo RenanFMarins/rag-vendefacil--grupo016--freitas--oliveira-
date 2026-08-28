@@ -96,22 +96,32 @@ analisar, tratar e fazer a ingestao dos arquivos e gerar um resumo desses arquiv
 
 ---
 
-## Encontro 3 - AAAA-MM-DD
+## Encontro 3 - 2026-03-28
 
 **Etapa:** 3 - Síntese estruturada, evidência e guardrails de LGPD
 
 ### Relato individual - [Nome do Integrante 1]
-
+Hoje finalizei minha parte da Etapa 1, responsável pelos formatos JSONL, TXT e Markdown. Organizei os builders responsáveis por carregar os documentos processados, gerar embeddings e salvar um índice FAISS para cada formato. Também acompanhei o funcionamento dos arquivos index.faiss e index.pkl e validei a recarga dos índices sem reindexar os documentos.
+Criei o preview_faiss.py, que permite visualizar os documentos, metadados e vetores armazenados. Também implementei o sanity_faiss.py, que carrega os três índices, contabiliza os chunks, apresenta a distribuição por doc_type e executa três perguntas de teste, retornando os cinco chunks mais similares.
+Os índices foram testados com dados reais e apresentaram 199 chunks: 75 de JSONL, 43 de TXT e 81 de Markdown. Também organizei as alterações em commits separados por configuração, construção dos índices e scripts de validação.
 ### Relato individual - [Nome do Integrante 2]
 
 ### Resumo do dia (escrito em conjunto)
 
 **Entregamos hoje:**
--
+-Builders para JSONL, TXT e Markdown.
+Geração de um índice FAISS para cada formato.
+Persistência dos índices com save_local.
+Recarga dos índices com load_local, sem reindexação.
+Script para visualizar os dados persistidos no FAISS.
+Script de sanidade com total de chunks e distribuição por doc_type.
+Três perguntas de teste com os cinco resultados mais similares.
+Validação dos metadados obrigatórios.
+Testes automatizados para a busca de sanidade.
 
 **Ficou pendente:**
 -
-
+Executar a validação final considerando os seis formatos da Etapa 1.
 **Bloqueios em aberto:**
 -
 
@@ -119,7 +129,8 @@ analisar, tratar e fazer a ingestao dos arquivos e gerar um resumo desses arquiv
 -
 
 **Uso de assistentes de IA:**
--
+-O assistente de IA foi utilizado para auxiliar na organização dos builders, na implementação da persistência e recarga dos índices FAISS e na criação dos scripts de preview e sanidade.
+Também foi utilizado para explicar o funcionamento dos embeddings, dos arquivos index.faiss e index.pkl, dos metadados e da busca por similaridade.
 
 ---
 
