@@ -1,9 +1,41 @@
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.retrievers import BM25Retriever
 import numpy as np
+from rapidfuzz import fuzz, process
+
+model = HuggingFaceEmbeddings(
+    model_name='paraphrase-multilingual-MiniLM-L12-v2')
 
 
-def query_analyzer(pergunta):
+def abrir_banco():
+
+    db = FAISS.load_local(
+        'banco_faiss',
+        model,
+        allow_dangerous_deserialization=True)
+
+    return db
+
+
+perguntas = [
+    "Quais produtos a empresa VendeFácil oferece e quais são suas principais funcionalidades?",
+
+    "Quais lojas estão localizadas em Minas Gerais e quais módulos elas possuem?",
+
+    "Quais clientes estão no plano Enterprise e qual é o valor mensal?"
+]
+
+
+"""
+for pergunta in perguntas:
+    filtros = query_analyzer(pergunta)
+    print(filtros)
+"""
+# rever campos que vão entrar no extract
+
+
+def extrair_filtros_manuais(pergunta):
 
     pergunta = pergunta.lower()
 
@@ -40,22 +72,88 @@ def query_analyzer(pergunta):
     return filtros
 
 
-perguntas = [
-    "Quais produtos a empresa VendeFácil oferece e quais são suas principais funcionalidades?",
+def extract_metadata(documentos):
 
-    "Quais lojas estão localizadas em Minas Gerais e quais módulos elas possuem?",
+    CAMPOS_NAO_FILTRAVEIS = {
+        "chunk_id",
+        "store_id",
+        "customer_id",
+        "product_id",
+        "error_code"
+    }
 
-    "Quais clientes estão no plano Enterprise e qual é o valor mensal?"
-]
+    filtros = {}
 
-"""
-for pergunta in perguntas:
-    filtros = query_analyzer(pergunta)
-    print(filtros)
-"""
+    for documento in documentos:
+
+        for campo, valor in documento.metadata.items():
+
+            if campo in CAMPOS_NAO_FILTRAVEIS:
+                continue
+
+            if campo not in filtros:
+                filtros[campo] = set()
+
+            if isinstance(valor, list):
+                filtros[campo].update(str(item).lower() for item in valor)
+            else:
+                filtros[campo].add(str(valor).lower())
+
+    return filtros
 
 
-def filtrar_documentos(documentos, filtros):
+def extrair_filtros_automatico(pergunta, vocabulario, limiar=75):
+
+    pergunta = pergunta.lower()
+    filtros = {}
+
+    for campo, valores in vocabulario.items():
+
+        if campo == "state":
+            continue
+
+        if not valores:
+            continue
+
+        melhor_resultado = None
+        melhor_score = 0
+
+        for valor in valores:
+
+            valor = str(valor).lower().strip()
+
+            if len(valor) < 3:
+                continue
+
+            if valor in pergunta.split():
+                score = 100
+
+            else:
+                score = fuzz.token_set_ratio(
+                    valor,
+                    pergunta
+                )
+
+            if score > melhor_score:
+                melhor_score = score
+                melhor_resultado = valor
+
+        if melhor_score >= limiar:
+            filtros[campo] = melhor_resultado
+
+    return filtros
+
+
+def combinar_filtros(filtros_manuais, filtros_automaticos):
+    filtros_combinados = {}
+    # metadatas = extract_metadata()
+
+    filtros_combinados = filtros_automaticos | filtros_manuais
+
+    return filtros_combinados
+
+
+def filtrar_documento(documentos, filtros):
 
     documentos_filtrados = []
 
@@ -86,12 +184,32 @@ def filtrar_documentos(documentos, filtros):
             else:
 
                 if filtros['module'].lower() not in str(modulos_do_doc).lower():
-                    atende_filtrros = False
+                    atende_filtros = False
 
         if atende_filtros:
             documentos_filtrados.append(documento)
 
     return documentos_filtrados
+
+
+def processar_filtros(pergunta, documentos):
+
+    vocabulario = extract_metadata(documentos)
+
+    filtros_manuais = extrair_filtros_manuais(pergunta)
+
+    filtros_automaticos = extrair_filtros_automatico(pergunta, vocabulario)
+
+    filtro_combinado = combinar_filtros(filtros_manuais, filtros_automaticos)
+
+    documentos_filtrados = filtrar_documento(documentos, filtro_combinado)
+
+    return {
+        "filtros_manuais": filtros_manuais,
+        "filtros_automaticos": filtros_automaticos,
+        "filtro_combinado": filtro_combinado,
+        "documentos_filtrados": documentos_filtrados
+    }
 
 
 def similaridade_cosseno(vec1: np.ndarray, vec2: np.ndarray) -> np.ndarray:
@@ -132,27 +250,70 @@ def busca_densa(pergunta, documentos_filtrados):
     return resultados
 
 
-model = HuggingFaceEmbeddings(
-    model_name='paraphrase-multilingual-MiniLM-L12-v2')
-
-
-def abrir_banco():
-
-    db = FAISS.load_local(
-        'banco_faiss',
-        model,
-        allow_dangerous_deserialization=True)
-
-    return db
-
-
 db = abrir_banco()
 
-pergunta = "Quais lojas de Minas Gerais possuem o módulo de estoque?"
-filtros = query_analyzer(pergunta)
+# problema com nomes pequenos Minas gerais com mg, rever a lógica
+pergunta = "Quais tickets de clientes de Minas Gerais estão relacionados ao módulo de estoque?"
 
-documentos = db.docstore._dict.values()
+documentos = list(db.docstore._dict.values())
 
+bm25_retriever = BM25Retriever.from_documents(documentos)
+bm25_retriever.k = 3
+
+faiss_retriever = db.as_retriever(search_kwargs={"k": 3})
+
+resultados_faiss = faiss_retriever.invoke(pergunta)
+resultados_bm25 = bm25_retriever.invoke(pergunta)
+
+"""
+documentos_finais = list({doc.page_content: doc for doc in (
+    resultados_faiss + resultados_bm25)}.values())
+
+print("\n" + "="*50)
+print(f"📄 DOCUMENTOS RECUPERADOS (Total: {len(documentos_finais)})")
+print("="*50 + "\n")
+
+for i, doc in enumerate(documentos_finais, start=1):
+    print(f"🔹 [Documento {i}]")
+    print(f"📝 Conteúdo: {doc.page_content}")
+    print(f"🗂️ Metadados: {doc.metadata}")
+    print("-" * 50)
+
+
+resultado_filtros = processar_filtros(pergunta, documentos)
+
+print("\nFILTROS MANUAIS:")
+print(resultado_filtros["filtros_manuais"])
+
+
+print("\nFILTROS AUTOMÁTICOS:")
+print(resultado_filtros["filtros_automaticos"])
+
+
+print("\nFILTROS FINAIS:")
+print(resultado_filtros["filtro_combinado"])
+
+
+print("\nDOCUMENTOS ENCONTRADOS:")
+print(len(resultado_filtros["documentos_filtrados"]))
+"""
+"""
+for campo, valores in filtros.items():
+    print(f"\n{campo}:")
+    print(valores)
+
+resultado = process.extract(
+    frases,
+    metadados,
+    scorer=fuzz.partial_token_set_ratio,
+    score_cutoff=75
+)
+
+for palavra_correta, score, index in resultado:
+    print(f"Metadado encontrado: '{palavra_correta}' (Score: {score:.1f}%)")
+
+"""
+"""
 documentos_filtrados = filtrar_documentos(documentos, filtros)
 
 resultados_dense = busca_densa(pergunta, documentos_filtrados)
@@ -162,3 +323,4 @@ for documento, score in resultados_dense[:5]:
     print(f"Chunk: {documento.metadata.get('chunk_id')}")
     print(f"Texto: {documento.page_content}")
     print("-" * 60)
+"""

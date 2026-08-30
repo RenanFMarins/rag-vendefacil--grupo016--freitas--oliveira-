@@ -96,10 +96,10 @@ def leitor_csv(dados_arquivos, criar_documento):
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
                             chunk_id=f"employees_{linha["id"]}",
-                            employee_id=['employee_id'],
-                            department=['department'],
-                            role=['role'],
-                            status=['status']
+                            employee_id=linha['id'],
+                            department=linha['department'],
+                            role=linha['role'],
+                            status=linha['status']
                         )
                         chunks_finais.append(documento)
                 elif "sales" in caminho.lower():
@@ -111,21 +111,21 @@ def leitor_csv(dados_arquivos, criar_documento):
                             doc_type=dados["doc_type"],
                             sensitivity=dados["sensitivity"],
                             chunk_id=f"sales_{linha["sale_id"]}",
-                            sale_id=['sale_id'],
-                            customer_id=['customer_id'],
-                            company_name=['company_name'],
-                            store_id=['tore_id'],
-                            store_name=['store_name'],
-                            state=['state'],
-                            city=['city'],
-                            product_id=['product_id'],
-                            product_name=['product_name'],
-                            date=['date'],
-                            payment_method=['payment_method'],
-                            status=['status']
+                            sale_id=linha['sale_id'],
+                            customer_id=linha['customer_id'],
+                            company_name=linha['company_name'],
+                            store_id=linha['store_id'],
+                            store_name=linha['store_name'],
+                            state=linha['state'],
+                            city=linha['city'],
+                            product_id=linha['product_id'],
+                            product_name=linha['product_name'],
+                            date=linha['date'],
+                            payment_method=linha['payment_method'],
+                            status=linha['status']
 
                         )
                         chunks_finais.append(documento)
                 else:
-                    print("--------")
+                    print(f"Arquivo CVS não reconhecido: {caminho}")
     return chunks_finais

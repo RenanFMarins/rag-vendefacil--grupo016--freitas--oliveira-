@@ -10,5 +10,8 @@ sentence-transformers>=5.7.0
 langchain-text-splitters
 pypdf
 faiss-cpu
+rapidfuzz
+rank_bm25
+
 
 #nltk   

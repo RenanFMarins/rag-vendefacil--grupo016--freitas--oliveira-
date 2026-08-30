@@ -88,7 +88,7 @@ def salvar_banco_faiss():
     db.save_local('banco_faiss')
 
 
-# salvar_banco_faiss()
+salvar_banco_faiss()
 
 
 def abrir_banco():
