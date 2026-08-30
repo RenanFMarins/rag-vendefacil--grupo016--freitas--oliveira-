@@ -202,6 +202,36 @@ Utilizamos assistentes de IA como apoio durante o desenvolvimento, principalment
 
 ---
 
+## Encontro 3.1 - 2026-08-29
+
+**Etapa:** 2 - Busca híbrida e filtragem por metadados
+
+### Relato individual - [Nome do Integrante 1]
+
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje dei continuidade à Etapa 2 e também realizei alguns ajustes na Etapa 1, corrigindo erros que ainda haviam sido identificados no processamento dos documentos.
+
+Na Etapa 2, avancei principalmente na parte de filtragem por metadados. Implementei uma função para extrair os metadados dos documentos e ajustei a extração dos filtros definidos manualmente a partir da pergunta. Também implementei uma abordagem para extração automática dos filtros utilizando uma biblioteca, além de uma função responsável por combinar os filtros manuais e automáticos.
+
+Em seguida, desenvolvi as funções responsáveis pela filtragem dos documentos e pelo processamento de todo esse fluxo. Dessa forma, o processo consegue extrair os metadados dos documentos, analisar os filtros relacionados à pergunta e comparar essas informações para retornar apenas os documentos que atendem aos critérios definidos.
+
+Também comecei a implementação do BM25, inicialmente como um teste para validar o funcionamento desse tipo de busca. Como próximos passos, falta integrar o BM25 com a busca densa para realizar a busca híbrida e, posteriormente, executar os testes e comparativos previstos na etapa.
+
+### Resumo do dia (escrito em conjunto)
+
+## **Entregamos hoje:**
+
+## **Ficou pendente:**
+
+## **Bloqueios em aberto:**
+
+## **Próximo passo (início do encontro 3):**
+
+## **Uso de assistentes de IA:**
+
+---
+
 ## Encontro 3 - AAAA-MM-DD
 
 **Etapa:** 3 - Síntese estruturada, evidência e guardrails de LGPD
