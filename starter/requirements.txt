@@ -3,5 +3,8 @@ langchain-community
 langchain-core
 langchain-openai
 langchain-text-splitters
+numpy
+pydantic
 pytest
 python-dotenv
+rank-bm25==0.2.2
