@@ -1,7 +1,7 @@
 import bm25s
 
 
-def busca_bm25(pergunta, documentos_filtrados):
+def busca_bm25(pergunta, documentos_filtrados, top_k=5):
 
     textos = [documento.page_content for documento in documentos_filtrados]
 
@@ -24,7 +24,7 @@ def busca_bm25(pergunta, documentos_filtrados):
     total_documentos = len(textos)
     # k=5
     resultados, scores = retriever.retrieve(
-        pergunta_tokens, k=5)
+        pergunta_tokens, k=min(top_k, len(textos)))
 
     print("RESULTADOS:", resultados)
     print("TIPO RESULTADOS:", type(resultados))

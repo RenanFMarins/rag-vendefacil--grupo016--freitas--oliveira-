@@ -1,4 +1,4 @@
-from rapidfuzz import fuzz, process
+from rapidfuzz import fuzz
 
 
 def extract_metadata(documentos):

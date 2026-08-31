@@ -16,7 +16,7 @@ def similaridade_cosseno(vec1: np.ndarray, vec2: np.ndarray) -> np.ndarray:
     return np.dot(v2, v1) / (norm_v1 * norm_v2)
 
 
-def busca_densa(pergunta, documentos_filtrados):
+def busca_densa(pergunta, documentos_filtrados, top_k=5):
 
     model = HuggingFaceEmbeddings(
         model_name='paraphrase-multilingual-MiniLM-L12-v2')
@@ -37,4 +37,4 @@ def busca_densa(pergunta, documentos_filtrados):
         reverse=True
     )
 
-    return resultados
+    return resultados[:top_k]
