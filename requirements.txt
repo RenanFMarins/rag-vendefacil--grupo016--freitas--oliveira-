@@ -11,7 +11,8 @@ langchain-text-splitters
 pypdf
 faiss-cpu
 rapidfuzz
-rank_bm25
+#rank_bm25
+bm25s
 
 
 #nltk   
