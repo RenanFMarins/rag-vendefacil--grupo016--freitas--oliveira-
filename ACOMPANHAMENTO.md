@@ -278,15 +278,29 @@ Além disso, como parte dos testes da Etapa 2 demandou um tempo maior de execuç
 
 ### Resumo do dia (escrito em conjunto)
 
+Hoje nós dois demos continuidade à Etapa 2, discutindo e revisando as diferentes partes da implementação, como a filtragem manual por metadados, a busca BM25, a busca densa e a busca híbrida. Durante o encontro, passamos a concentrar mais atenção nos testes, analisando os resultados retornados por cada abordagem e conversando sobre o que estava funcionando corretamente e quais pontos ainda precisavam ser modificados.
+
+A partir desses testes, identificamos alguns ajustes que ainda precisam ser feitos nas funções desenvolvidas. Também começamos a discutir a Etapa 3, buscando entender melhor os requisitos e como podemos estruturar o fluxo dessa próxima etapa.
+
 ## **Entregamos hoje:**
+
+Realizamos os testes da Etapa 2 e analisamos os resultados das diferentes partes da busca e da filtragem. Com isso, conseguimos identificar pontos que precisam de ajustes antes de considerar a etapa totalmente concluída.
 
 ## **Ficou pendente:**
 
+Ficaram pendentes algumas modificações nas funções a partir dos resultados encontrados durante os testes. Também precisamos integrar as partes desenvolvidas separadamente por cada integrante da dupla, juntando os diferentes componentes em um único fluxo e refazendo os testes após essa integração.
+
 ## **Bloqueios em aberto:**
+
+O principal ponto em aberto neste momento está relacionado à Etapa 3. Ainda estamos analisando a melhor forma de abordar essa etapa e estruturar o fluxo de desenvolvimento antes de iniciar sua implementação.
 
 ## **Próximo passo (início do encontro 3):**
 
+Dar continuidade aos ajustes e à integração das partes da Etapa 2 e, em seguida, avançar para a Etapa 3. No início do próximo encontro, pretendemos alinhar novamente a abordagem da nova etapa e começar sua implementação.
+
 ## **Uso de assistentes de IA:**
+
+Utilizamos assistentes de IA principalmente como apoio durante a análise dos testes e dos resultados, ajudando a identificar possíveis problemas, bugs e comportamentos que precisavam ser revisados. Também utilizamos o auxílio para analisar algumas funções e pensar na estruturação dos fluxos e da pipeline, ajudando a entender como os diferentes componentes poderiam ser organizados e integrados.
 
 ---
 
