@@ -232,6 +232,28 @@ Também comecei a implementação do BM25, inicialmente como um teste para valid
 
 ---
 
+## Encontro 3.2 - 2026-08-30Hoje dei continuidade à Etapa 2, dedicando aproximadamente 6 horas ao desenvolvimento. Inicialmente, organizei as pastas e a estrutura relacionadas a essa etapa para facilitar a continuidade do projeto.
+
+Hoje dei continuidade à Etapa 2, dedicando aproximadamente 6 horas ao desenvolvimento. Inicialmente, organizei as pastas e a estrutura relacionadas a essa etapa para facilitar a continuidade do projeto.
+
+Durante o desenvolvimento, implementei a busca BM25 e a busca densa e, a partir delas, desenvolvi a busca híbrida utilizando a fusão dos resultados. Também realizei testes para validar o funcionamento dessas buscas e montei uma pipeline que integra todo o fluxo desenvolvido na Etapa 2, utilizando os arquivos e funções que já haviam sido implementados anteriormente.
+
+A busca híbrida já está funcionando em conjunto com as demais partes da etapa, porém ainda não finalizei a Etapa 2. Neste momento, faltam principalmente os testes e evidências comparativas, incluindo o comparativo dos resultados com e sem a aplicação dos filtros e a apresentação das evidências de desempenho/resultados entre BM25, busca densa e RRF.
+
+### Resumo do dia (escrito em conjunto)
+
+## **Entregamos hoje:**
+
+## **Ficou pendente:**
+
+## **Bloqueios em aberto:**
+
+## **Próximo passo (início do encontro 3):**
+
+## **Uso de assistentes de IA:**
+
+---
+
 ## Encontro 3 - AAAA-MM-DD
 
 **Etapa:** 3 - Síntese estruturada, evidência e guardrails de LGPD
