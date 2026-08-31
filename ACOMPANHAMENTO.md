@@ -134,30 +134,56 @@ Também foi utilizado para explicar o funcionamento dos embeddings, dos arquivos
 
 ---
 
-## Encontro 4 - AAAA-MM-DD
+## Encontro 4 - 2026-08-31
 
 **Etapa:** 4 - Avaliação (RAG Triad), interface e relatório
 
-### Relato individual - [Nome do Integrante 1]
+### Relato individual - [José Renan Freitas Marins]
+Hoje integrei a interface Streamlit ao pipeline estruturado do projeto. Substituí o fluxo antigo, que acessava diretamente o FAISS e o ChatOpenAI, pelo uso de `RAGPipeline`. Também participei da criação do `app/bootstrap.py`, responsável por carregar os índices JSONL, TXT e Markdown e montar o Dense, BM25, RRF, modelos e guardrails.
+
+Testei perguntas corporativas, LGPD, fora de escopo, filtros por metadados e consultas com múltiplas fontes. Ao comparar o projeto com o arquivo de benchmark fornecido pelo professor, alguns formatos ainda não estão integrados nesta branch.
+
 
 ### Relato individual - [Nome do Integrante 2]
 
 ### Resumo do dia (escrito em conjunto)
 
 **Entregamos hoje:**
--
+- Integração funcional da interface Streamlit com o `RAGPipeline`.
+- Criação do bootstrap para montar e manter em cache embeddings, índices, BM25, modelos e pipeline.
+- Remoção do pipeline paralelo e da busca externa da interface.
+- Renderização de `RAGResponse`, confiança, recusas e evidências.
+- Testes de interface e bootstrap sem chamadas reais à OpenAI.
+- Testes manuais de respostas corporativas, LGPD, fora de escopo e ausência de evidência.
+- Diagnóstico de divergências entre o benchmark e o corpus atual.
 
 **Ficou pendente:**
--
+
+- Integrar os formatos CSV, JSON e PDF exigidos pela Etapa 1.
+- Corrigir consultas multi-documento, evitando um único filtro `doc_type`
+- Preservar nomes de clientes e outras entidades na query semântica.
+- Repor candidatos permitidos quando um chunk restrito for removido do Top-K.
+- Adaptar o runner para executar as 20/24 perguntas oficiais.
+- Preencher `RELATORIO.md` com métricas e diagnóstico das três piores falhas.
+- Atualizar o README e organizar os arquivos obrigatórios na raiz.
 
 **Bloqueios em aberto:**
--
+- Algumas perguntas dependem de CSV, JSON e PDF, que ainda não estão indexados.
+- O gabarito da pergunta sobre reembolso de cursos contém informações que não aparecem no arquivo indicado.
+- Precisamos integrar ou receber o trabalho da dupla referente aos formatos ainda ausentes.
 
 **Preparação para o Demo Day:**
--
+- Selecionar duas perguntas estáveis para a demonstração.
+- Sugestão de pergunta corporativa:
+  “Como deve ser realizada uma operação de sangria no caixa do VendeFácil PDV?”
+- Sugestão de guardrail:
+  “Qual é o salário atual da funcionária Ana Souza?”
 
 **Uso de assistentes de IA:**
--
+- Utilizamos assistência de IA para revisar a integração entre Streamlit e o pipeline structured e analisar o comportamento do classificador de escopo.
+- A IA ajudou a comparar o benchmark com os documentos efetivamente indexados e a identificar fontes ausentes ou gabaritos divergentes.
+- As sugestões foram verificadas por testes automatizados, inspeção dos índices e execução manual de perguntas.
+- Ajustamos o resultado sugerido para preservar o pipeline oficial, remover a busca web e impedir respostas sem evidência.
 
 ---
 
