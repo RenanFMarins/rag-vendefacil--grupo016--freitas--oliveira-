@@ -232,13 +232,49 @@ Também comecei a implementação do BM25, inicialmente como um teste para valid
 
 ---
 
-## Encontro 3.2 - 2026-08-30Hoje dei continuidade à Etapa 2, dedicando aproximadamente 6 horas ao desenvolvimento. Inicialmente, organizei as pastas e a estrutura relacionadas a essa etapa para facilitar a continuidade do projeto.
+## Encontro 3.2 - 2026-08-30
+
+**Etapa:** 2 - Busca híbrida e filtragem por metadados
+
+### Relato individual - [Nome do Integrante 1]
+
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje dei continuidade à Etapa 2, dedicando aproximadamente 6 horas ao desenvolvimento. Inicialmente, organizei as pastas e a estrutura relacionadas a essa etapa para facilitar a continuidade do projeto.
 
 Hoje dei continuidade à Etapa 2, dedicando aproximadamente 6 horas ao desenvolvimento. Inicialmente, organizei as pastas e a estrutura relacionadas a essa etapa para facilitar a continuidade do projeto.
 
 Durante o desenvolvimento, implementei a busca BM25 e a busca densa e, a partir delas, desenvolvi a busca híbrida utilizando a fusão dos resultados. Também realizei testes para validar o funcionamento dessas buscas e montei uma pipeline que integra todo o fluxo desenvolvido na Etapa 2, utilizando os arquivos e funções que já haviam sido implementados anteriormente.
 
 A busca híbrida já está funcionando em conjunto com as demais partes da etapa, porém ainda não finalizei a Etapa 2. Neste momento, faltam principalmente os testes e evidências comparativas, incluindo o comparativo dos resultados com e sem a aplicação dos filtros e a apresentação das evidências de desempenho/resultados entre BM25, busca densa e RRF.
+
+### Resumo do dia (escrito em conjunto)
+
+## **Entregamos hoje:**
+
+## **Ficou pendente:**
+
+## **Bloqueios em aberto:**
+
+## **Próximo passo (início do encontro 3):**
+
+## **Uso de assistentes de IA:**
+
+---
+
+## Encontro 4 - 2026-08-31
+
+**Etapa:** 2 - Busca híbrida e filtragem por metadados
+
+### Relato individual - [Nome do Integrante 1]
+
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje dei continuidade à Etapa 2, que já está próxima de ser finalizada. Com as principais funções já implementadas, começamos a concentrar o trabalho na realização dos testes e na revisão do fluxo completo.
+
+Durante os testes, identificamos alguns comportamentos e pontos que precisam ser revisados e ajustados para garantir que os resultados estejam de acordo com o esperado. Dessa forma, neste momento o foco está mais na lapidação da implementação, corrigindo possíveis erros e realizando pequenos ajustes nas funções que já foram desenvolvidas.
+
+Além disso, como parte dos testes da Etapa 2 demandou um tempo maior de execução, começamos também a analisar a Etapa 3 para entender os próximos requisitos e antecipar o planejamento do que será desenvolvido posteriormente. A Etapa 2 ainda não foi concluída, ficando pendente essa revisão final, os ajustes identificados durante os testes e a validação definitiva dos resultados.
 
 ### Resumo do dia (escrito em conjunto)
 
