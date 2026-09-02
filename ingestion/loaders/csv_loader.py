@@ -269,4 +269,3 @@ def load_csv_documents(file_or_directory: str | Path) -> list[Document]:
                 )
 
     return documents
-

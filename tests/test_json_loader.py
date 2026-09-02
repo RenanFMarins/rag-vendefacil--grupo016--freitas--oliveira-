@@ -97,4 +97,3 @@ def test_rejects_unknown_json(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="JSON não reconhecido"):
         load_json_documents(path)
-

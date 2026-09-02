@@ -128,4 +128,3 @@ def test_reports_missing_required_column(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="Colunas ausentes"):
         load_csv_documents(path)
-

@@ -84,4 +84,3 @@ def test_empty_filters_are_absent_and_never_invalid() -> None:
     assert result.valid_filters.model_dump(exclude_none=True) == {}
     assert result.invalid_filters == []
     assert result.absent_fields == list(QueryFilters.model_fields)
-

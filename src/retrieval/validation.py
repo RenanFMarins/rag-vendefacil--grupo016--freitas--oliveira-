@@ -68,4 +68,3 @@ def validate_normalized_filters(
         absent_fields=absent_fields,
         invalid_filters=invalid_filters,
     )
-

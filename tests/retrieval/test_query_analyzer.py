@@ -289,4 +289,3 @@ def test_tef_meeting_does_not_force_module_filter() -> None:
     )
 
     assert analysis.filters.module is None
-

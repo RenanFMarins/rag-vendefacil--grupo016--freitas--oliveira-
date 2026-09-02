@@ -289,4 +289,3 @@ def dense_search(
         config=config,
         allowed_sensitivities=allowed_sensitivities,
     )
-

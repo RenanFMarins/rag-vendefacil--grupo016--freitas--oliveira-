@@ -155,4 +155,3 @@ def test_bm25_finds_exact_customer_identifier_in_real_csv_documents() -> None:
     results = retriever.search("CUST001", k=1)
 
     assert results[0].chunk_id == "customers:CUST001"
-

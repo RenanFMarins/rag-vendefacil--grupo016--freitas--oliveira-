@@ -320,4 +320,3 @@ def test_repeated_error_code_does_not_fill_the_entire_top_k() -> None:
         result.chunk_id == "manual:stk-409"
         for result in response.results
     )
-

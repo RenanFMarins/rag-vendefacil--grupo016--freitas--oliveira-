@@ -75,4 +75,3 @@ def test_schema_preserves_identifiers_before_normalization() -> None:
 
     assert filters.customer_id == "cust001"
     assert filters.ticket_id == "tck-1001"
-

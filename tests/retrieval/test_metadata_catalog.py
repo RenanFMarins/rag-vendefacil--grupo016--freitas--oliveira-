@@ -100,4 +100,3 @@ def test_expands_multivalued_metadata_into_individual_catalog_values() -> None:
     catalog = build_metadata_catalog(documents)
 
     assert catalog == {"module": ["estoque", "pay", "pdv"]}
-

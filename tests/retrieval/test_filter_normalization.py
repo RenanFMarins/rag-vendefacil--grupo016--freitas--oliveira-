@@ -60,4 +60,3 @@ def test_keeps_unknown_full_state_available_for_later_validation() -> None:
     normalized = normalize_query_filters(filters)
 
     assert normalized.state == "Estado Inventado"
-

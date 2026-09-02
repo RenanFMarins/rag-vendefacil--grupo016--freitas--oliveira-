@@ -175,4 +175,3 @@ def test_bm25_excludes_disallowed_sensitivity_before_ranking() -> None:
     )
 
     assert [result.chunk_id for result in results] == ["allowed"]
-

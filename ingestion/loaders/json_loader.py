@@ -271,4 +271,3 @@ def load_json_documents(file_or_directory: str | Path) -> list[Document]:
         loader = _load_products if file_path.name == "products.json" else _load_stores
         documents.extend(loader(file_path, payload))
     return documents
-

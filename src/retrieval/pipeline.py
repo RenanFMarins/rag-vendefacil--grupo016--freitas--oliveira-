@@ -264,4 +264,3 @@ class HybridRetriever:
             sparse_results=sparse_results,
             results=fused_results,
         )
-

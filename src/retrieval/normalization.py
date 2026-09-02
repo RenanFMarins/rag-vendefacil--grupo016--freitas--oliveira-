@@ -100,4 +100,3 @@ def normalize_query_filters(filters: QueryFilters) -> QueryFilters:
         for field, value in filters.model_dump(exclude_none=True).items()
     }
     return QueryFilters.model_validate(normalized_values)
-

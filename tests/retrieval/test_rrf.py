@@ -113,4 +113,3 @@ def test_rejects_invalid_configuration(
             top_k=top_k,
             rank_constant=rank_constant,
         )
-

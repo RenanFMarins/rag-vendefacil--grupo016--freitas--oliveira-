@@ -264,4 +264,3 @@ def analyze_question(
             )
 
     return validated_analysis
-

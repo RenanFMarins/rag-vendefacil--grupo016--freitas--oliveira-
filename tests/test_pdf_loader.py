@@ -94,4 +94,3 @@ def test_reports_missing_pdf() -> None:
 def test_validates_chunk_configuration() -> None:
     with pytest.raises(ValueError, match="chunk_overlap"):
         load_pdf_documents(REEMBOLSO, chunk_size=100, chunk_overlap=100)
-

@@ -51,4 +51,3 @@ def build_metadata_catalog(
         for field, values in discovered_values.items()
         if values
     }
-

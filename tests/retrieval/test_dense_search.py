@@ -212,4 +212,3 @@ def test_rejects_invalid_search_configuration() -> None:
         assert "fetch_k" in str(error)
     else:
         raise AssertionError("A configuração inválida deveria falhar.")
-

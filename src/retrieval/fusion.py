@@ -126,4 +126,3 @@ def reciprocal_rank_fusion(
             start=1,
         )
     ]
-

@@ -179,4 +179,3 @@ class BM25SparseRetriever:
                 start=1,
             )
         ]
-

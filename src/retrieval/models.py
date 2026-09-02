@@ -90,4 +90,3 @@ class QueryAnalysis(BaseModel):
         default_factory=list,
         description="Restrições inválidas, ambíguas ou fora do catálogo.",
     )
-

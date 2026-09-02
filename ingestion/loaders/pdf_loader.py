@@ -87,4 +87,3 @@ def load_pdf_documents(
         documents.extend(file_documents)
 
     return documents
-
