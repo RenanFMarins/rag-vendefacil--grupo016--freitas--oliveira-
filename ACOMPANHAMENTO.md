@@ -187,4 +187,74 @@ Testei perguntas corporativas, LGPD, fora de escopo, filtros por metadados e con
 
 ---
 
+Encontro 5 - 2026-09-02
+Etapa: Integração e consolidação das Etapas 1 e 2 na branch dev
+Relato individual - José Renan Freitas Marins
+Hoje trabalhei na integração das contribuições desenvolvidas nas branches challenge/ingestion_file e luciano_test com a branch dev.
+Primeiro, integrei a ingestão de JSONL, Markdown e TXT e corrigi o cálculo do diretório raiz utilizado pelos builders. O código utilizava parents[2], apontando incorretamente para ingestion/data/; a correção para parents[3] passou a localizar corretamente os arquivos em data/.
+A lógica de ingestão de CSV e JSON desenvolvida pela dupla foi adaptada à arquitetura atual, separando loaders, builders, previews e testes. Também foi integrado um loader para PDF. Ao final, os seis formatos passaram a ser processados e indexados: CSV, JSON, JSONL, Markdown, PDF e TXT.
+Na Etapa 2, integrei catálogo dinâmico de metadados, Query Analyzer com Pydantic, normalização e validação de filtros, Dense Search com FAISS, BM25, fusão RRF e retorno Top-K. Foram adicionados scripts de inspeção para visualizar cada parte do retrieval.
+Por fim, organizei os commits e integrei a luciano_test na dev pelo commit de merge c416a17. A suíte completa terminou com 121 testes passando.
+Relato individual - Luciano Oliveira da Costa
+A contribuição desenvolvida na branch do Luciano serviu como base para a ingestão dos arquivos CSV e JSON e para os mecanismos da Etapa 2, incluindo filtragem por metadados, busca densa, BM25 e RRF.
+Durante a integração, essas funcionalidades foram adaptadas para a arquitetura compartilhada do projeto, mantendo a lógica principal de serialização dos registros e recuperação híbrida. O código original foi preservado na branch luciano_test_original, enquanto a versão integrada foi ajustada para Python 3.10, testes automatizados e uso dos índices FAISS persistidos.
+Ajustar este relato conforme as atividades realizadas diretamente pelo integrante durante o encontro.
+
+Resumo do dia (escrito em conjunto)
+Entregamos hoje:
+- Integração da branch challenge/ingestion_file na dev.
+- Correção dos caminhos padrão dos builders.
+- Preservação da branch original do Luciano em luciano_test_original.
+- Recriação da luciano_test a partir da dev, eliminando os históricos independentes.
+- Integração do loader, builder, preview e testes de CSV.
+- Integração do loader, builder, preview e testes de JSON.
+- Implementação do loader, builder, preview e testes de PDF.
+- Registro dos seis formatos no construtor geral de índices.
+- Validação de 5.723 chunks com 5.723 chunk_id únicos.
+- Confirmação do schema obrigatório de metadados em todos os formatos.
+- Verificação dos seis índices FAISS com vetores de 1.536 dimensões.
+- Implementação do catálogo automático de metadados.
+- Implementação do contrato Pydantic do Query Analyzer.
+- Normalização de estados, módulos, categorias e identificadores.
+- Validação dos filtros contra os valores existentes no corpus.
+- Integração da busca densa com os índices FAISS persistidos.
+- Criação de scripts para inspeção de catálogo, Query Analyzer, Dense, BM25 e retrieval híbrido.
+- Organização dos commits por funcionalidade.
+- Merge da luciano_test na dev.
+
+Ficou pendente:
+- Executar um teste ponta a ponta usando o Query Analyzer com uma chamada real à OpenAI.
+- Integrar na dev os componentes da Etapa 3:
+  - geração estruturada;
+  - evidências;
+  - guardrails LGPD;
+  - mascaramento;
+  - controle de escopo;
+  - retry.
+- Integrar os componentes da Etapa 4:
+  - interface Streamlit;
+  - benchmark;
+  - métricas RAG Triad;
+  - relatório final.
+- Atualizar o README com a arquitetura consolidada e os comandos oficiais.
+- Enviar a versão atualizada da dev para o GitHub.
+- Avaliar futuramente a migração do langchain_community para os pacotes recomendados.
+Bloqueios em aberto:
+- Continua existindo uma divergência entre o corpus e o gabarito da pergunta sobre reembolso de cursos, certificações e treinamentos.
+- Existe um aviso de depreciação do langchain_community, mas ele não afeta o funcionamento atual.
+
+Preparação para o Demo Day:
+- Comparar os rankings de Dense Search, BM25 e RRF.
+- Demonstrar que os filtros são normalizados e validados antes de chegar ao retriever.
+- Após integrar a Etapa 3, demonstrar uma pergunta bloqueada por LGPD.
+- Após integrar a Etapa 4, executar as perguntas escolhidas diretamente pela interface Streamlit.
+
+Uso de assistentes de IA:
+- Foram identificados problemas de compatibilidade com Python 3.10, caminhos relativos frágeis, efeitos colaterais durante imports e arquivos gerados indevidamente versionados.
+- A IA ajudou a adaptar os loaders CSV e JSON para a arquitetura de loaders, builders, previews e testes.
+- Também auxiliou na integração do loader PDF e dos componentes de retrieval híbrido.
+- Todas as alterações sugeridas foram verificadas por testes automatizados, inspeção do catálogo, análise dos índices FAISS e revisão do histórico Git.
+- A validação final apresentou 121 testes passando e nenhuma falha.
+
+
 *TIC em Trilhas · PUC-Rio · Instituto ECOA · MCTI Futuro · Softex*
