@@ -304,13 +304,49 @@ Utilizamos assistentes de IA principalmente como apoio durante a análise dos te
 
 ---
 
+## Encontro 5 - 2026-09-02
+
+**Etapa:** 3 - Síntese estruturada, evidência e guardrails de LGPD
+
+### Relato individual - [Nome do Integrante 1]
+
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje dei continuidade à Etapa 2, que já está próxima de ser finalizada. Com as principais funções já implementadas, começamos a concentrar o trabalho na realização dos testes e na revisão do fluxo completo.
+
+Durante os testes, identificamos alguns comportamentos e pontos que precisam ser revisados e ajustados para garantir que os resultados estejam de acordo com o esperado. Dessa forma, neste momento o foco está mais na lapidação da implementação, corrigindo possíveis erros e realizando pequenos ajustes nas funções que já foram desenvolvidas.
+
+Além disso, como parte dos testes da Etapa 2 demandou um tempo maior de execução, começamos também a analisar a Etapa 3 para entender os próximos requisitos e antecipar o planejamento do que será desenvolvido posteriormente. A Etapa 2 ainda não foi concluída, ficando pendente essa revisão final, os ajustes identificados durante os testes e a validação definitiva dos resultados.
+
+### Resumo do dia (escrito em conjunto)
+
+## **Entregamos hoje:**
+
+## **Ficou pendente:**
+
+## **Bloqueios em aberto:**
+
+## **Próximo passo (início do encontro 3):**
+
+## **Uso de assistentes de IA:**
+
+---
+
 ## Encontro 3 - AAAA-MM-DD
 
 **Etapa:** 3 - Síntese estruturada, evidência e guardrails de LGPD
 
 ### Relato individual - [Nome do Integrante 1]
 
-### Relato individual - [Nome do Integrante 2]
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje dei início à Etapa 3, buscando entender melhor o fluxo proposto e como cada parte da etapa será integrada. Essa foi uma das principais dificuldades do início da implementação, principalmente para definir onde cada análise e função deveria entrar dentro do fluxo.
+
+Comecei então a desenvolver a primeira parte do tratamento da pergunta, criando funções para analisar informações como assunto, intenção, entidades, atributos e outros dados relevantes presentes na consulta. Também implementei as primeiras verificações relacionadas às políticas de LGPD, buscando identificar situações em que a pergunta deve ser recusada ou em que determinados dados precisam ser tratados ou mascarados.
+
+Além disso, implementei máscaras para diferentes tipos de informações, como e-mail, telefone, cartão e endereço. Também desenvolvi uma função responsável por consolidar a análise da pergunta, retornando informações como assunto, intenção, entidade, filtros, dados individuais e dados sensíveis. Realizei testes dessas funcionalidades para verificar se os resultados estavam de acordo com o esperado.
+
+A Etapa 3 ainda não foi concluída. Como próximo passo, preciso dar continuidade ao fluxo, principalmente na parte de verificação de escopo e na integração com o banco, para posteriormente avaliar o resultado completo da consulta.
 
 ### Resumo do dia (escrito em conjunto)
 
