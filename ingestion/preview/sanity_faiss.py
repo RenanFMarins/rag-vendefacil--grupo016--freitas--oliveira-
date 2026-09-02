@@ -2,7 +2,7 @@
 
 O script recarrega os índices existentes, sem reler os arquivos de origem e
 sem gerar um novo índice. Cada pergunta é vetorizada uma única vez e pesquisada
-nos índices JSONL, TXT e Markdown; os resultados são reunidos em um top global.
+nos seis índices; os resultados são reunidos em um top global.
 """
 
 import argparse
@@ -21,9 +21,12 @@ from ingestion.build._faiss import load_faiss_index
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 INDEX_PATHS = {
+    "csv": PROJECT_ROOT / "storage" / "faiss_csv",
+    "json": PROJECT_ROOT / "storage" / "faiss_json",
     "jsonl": PROJECT_ROOT / "storage" / "faiss_jsonl",
-    "txt": PROJECT_ROOT / "storage" / "faiss_txt",
     "markdown": PROJECT_ROOT / "storage" / "faiss_markdown",
+    "pdf": PROJECT_ROOT / "storage" / "faiss_pdf",
+    "txt": PROJECT_ROOT / "storage" / "faiss_txt",
 }
 
 TEST_QUESTIONS = (
