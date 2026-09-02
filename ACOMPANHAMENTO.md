@@ -350,15 +350,27 @@ A Etapa 3 ainda não foi concluída. Como próximo passo, preciso dar continuida
 
 ### Resumo do dia (escrito em conjunto)
 
+Hoje, passamos boa parte do dia conversando e tentando entender melhor o fluxo da Etapa 3. Tivemos algumas dúvidas sobre como esse fluxo seria estruturado, onde cada parte deveria entrar e como deveríamos prosseguir com a implementação. Por isso, uma parte significativa do encontro foi dedicada a discutir e organizar esse processo.
+
 ## **Entregamos hoje:**
+
+Iniciamos a implementação da Etapa 3, trabalhando na parte inicial de análise das perguntas. Desenvolvemos funções para identificar atributos e outras informações presentes na pergunta e avançamos para a análise relacionada à LGPD, verificando a classificação dos dados identificados, como dados sensíveis ou não sensíveis.
 
 ## **Ficou pendente:**
 
+Ainda falta uma parte considerável da Etapa 3, principalmente a verificação de escopo, normalização e validação das perguntas, aplicação dos filtros, consulta ao banco de dados, obtenção das respostas e envio dessas informações para o LLM.
+
 ## **Bloqueios em aberto:**
+
+Apesar das discussões sobre o fluxo, ainda existem alguns pontos que não estão totalmente claros para nós. Em alguns momentos começamos a implementar uma parte e surgem dúvidas sobre como ela deve se encaixar no restante do fluxo, o que acaba gerando algumas travadas durante o desenvolvimento.
 
 ## **Próximo passo (início do encontro 4):**
 
+Dar continuidade à implementação da Etapa 3, avançando a partir da análise inicial das perguntas e desenvolvendo as demais partes do fluxo.
+
 ## **Uso de assistentes de IA:**
+
+Utilizamos IA principalmente para auxiliar na compreensão e organização do fluxo da Etapa 3, revisar e conferir o código implementado, esclarecer dúvidas sobre funções e buscar orientações para a implementação de recursos específicos, como expressões regulares (regex).
 
 ---
 
