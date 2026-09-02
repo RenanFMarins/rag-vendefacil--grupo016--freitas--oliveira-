@@ -26,9 +26,6 @@ dist/
 # Generated vector indexes
 storage/
 
-# Jupyter
-.ipynb_checkpoints/
-
 # IDEs
 .vscode/
 .idea/

@@ -11,7 +11,7 @@ from ingestion.build._faiss import save_faiss_index
 from ingestion.loaders.txt_loader import load_txt_documents
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_SOURCE = PROJECT_ROOT / "data" / "unstructured" / "emails"
 DEFAULT_INDEX = PROJECT_ROOT / "storage" / "faiss_txt"
 
