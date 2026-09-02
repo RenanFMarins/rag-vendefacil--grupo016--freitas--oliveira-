@@ -10,9 +10,12 @@ from langchain_core.embeddings import DeterministicFakeEmbedding
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 INDEX_PATHS = {
+    "csv": PROJECT_ROOT / "storage" / "faiss_csv",
+    "json": PROJECT_ROOT / "storage" / "faiss_json",
     "jsonl": PROJECT_ROOT / "storage" / "faiss_jsonl",
-    "txt": PROJECT_ROOT / "storage" / "faiss_txt",
     "markdown": PROJECT_ROOT / "storage" / "faiss_markdown",
+    "pdf": PROJECT_ROOT / "storage" / "faiss_pdf",
+    "txt": PROJECT_ROOT / "storage" / "faiss_txt",
 }
 
 
