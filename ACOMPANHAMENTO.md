@@ -280,6 +280,13 @@ Entregamos hoje:
 - Correção do filtro de módulo baseado nos produtos da VendeFácil.
 - Validação da suíte completa com 270 testes aprovados.
 - Organização das alterações em commits separados por responsabilidade.
+- Revisão detalhada da arquitetura da Etapa 3.
+- Validação da ordem dos guardrails de escopo e LGPD.
+- Análise das decisões entre RECUSAR, MASCARAR e RESPONDER.
+- Revisão da construção determinística de evidências.
+- Validação do schema RAGResponse e de suas regras de consistência.
+- Análise das medidas contra citações e fontes inventadas pelo LLM.
+- Documentação do fluxo completo da geração estruturada
 
 Ficou pendente:
 - Fazer o benchmark registrar também o texto completo da resposta gerada para cada pergunta.
