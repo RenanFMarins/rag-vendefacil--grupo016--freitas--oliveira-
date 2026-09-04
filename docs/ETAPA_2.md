@@ -41,6 +41,40 @@ Para testar uma pergunta específica:
 O comando imprime a pergunta, a query semântica, filtros válidos e rejeitados,
 quantidade de candidatos de cada retriever e o Top-K após o RRF.
 
+## Comparativo com e sem filtro
+
+O critério de pronto foi validado em 2026-09-03 com os seis índices e 5.723
+chunks. O comando usado foi:
+
+```bash
+.venv/bin/python -m src.inspection.dense_search --k 5 --fetch-k 20
+```
+
+| Pergunta | Filtros validados | Sem filtro | Com filtro |
+| --- | --- | --- | --- |
+| Tickets de MG relacionados a estoque | `doc_type=ticket`, `state=MG`, `module=estoque` | Trouxe 2 tickets compatíveis e 3 logs sem estado | Retornou somente os 4 tickets MG/estoque existentes |
+| Tickets de SP relacionados ao módulo Pay | `doc_type=ticket`, `state=SP`, `module=pay` | Priorizou loja e vendas de SP/Pay | Retornou somente `TCK-1005` |
+| Informações sobre o módulo de estoque | `module=estoque` | Os 5 primeiros já eram compatíveis | Preservou os 5 e restringiu todos os candidatos ao módulo |
+
+Nos dois filtros altamente seletivos, o Dense Search escolheu
+`exact_prefilter`. No terceiro, combinou pré-filtragem exata para conjuntos
+pequenos com `adaptive_postfilter` e fallback exato nos demais índices. Isso
+evita o retorno vazio causado pelo `fetch_k=20` fixo do FAISS.
+
+## Comparativo Dense e BM25
+
+```bash
+.venv/bin/python -m src.inspection.sparse_search --k 5
+```
+
+| Consulta | Dense/FAISS | BM25 | Melhor comportamento |
+| --- | --- | --- | --- |
+| `TCK-1005` | O ticket exato apareceu na 4ª posição | O ticket exato apareceu na 1ª posição | BM25, por preservar o código literal |
+| Como recolher periodicamente o dinheiro acumulado pelo atendente? | O manual do PDV apareceu na 1ª posição | Priorizou e-mail e logs por coincidência lexical | Dense, por reconhecer a paráfrase de sangria |
+
+Esses casos justificam o uso do RRF: nenhum dos dois retrievers é superior em
+todas as consultas.
+
 ## Testes
 
 ```bash

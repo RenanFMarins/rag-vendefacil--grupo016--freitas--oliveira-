@@ -2,7 +2,8 @@
 
 Bem-vindo ao **Mini Desafio RAG (Retrieval-Augmented Generation)** baseado no ecossistema da empresa fictícia **VendeFácil Tecnologia Ltda.**!
 
-Este repositório contém a bases de dados sintéticas multi-formato e orientações pedagógicas para a realização de um mini desafio prático projetado ser realizado em **duplas**.
+Este repositório contém bases de dados sintéticas multi-formato e uma
+implementação completa do assistente RAG desenvolvida em dupla.
 
 ---
 
@@ -37,20 +38,57 @@ O objetivo das duplas é **construir um Assistente de Inteligência Artificial p
 ## Estrutura do Repositório
 
 ```
-mini-desafio/
-├── data/                                 # Base de Conhecimento VendeFácil (Multi-formato)
-│   ├── structured/                       # CSV e JSON (employees, customers, products, stores)
-│   ├── semi_structured/                  # JSONL e CSV (tickets.jsonl, system_logs.csv)
-│   └── unstructured/                     # Documentação (.md), Políticas (.pdf/.md), Reuniões (.md), E-mails (.txt)
-esperadas
-├── starter/                              # Código de partida para os alunos
-│   ├── requirements.txt                  # Dependências Python recomendadas
-│   ├── schema.py                         # Estrutura Pydantic exigida para as respostas
-│   └── ingest_template.py                # Esqueleto didático do pipeline de ingestão
-└── docs/                                 # Documentação Didática
-
-
+vende-facil/
+├── app/                    # Interface Streamlit e composition root
+├── benchmark/              # Perguntas e ground truth oficiais
+├── data/                   # Corpus CSV, JSON, JSONL, MD, PDF e TXT
+├── eval/                   # Runner do benchmark e RAG Triad
+├── ingestion/
+│   ├── loaders/            # Leitura e chunking adaptativo
+│   ├── build/              # Builders e persistência FAISS
+│   └── preview/            # Inspeção e sanidade
+├── src/
+│   ├── retrieval/          # Query Analyzer, Dense, BM25 e RRF
+│   ├── generation/         # Geração e evidências
+│   ├── guardrails/         # LGPD, escopo e mascaramento
+│   ├── inspection/         # Scripts executáveis de diagnóstico
+│   └── pipeline.py         # Orquestração do RAG
+├── starter/schema.py       # Contrato Pydantic oficial
+├── storage/                # Índices locais; não versionados
+├── tests/                  # Testes por domínio
+└── docs/                   # Arquitetura, acompanhamento e relatório
 ```
+
+## Documentação da arquitetura
+
+- [Visão geral](architecture/00-visao-geral.md)
+- [Etapa 1 - Ingestão e indexação](architecture/01-ingestao.md)
+- [Etapa 2 - Recuperação híbrida](architecture/02-retrieval.md)
+- [Etapa 3 - Geração e guardrails](architecture/03-generation-guardrails.md)
+- [Etapa 4 - Interface](architecture/04-interface.md)
+- [Etapa 4 - Avaliação](architecture/05-avaliacao.md)
+- [Integração final](architecture/06-integracao-final.md)
+- [Decisões arquiteturais](architecture/DECISOES.md)
+- [Detalhes da RAG Triad](RAG_TRIAD.md)
+- [Debug no VS Code](DEBUG_VSCODE.md)
+- [Roteiro do Demo Day](DEMO_DAY.md)
+- [Relatório](RELATORIO.md)
+
+## Execução do projeto
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r starter/requirements.txt
+cp .env.example .env
+
+# Depois de configurar OPENAI_API_KEY:
+.venv/bin/python -m ingestion.build.all_indexes
+.venv/bin/python -m pytest -q
+.venv/bin/python -m streamlit run app/interface_rag.py
+```
+
+O assistente usa somente o corpus interno e não possui fallback para busca na
+internet.
 
 ---
 

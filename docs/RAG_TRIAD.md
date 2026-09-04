@@ -1,7 +1,7 @@
 # Avaliação RAG Triad
 
 Este projeto calcula separadamente as três dimensões da RAG Triad. Os
-scores variam de `0.0` a `1.0` e não substituem os checks determinísticos do
+scores variam de `0.0` a `1.0` e complementam os checks determinísticos do
 benchmark.
 
 ## Fluxo da avaliação
@@ -49,6 +49,19 @@ não é apresentado como evidência.
 
 Groundedness não é calculada para respostas recusadas, porque elas não
 apresentam uma resposta factual fundamentada no corpus.
+
+## Rubrica por questão
+
+Cada caso vale 1,0 ponto, conforme o guia:
+
+- 0,5 pela resposta correta ou recusa correta;
+- 0,3 pela evidência correta, completa e literalmente sustentada;
+- 0,2 pela coerência entre confiança, recusa e comportamento esperado.
+
+Em respostas normais, a parcela de 0,5 requer `Answer Relevance >= 0.7`.
+Sem `--with-judge`, essa parcela fica explicitamente incompleta; o runner não
+presume que uma resposta está correta apenas porque o schema é válido.
+Recusas esperadas são avaliadas deterministicamente e não precisam do juiz.
 
 ## Segurança e custo
 
@@ -100,12 +113,18 @@ OPENAI_JUDGE_MODEL=gpt-4o-mini
 ## Interpretação
 
 O resumo possui uma seção `rag_triad` com a média e a quantidade de casos
-efetivamente avaliados. Não foi definido um corte arbitrário para transformar
-os scores do juiz em `passed` ou `failed`; o status funcional continua sendo
-determinado pelos checks objetivos do benchmark.
+efetivamente avaliados. O corte de 0,7 para Answer Relevance é declarado no
+runner e participa do check funcional. Context Relevance e Groundedness
+continuam diagnósticos contínuos, enquanto citação literal, schema e
+consistência são verificados deterministicamente.
+
+Cada execução produz:
+
+- `results/results.json`: resultado canônico;
+- `results/benchmark_summary.md`: tabela legível;
+- `results/benchmark_<timestamp>.json`: histórico local ignorado pelo Git.
 
 O arquivo oficial recebido possui 24 perguntas, apesar de o guia mencionar
 20. Ele também não marca nenhuma pergunta como `masked_answer`, embora o guia
 mencione um caso de mascaramento. O projeto preserva o arquivo oficial e
 reporta essa divergência em vez de alterar o gabarito silenciosamente.
-
