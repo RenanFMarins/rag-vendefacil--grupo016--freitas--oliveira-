@@ -36,12 +36,14 @@ def extrair_filtros_manuais(pergunta):
     pergunta = pergunta.lower()
 
     filtros = {}
+    tipos_encontrados = []
 
     tipos_documento = {
         "tickets": "ticket", "ticket": "ticket", "chamado": "ticket", "chamados": "ticket",
         "clientes": "customer", "cliente": "customer",
         "lojas": "store", "loja": "store",
         "vendas": "sale", "venda": "sale",
+        "tech lead": "employee",  "techlead": "employee", "pm": "employee", "gerente": "employee",
         "produtos": "product", "produto": "product",
         "funcionários": "employee", "funcionário": "employee", "funcionario": "employee",
         "logs": "log", "log": "log", "servidor": "log",
@@ -87,12 +89,16 @@ def extrair_filtros_manuais(pergunta):
         "ecommerce": "ecommerce", "e-commerce": "ecommerce", "loja virtual": "ecommerce",
     }
 
-    # documentos
     for termo, valor in tipos_documento.items():
-        if termo in pergunta:
-            filtros["doc_type"] = valor
-            break
 
+        if termo in pergunta and valor not in tipos_encontrados:
+            print(valor)
+            tipos_encontrados.append(valor)
+
+    # documentos
+    if tipos_encontrados:
+        filtros["doc_type"] = tipos_encontrados
+        print("+++++", filtros)
     # estado
     for termo, valor in estados.items():
         if termo in pergunta:
@@ -104,7 +110,7 @@ def extrair_filtros_manuais(pergunta):
         if termo in pergunta:
             filtros["active_modules"] = valor
             break
-
+    print("+++++", filtros)
     return filtros
 
 
@@ -168,27 +174,43 @@ def filtrar_documento(documentos, filtros):
 
         atende_filtros = True
 
-        if "doc_type" in filtros and "doc_type" in metadata:
-            if metadata.get("doc_type") != filtros["doc_type"]:
+        if "doc_type" in filtros:
+
+            tipos_esperados = filtros["doc_type"]
+
+            if not isinstance(tipos_esperados, list):
+                tipos_esperados = [tipos_esperados]
+
+            tipo_documento = metadata.get("doc_type")
+
+            if tipo_documento not in tipos_esperados:
                 continue
 
         for campo, valor_esperado in filtros.items():
+
             if campo == "doc_type":
-                continue  # já tratado no passo 1
+                continue
 
             if campo not in metadata:
-                continue  # campo não existe nesse tipo de doc -> ignora
+                continue
 
             valor_doc = metadata.get(campo)
 
             if isinstance(valor_doc, list):
+
                 termo = str(valor_esperado).lower()
-                encontrou = any(termo in str(item).lower()
-                                for item in valor_doc)
+
+                encontrou = any(
+                    termo in str(item).lower()
+                    for item in valor_doc
+                )
+
                 if not encontrou:
                     atende_filtros = False
                     break
+
             else:
+
                 if str(valor_doc).lower() != str(valor_esperado).lower():
                     atende_filtros = False
                     break

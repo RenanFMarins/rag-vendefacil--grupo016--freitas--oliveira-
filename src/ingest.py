@@ -22,7 +22,7 @@ for doc in arquivos_recebidos:
         sensitivity = "interno"
     elif "employees" in doc.lower():
         doc_type = "employee"
-        sensitivity = "restrito"
+        sensitivity = "interno"
     elif "products" in doc.lower():
         doc_type = "product"
         sensitivity = "publico"
@@ -46,7 +46,7 @@ for doc in arquivos_recebidos:
         sensitivity = "interno"
     elif "emails" in doc.lower():
         doc_type = "email"
-        sensitivity = "restrito"
+        sensitivity = "interno"
     elif "sales" in doc.lower():
         doc_type = "sale"
         sensitivity = "interno"

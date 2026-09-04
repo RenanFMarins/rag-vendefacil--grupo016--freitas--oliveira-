@@ -19,7 +19,17 @@ DADOS_MASCARAR = [
     "telefone",
     "endereco_residencial",
     "endereco",
-    "numero_cartao"
+    "numero_cartao",
+    "salario",
+    "remuneracao",
+    "cpf",
+    "dados_bancarios",
+    "chave_pix",
+    "credencial",
+    "token",
+    "senha",
+    "dados_saude"
+
 ]
 
 
