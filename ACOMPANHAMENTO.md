@@ -256,5 +256,49 @@ Uso de assistentes de IA:
 - Todas as alterações sugeridas foram verificadas por testes automatizados, inspeção do catálogo, análise dos índices FAISS e revisão do histórico Git.
 - A validação final apresentou 121 testes passando e nenhuma falha.
 
+Encontro 6 - 2026-09-04
 
+Etapa: 4 - Avaliação, documentação, arquitetura e preparação para entrega
+Relato individual - José Renan Freitas Marins
+
+Hoje finalizei a integração e a validação das quatro etapas do projeto na branch dev.
+Também executei o benchmark oficial com as 24 perguntas fornecidas pelo professor. O resultado foi de 19 casos aprovados, 5 casos falhos e pontuação de 21/24 (87,5%). Analisei as principais divergências entre as respostas esperadas e o conteúdo realmente disponível no corpus.
+Corrigi ainda o filtro de módulo para reconhecer corretamente os produtos da VendeFácil.
+
+Relato individual - [Nome do Integrante 2]
+[Preencher com as atividades realizadas pelo segundo integrante.]
+
+Resumo do dia (escrito em conjunto)
+Entregamos hoje:
+- Integração das alterações na branch dev.
+- Validação das etapas de ingestão, retrieval, geração estruturada e interface.
+- Suporte aos seis formatos: CSV, JSON, JSONL, Markdown, PDF e TXT.
+- Execução do benchmark oficial com as 24 perguntas.
+- Aplicação da rubrica de avaliação: resposta, citação e consistência.
+- Geração dos arquivos results.json e benchmark_summary.md.
+- Registro das métricas RAG Triad.
+- Correção do filtro de módulo baseado nos produtos da VendeFácil.
+- Validação da suíte completa com 270 testes aprovados.
+- Organização das alterações em commits separados por responsabilidade.
+
+Ficou pendente:
+- Fazer o benchmark registrar também o texto completo da resposta gerada para cada pergunta.
+- Exibir no resultado a comparação entre resposta esperada e resposta produzida.
+- Investigar melhorias para as cinco perguntas que não passaram completamente.
+- Avaliar uma estratégia determinística para consultas tabulares com operações como máximo, soma e contagem.
+- Revisar as últimas alterações locais realizadas durante o debug.
+- Realizar o teste final da apresentação no Streamlit.
+Bloqueios em aberto:
+- Algumas respostas esperadas pelo benchmark não estão integralmente sustentadas pelo corpus atual.
+- Algumas consultas de agregação não são resolvidas de maneira confiável apenas pela busca semântica Top-K.
+- O resultado atual do benchmark registra as métricas e as fontes, mas não preserva o texto das respostas geradas.
+
+Preparação para o Demo Day:
+- Revisar o fluxo completo: pergunta, Query Analyzer, filtros, Dense Search, BM25, RRF, guardrails, geração e resposta estruturada.
+- Apresentar o resultado do benchmark: 21/24 pontos e 270 testes aprovados.
+
+Uso de assistentes de IA:
+- Utilizamos assistência de IA para analisar a arquitetura e documentar o fluxo completo do sistema.
+- Todas as sugestões foram verificadas por inspeção do código, execução do benchmark e testes automatizados.
+- A validação final apresentou 270 testes aprovados, sem falhas.
 *TIC em Trilhas · PUC-Rio · Instituto ECOA · MCTI Futuro · Softex*
