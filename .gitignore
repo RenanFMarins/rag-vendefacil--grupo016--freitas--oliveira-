@@ -26,6 +26,9 @@ dist/
 # Generated vector indexes
 storage/
 
+# Historical benchmark runs (keep canonical results.json and summary tracked)
+results/benchmark_*.json
+
 # IDEs
 .vscode/
 .idea/

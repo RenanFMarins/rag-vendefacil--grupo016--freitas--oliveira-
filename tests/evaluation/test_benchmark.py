@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
@@ -9,12 +10,16 @@ from ingestion.loaders.json_loader import load_json_documents
 from ingestion.loaders.pdf_loader import load_pdf_documents
 from eval.run_benchmark import BenchmarkCase
 from eval.run_benchmark import DEFAULT_CASES_PATH
+from eval.run_benchmark import build_summary_markdown
+from eval.run_benchmark import calculate_category_summary
 from eval.run_benchmark import calculate_summary
 from eval.run_benchmark import evaluate_response
 from eval.run_benchmark import load_cases
 from eval.run_benchmark import run_cases
+from eval.run_benchmark import save_results
 from eval.run_benchmark import select_cases
 from eval.triad import TriadJudgeDraft
+from eval.triad import TriadEvaluation
 from src.config import DATA_DIR
 from src.generation.evidence import build_source_evidence
 from src.pipeline import RetrievedChunk
@@ -395,6 +400,144 @@ def test_calculates_summary() -> None:
     assert summary["metrics"]["response_schema_valid"]["rate"] == 1.0
 
 
+def test_scores_valid_answer_using_official_weights() -> None:
+    document = Document(
+        page_content="Pressione F8 para iniciar a sangria.",
+        metadata={"source_file": "manual.md", "chunk_id": "manual:001"},
+    )
+    triad = TriadEvaluation(
+        context_relevance=1.0,
+        context_relevance_basis="source_file",
+        answer_relevance=0.9,
+        groundedness=1.0,
+        judge_status="passed",
+    )
+
+    evaluation = evaluate_response(
+        make_case(),
+        make_answer(),
+        documents_by_id={"manual:001": document},
+        triad=triad,
+    )
+
+    assert evaluation.score is not None
+    assert evaluation.score.answer_points == 0.5
+    assert evaluation.score.citation_points == 0.3
+    assert evaluation.score.consistency_points == 0.2
+    assert evaluation.score.total_points == 1.0
+    assert evaluation.score.complete is True
+
+
+def test_answer_score_remains_incomplete_without_judge() -> None:
+    evaluation = evaluate_response(make_case(), make_answer())
+
+    assert evaluation.score is not None
+    assert evaluation.score.answer_correct is None
+    assert evaluation.score.answer_points is None
+    assert evaluation.score.total_points is None
+    assert evaluation.score.complete is False
+
+
+def test_low_answer_relevance_loses_answer_points() -> None:
+    triad = TriadEvaluation(
+        context_relevance=1.0,
+        context_relevance_basis="source_file",
+        answer_relevance=0.69,
+        groundedness=1.0,
+        judge_status="passed",
+    )
+
+    evaluation = evaluate_response(
+        make_case(),
+        make_answer(),
+        triad=triad,
+    )
+
+    assert evaluation.status == "failed"
+    assert evaluation.score is not None
+    assert evaluation.score.answer_points == 0.0
+    assert evaluation.score.total_points == 0.5
+
+
+def test_correct_refusal_receives_full_score_without_judge() -> None:
+    case = make_case(
+        category="lgpd_refuse",
+        expected_behavior="refusal",
+        expected_sources=[],
+        expected_refusal_reason="lgpd",
+    )
+
+    evaluation = evaluate_response(case, make_refusal())
+
+    assert evaluation.score is not None
+    assert evaluation.score.total_points == 1.0
+    assert evaluation.score.complete is True
+
+
+def test_calculates_summary_by_category() -> None:
+    refusal_case = make_case(
+        id="Q002",
+        category="guardrail",
+        expected_behavior="refusal",
+        expected_sources=[],
+        expected_refusal_reason="lgpd",
+    )
+    evaluations = [
+        evaluate_response(make_case(category="factual"), make_answer()),
+        evaluate_response(refusal_case, make_refusal()),
+    ]
+
+    categories = calculate_category_summary(evaluations)
+    summary = calculate_summary(evaluations)
+
+    assert list(categories) == ["factual", "guardrail"]
+    assert categories["guardrail"]["rubric_score"]["points_earned"] == 1.0
+    assert categories["factual"]["rubric_score"]["incomplete_cases"] == 1
+    assert summary["rubric_score"]["scored_cases"] == 1
+    assert summary["rubric_score"]["incomplete_cases"] == 1
+
+
+def test_saves_canonical_json_history_and_markdown_summary(tmp_path: Path) -> None:
+    case = make_case(
+        category="guardrail",
+        expected_behavior="refusal",
+        expected_sources=[],
+        expected_refusal_reason="lgpd",
+    )
+    evaluation = evaluate_response(case, make_refusal())
+
+    artifacts = save_results([evaluation], tmp_path)
+
+    assert artifacts.results_json == tmp_path / "results.json"
+    assert artifacts.results_json.is_file()
+    assert artifacts.summary_markdown == tmp_path / "benchmark_summary.md"
+    assert artifacts.summary_markdown.is_file()
+    assert artifacts.timestamped_json.is_file()
+    payload = json.loads(artifacts.results_json.read_text(encoding="utf-8"))
+    assert payload["summary"]["rubric_score"]["points_earned"] == 1.0
+    markdown = artifacts.summary_markdown.read_text(encoding="utf-8")
+    assert "## Resultado por categoria" in markdown
+    assert "| Q001 | guardrail | passed | 1.000 |" in markdown
+
+
+def test_summary_markdown_does_not_include_question_or_answer() -> None:
+    case = make_case(
+        category="guardrail",
+        expected_behavior="refusal",
+        expected_sources=[],
+        expected_refusal_reason="lgpd",
+    )
+    evaluation = evaluate_response(case, make_refusal())
+
+    markdown = build_summary_markdown(
+        [evaluation],
+        generated_at=datetime(2026, 9, 3, tzinfo=timezone.utc),
+    )
+
+    assert case.question not in markdown
+    assert "Não posso fornecer essa informação." not in markdown
+
+
 def test_run_cases_calculates_triad_from_pipeline_trace() -> None:
     case = make_case(
         reference_sources=["data/documentation/manual.md"],
@@ -484,4 +627,3 @@ def test_run_cases_continues_after_controlled_error() -> None:
         "type": "RuntimeError",
         "message": "Falha controlada durante a execução do caso.",
     }
-

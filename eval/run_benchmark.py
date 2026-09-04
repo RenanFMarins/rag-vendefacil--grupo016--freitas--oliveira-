@@ -5,6 +5,7 @@ import json
 import logging
 import time
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
@@ -36,6 +37,10 @@ DEFAULT_RESULTS_DIR = PROJECT_ROOT / "results"
 
 ExpectedBehavior = Literal["answer", "masked_answer", "refusal"]
 RefusalReason = Literal["lgpd", "fora_de_escopo", "sem_evidencia"]
+ANSWER_RELEVANCE_PASS_THRESHOLD = 0.7
+ANSWER_MAX_POINTS = 0.5
+CITATION_MAX_POINTS = 0.3
+CONSISTENCY_MAX_POINTS = 0.2
 
 
 class BenchmarkCase(BaseModel):
@@ -101,6 +106,38 @@ class OfficialBenchmarkSuite(BaseModel):
     questions: list[OfficialQuestion] = Field(min_length=1)
 
 
+class QuestionScore(BaseModel):
+    """Pontuação de 1,0 ponto definida pela rubrica oficial."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    answer_correct: bool | None
+    answer_points: float | None = Field(ge=0, le=ANSWER_MAX_POINTS)
+    citation_correct: bool
+    citation_points: float = Field(ge=0, le=CITATION_MAX_POINTS)
+    consistency_correct: bool
+    consistency_points: float = Field(ge=0, le=CONSISTENCY_MAX_POINTS)
+    total_points: float | None = Field(default=None, ge=0, le=1)
+    complete: bool
+
+    @model_validator(mode="after")
+    def validate_score_consistency(self) -> "QuestionScore":
+        if self.complete:
+            if self.answer_correct is None or self.answer_points is None:
+                raise ValueError("Score completo exige avaliação da resposta.")
+            expected_total = round(
+                self.answer_points
+                + self.citation_points
+                + self.consistency_points,
+                2,
+            )
+            if self.total_points != expected_total:
+                raise ValueError("total_points não corresponde aos componentes.")
+        elif self.total_points is not None:
+            raise ValueError("Score incompleto não pode possuir total_points.")
+        return self
+
+
 class CaseEvaluation(BaseModel):
     """Resultado serializável de uma única pergunta."""
 
@@ -114,7 +151,17 @@ class CaseEvaluation(BaseModel):
     checks: dict[str, bool] = Field(default_factory=dict)
     response_summary: dict[str, Any] | None = None
     triad: TriadEvaluation | None = None
+    score: QuestionScore | None = None
     error: dict[str, str] | None = None
+
+
+@dataclass(frozen=True)
+class BenchmarkArtifacts:
+    """Caminhos dos artefatos gerados por uma execução."""
+
+    results_json: Path
+    summary_markdown: Path
+    timestamped_json: Path
 
 
 def _official_expected_behavior(
@@ -230,6 +277,16 @@ def _source_match(case: BenchmarkCase, response: RAGResponse) -> bool:
     return bool(expected_sources & actual_sources)
 
 
+def _chunk_match(case: BenchmarkCase, response: RAGResponse) -> bool:
+    actual_chunk_ids = {
+        source.chunk_id for source in response.sources_used
+    }
+    expected_chunk_ids = set(case.expected_chunk_ids)
+    if case.source_match_mode == "all":
+        return expected_chunk_ids <= actual_chunk_ids
+    return bool(expected_chunk_ids & actual_chunk_ids)
+
+
 def _evidence_is_complete(source: SourceEvidence) -> bool:
     return bool(
         source.filepath.strip()
@@ -268,6 +325,82 @@ def _response_is_masked(response: RAGResponse) -> bool:
     return all(mask_personal_data(text) == text for text in texts)
 
 
+def _question_score(
+    case: BenchmarkCase,
+    response: RAGResponse,
+    checks: Mapping[str, bool],
+    triad: TriadEvaluation | None,
+) -> QuestionScore:
+    expected_refusal = case.expected_behavior == "refusal"
+
+    if expected_refusal:
+        answer_correct: bool | None = bool(
+            checks.get("refusal_expected")
+            and checks.get("expected_refusal_reason_match")
+        )
+    elif response.is_refusal:
+        answer_correct = False
+    elif triad is not None and triad.answer_relevance is not None:
+        answer_correct = (
+            triad.answer_relevance >= ANSWER_RELEVANCE_PASS_THRESHOLD
+        )
+        if case.expected_behavior == "masked_answer":
+            answer_correct = bool(
+                answer_correct and checks.get("masking_safe")
+            )
+    else:
+        # Sem judge, não é correto fingir que uma resposta textual está
+        # semanticamente certa apenas porque possui o schema esperado.
+        answer_correct = None
+
+    if expected_refusal:
+        citation_correct = bool(checks.get("refusal_without_sources"))
+    else:
+        if case.expected_chunk_ids:
+            expected_evidence_matches = checks.get(
+                "expected_chunk_match", False
+            )
+        elif case.expected_sources:
+            expected_evidence_matches = checks.get("source_match", False)
+        else:
+            expected_evidence_matches = True
+        citation_correct = bool(
+            checks.get("evidence_complete")
+            and expected_evidence_matches
+            and checks.get("quotation_grounded", True)
+        )
+
+    consistency_correct = bool(
+        checks.get("refusal_expected")
+        and checks.get("confidence_consistent")
+    )
+    answer_points = (
+        None
+        if answer_correct is None
+        else ANSWER_MAX_POINTS if answer_correct else 0.0
+    )
+    citation_points = CITATION_MAX_POINTS if citation_correct else 0.0
+    consistency_points = (
+        CONSISTENCY_MAX_POINTS if consistency_correct else 0.0
+    )
+    complete = answer_points is not None
+    total_points = (
+        round(answer_points + citation_points + consistency_points, 2)
+        if answer_points is not None
+        else None
+    )
+    return QuestionScore(
+        answer_correct=answer_correct,
+        answer_points=answer_points,
+        citation_correct=citation_correct,
+        citation_points=citation_points,
+        consistency_correct=consistency_correct,
+        consistency_points=consistency_points,
+        total_points=total_points,
+        complete=complete,
+    )
+
+
 def evaluate_response(
     case: BenchmarkCase,
     response: RAGResponse | Mapping[str, Any],
@@ -289,12 +422,27 @@ def evaluate_response(
             checks={"response_schema_valid": False},
             response_summary=None,
             triad=triad,
+            score=QuestionScore(
+                answer_correct=False,
+                answer_points=0.0,
+                citation_correct=False,
+                citation_points=0.0,
+                consistency_correct=False,
+                consistency_points=0.0,
+                total_points=0.0,
+                complete=True,
+            ),
         )
 
     expected_refusal = case.expected_behavior == "refusal"
     checks = {
         "response_schema_valid": True,
         "refusal_expected": validated.is_refusal == expected_refusal,
+        "confidence_consistent": (
+            validated.confidence_level == "recusado"
+            if validated.is_refusal
+            else validated.confidence_level in {"alta", "media", "baixa"}
+        ),
     }
 
     if expected_refusal:
@@ -318,6 +466,8 @@ def evaluate_response(
         )
         if case.expected_sources:
             checks["source_match"] = _source_match(case, validated)
+        if case.expected_chunk_ids:
+            checks["expected_chunk_match"] = _chunk_match(case, validated)
         if documents_by_id is not None:
             checks["quotation_grounded"] = bool(validated.sources_used) and all(
                 _quotation_is_grounded(
@@ -329,6 +479,10 @@ def evaluate_response(
             )
         if case.expected_behavior == "masked_answer":
             checks["masking_safe"] = _response_is_masked(validated)
+        if triad is not None and triad.answer_relevance is not None:
+            checks["answer_relevance_pass"] = (
+                triad.answer_relevance >= ANSWER_RELEVANCE_PASS_THRESHOLD
+            )
 
     response_summary = {
         "is_refusal": validated.is_refusal,
@@ -343,6 +497,7 @@ def evaluate_response(
         ],
     }
     status = "passed" if all(checks.values()) else "failed"
+    score = _question_score(case, validated, checks, triad)
     return CaseEvaluation(
         id=case.id,
         question=case.question,
@@ -352,6 +507,7 @@ def evaluate_response(
         checks=checks,
         response_summary=response_summary,
         triad=triad,
+        score=score,
     )
 
 
@@ -390,6 +546,78 @@ def _triad_metric(
     }
 
 
+def _rubric_summary(
+    evaluations: Sequence[CaseEvaluation],
+) -> dict[str, int | float | None]:
+    scored = [
+        evaluation.score
+        for evaluation in evaluations
+        if evaluation.score is not None
+        and evaluation.score.total_points is not None
+    ]
+    points_earned = round(
+        sum(score.total_points or 0.0 for score in scored),
+        2,
+    )
+    points_possible = len(scored)
+    return {
+        "points_earned": points_earned,
+        "points_possible": points_possible,
+        "rate": (
+            points_earned / points_possible
+            if points_possible
+            else None
+        ),
+        "scored_cases": len(scored),
+        "incomplete_cases": len(evaluations) - len(scored),
+    }
+
+
+def calculate_category_summary(
+    evaluations: Sequence[CaseEvaluation],
+) -> dict[str, dict[str, Any]]:
+    """Agrega status, rubrica e Triad por categoria do benchmark."""
+    categories = sorted({evaluation.category for evaluation in evaluations})
+    summary: dict[str, dict[str, Any]] = {}
+    for category in categories:
+        category_evaluations = [
+            evaluation
+            for evaluation in evaluations
+            if evaluation.category == category
+        ]
+        summary[category] = {
+            "total_cases": len(category_evaluations),
+            "passed_cases": sum(
+                evaluation.status == "passed"
+                for evaluation in category_evaluations
+            ),
+            "failed_cases": sum(
+                evaluation.status == "failed"
+                for evaluation in category_evaluations
+            ),
+            "error_cases": sum(
+                evaluation.status == "error"
+                for evaluation in category_evaluations
+            ),
+            "rubric_score": _rubric_summary(category_evaluations),
+            "rag_triad": {
+                "context_relevance": _triad_metric(
+                    category_evaluations,
+                    "context_relevance",
+                ),
+                "answer_relevance": _triad_metric(
+                    category_evaluations,
+                    "answer_relevance",
+                ),
+                "groundedness": _triad_metric(
+                    category_evaluations,
+                    "groundedness",
+                ),
+            },
+        }
+    return summary
+
+
 def calculate_summary(
     evaluations: Sequence[CaseEvaluation],
 ) -> dict[str, Any]:
@@ -405,6 +633,8 @@ def calculate_summary(
         "error_cases": sum(
             evaluation.status == "error" for evaluation in evaluations
         ),
+        "rubric_score": _rubric_summary(evaluations),
+        "by_category": calculate_category_summary(evaluations),
         "metrics": {
             "response_schema_valid": _metric(
                 evaluations,
@@ -569,15 +799,131 @@ def build_runtime_pipeline() -> tuple[RAGPipeline, dict[str, Document]]:
     return RAGPipeline(retriever), documents_by_id
 
 
+def _display_number(value: float | None) -> str:
+    return "-" if value is None else f"{value:.3f}"
+
+
+def _escape_markdown_cell(value: str) -> str:
+    return value.replace("|", "\\|")
+
+
+def build_summary_markdown(
+    evaluations: Sequence[CaseEvaluation],
+    *,
+    generated_at: datetime,
+) -> str:
+    """Gera tabela legível sem persistir respostas ou quotations."""
+    summary = calculate_summary(evaluations)
+    rubric = summary["rubric_score"]
+    lines = [
+        "# Resumo do benchmark VendeFácil",
+        "",
+        f"Gerado em UTC: `{generated_at.isoformat()}`",
+        "",
+        "## Resultado geral",
+        "",
+        f"- Casos: {summary['total_cases']}",
+        f"- Aprovados: {summary['passed_cases']}",
+        f"- Falhos: {summary['failed_cases']}",
+        f"- Erros: {summary['error_cases']}",
+        (
+            "- Pontuação da rubrica: "
+            f"{rubric['points_earned']:.2f}/"
+            f"{rubric['points_possible']}"
+        ),
+        f"- Casos sem score completo: {rubric['incomplete_cases']}",
+        "",
+        "## Resultado por categoria",
+        "",
+        "| Categoria | Casos | Aprovados | Falhos | Erros | Pontos | Máximo | Taxa |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for category, category_summary in summary["by_category"].items():
+        category_rubric = category_summary["rubric_score"]
+        rate = category_rubric["rate"]
+        lines.append(
+            "| "
+            f"{_escape_markdown_cell(category)} | "
+            f"{category_summary['total_cases']} | "
+            f"{category_summary['passed_cases']} | "
+            f"{category_summary['failed_cases']} | "
+            f"{category_summary['error_cases']} | "
+            f"{category_rubric['points_earned']:.2f} | "
+            f"{category_rubric['points_possible']} | "
+            f"{_display_number(rate)} |"
+        )
+
+    triad = summary["rag_triad"]
+    lines.extend(
+        [
+            "",
+            "## RAG Triad",
+            "",
+            "| Métrica | Média | Casos avaliados |",
+            "| --- | ---: | ---: |",
+            (
+                "| Context Relevance | "
+                f"{_display_number(triad['context_relevance']['average'])} | "
+                f"{triad['context_relevance']['evaluated']} |"
+            ),
+            (
+                "| Answer Relevance | "
+                f"{_display_number(triad['answer_relevance']['average'])} | "
+                f"{triad['answer_relevance']['evaluated']} |"
+            ),
+            (
+                "| Groundedness | "
+                f"{_display_number(triad['groundedness']['average'])} | "
+                f"{triad['groundedness']['evaluated']} |"
+            ),
+            "",
+            "## Resultado por questão",
+            "",
+            "| ID | Categoria | Status | Pontos | Context | Answer | Groundedness |",
+            "| --- | --- | --- | ---: | ---: | ---: | ---: |",
+        ]
+    )
+    for evaluation in evaluations:
+        score = (
+            evaluation.score.total_points
+            if evaluation.score is not None
+            else None
+        )
+        context = (
+            evaluation.triad.context_relevance
+            if evaluation.triad is not None
+            else None
+        )
+        answer = (
+            evaluation.triad.answer_relevance
+            if evaluation.triad is not None
+            else None
+        )
+        groundedness = (
+            evaluation.triad.groundedness
+            if evaluation.triad is not None
+            else None
+        )
+        lines.append(
+            f"| {evaluation.id} | "
+            f"{_escape_markdown_cell(evaluation.category)} | "
+            f"{evaluation.status} | {_display_number(score)} | "
+            f"{_display_number(context)} | {_display_number(answer)} | "
+            f"{_display_number(groundedness)} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def save_results(
     evaluations: Sequence[CaseEvaluation],
     output_directory: str | Path = DEFAULT_RESULTS_DIR,
-) -> Path:
-    """Persiste um resultado sem respostas, quotations ou dados sensíveis."""
+) -> BenchmarkArtifacts:
+    """Persiste JSON canônico, histórico e tabela Markdown segura."""
     generated_at = datetime.now(timezone.utc)
+    summary = calculate_summary(evaluations)
     payload = {
         "timestamp": generated_at.isoformat(),
-        "summary": calculate_summary(evaluations),
+        "summary": summary,
         "results": [
             evaluation.model_dump(mode="json")
             for evaluation in evaluations
@@ -585,14 +931,23 @@ def save_results(
     }
     results_directory = Path(output_directory)
     results_directory.mkdir(parents=True, exist_ok=True)
-    output_path = results_directory / (
+    timestamped_path = results_directory / (
         f"benchmark_{generated_at.strftime('%Y%m%dT%H%M%SZ')}.json"
     )
-    output_path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2),
+    results_path = results_directory / "results.json"
+    summary_path = results_directory / "benchmark_summary.md"
+    serialized_payload = json.dumps(payload, ensure_ascii=False, indent=2)
+    for output_path in (results_path, timestamped_path):
+        output_path.write_text(serialized_payload, encoding="utf-8")
+    summary_path.write_text(
+        build_summary_markdown(evaluations, generated_at=generated_at),
         encoding="utf-8",
     )
-    return output_path
+    return BenchmarkArtifacts(
+        results_json=results_path,
+        summary_markdown=summary_path,
+        timestamped_json=timestamped_path,
+    )
 
 
 def main() -> None:
@@ -672,11 +1027,12 @@ def main() -> None:
         documents_by_id=documents_by_id,
         judge_llm=judge_llm,
     )
-    output_path = save_results(evaluations, args.results_dir)
+    artifacts = save_results(evaluations, args.results_dir)
     print(json.dumps(calculate_summary(evaluations), indent=2))
-    print(f"Resultado salvo em: {output_path}")
+    print(f"Resultado canônico: {artifacts.results_json}")
+    print(f"Tabela resumo: {artifacts.summary_markdown}")
+    print(f"Histórico da execução: {artifacts.timestamped_json}")
 
 
 if __name__ == "__main__":
     main()
-
