@@ -31,6 +31,13 @@ DOCUMENT_TYPE_TERMS = {
     "log": ("log", "logs"),
 }
 TEF_CONTEXT_TERMS = ("tef", "pinpad", "pay 504", "porta 6090", "maquininha")
+PRODUCT_MODULE_TERMS = {
+    "analytics": ("vendefacil analytics",),
+    "ecommerce": ("vendefacil loja",),
+    "estoque": ("vendefacil estoque",),
+    "pay": ("vendefacil pay",),
+    "pdv": ("vendefacil pdv",),
+}
 
 SYSTEM_PROMPT = """
 Você é o Query Analyzer da base de conhecimento VendeFácil.
@@ -192,6 +199,28 @@ def _apply_module_context_policy(
     return analysis.model_copy(update={"filters": filters})
 
 
+def _apply_product_module_policy(
+    question: str,
+    analysis: QueryAnalysis,
+    metadata_catalog: Mapping[str, Sequence[object]],
+) -> QueryAnalysis:
+    """Converte nomes comerciais inequívocos no módulo do catálogo."""
+    normalized_question = normalization_key(question).replace("-", " ")
+    available_modules = set(metadata_catalog.get("module", ()))
+    mentioned_modules = {
+        module
+        for module, product_terms in PRODUCT_MODULE_TERMS.items()
+        if module in available_modules
+        and any(term in normalized_question for term in product_terms)
+    }
+    if len(mentioned_modules) != 1:
+        return analysis
+
+    module = mentioned_modules.pop()
+    filters = analysis.filters.model_copy(update={"module": module})
+    return analysis.model_copy(update={"filters": filters})
+
+
 def analyze_question(
     question: str,
     metadata_catalog: Mapping[str, Sequence[object]],
@@ -235,6 +264,11 @@ def analyze_question(
     validated_analysis = _apply_multi_document_policy(
         normalized_question,
         validated_analysis,
+    )
+    validated_analysis = _apply_product_module_policy(
+        normalized_question,
+        validated_analysis,
+        metadata_catalog,
     )
     validated_analysis = _apply_module_context_policy(
         normalized_question,

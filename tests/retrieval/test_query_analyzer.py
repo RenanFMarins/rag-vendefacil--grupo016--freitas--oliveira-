@@ -11,7 +11,7 @@ CATALOG = {
     "doc_type": ["ata", "email", "manual", "ticket"],
     "sensitivity": ["interno", "publico"],
     "state": ["MG", "SP"],
-    "module": ["estoque", "pay"],
+    "module": ["analytics", "ecommerce", "estoque", "pay", "pdv"],
     "plan": ["Basic", "Enterprise", "Pro"],
     "priority": ["Alta", "Baixa"],
     "status": ["Aberto", "Resolvido"],
@@ -284,6 +284,40 @@ def test_tef_meeting_does_not_force_module_filter() -> None:
 
     analysis = analyze_question(
         "Quais decisões foram aprovadas na reunião sobre o incidente TEF?",
+        CATALOG,
+        llm=fake_llm,
+    )
+
+    assert analysis.filters.module is None
+
+
+def test_product_name_canonicalizes_vendefacil_loja_as_ecommerce() -> None:
+    fake_llm = FakeChatModel(
+        QueryAnalysis(
+            query="regra de Safety Stock",
+            filters=QueryFilters(module="estoque"),
+        )
+    )
+
+    analysis = analyze_question(
+        "Qual é a regra de Safety Stock no VendeFácil Loja?",
+        CATALOG,
+        llm=fake_llm,
+    )
+
+    assert analysis.filters.module == "ecommerce"
+
+
+def test_multiple_product_names_do_not_force_a_single_module() -> None:
+    fake_llm = FakeChatModel(
+        QueryAnalysis(
+            query="integração entre Loja e Estoque",
+            filters=QueryFilters(),
+        )
+    )
+
+    analysis = analyze_question(
+        "Como VendeFácil Loja e VendeFácil Estoque se integram?",
         CATALOG,
         llm=fake_llm,
     )
