@@ -312,34 +312,6 @@ Utilizamos assistentes de IA principalmente como apoio durante a análise dos te
 
 ### Relato individual - Luciano Oliveira da Costa
 
-Hoje dei continuidade à Etapa 2, que já está próxima de ser finalizada. Com as principais funções já implementadas, começamos a concentrar o trabalho na realização dos testes e na revisão do fluxo completo.
-
-Durante os testes, identificamos alguns comportamentos e pontos que precisam ser revisados e ajustados para garantir que os resultados estejam de acordo com o esperado. Dessa forma, neste momento o foco está mais na lapidação da implementação, corrigindo possíveis erros e realizando pequenos ajustes nas funções que já foram desenvolvidas.
-
-Além disso, como parte dos testes da Etapa 2 demandou um tempo maior de execução, começamos também a analisar a Etapa 3 para entender os próximos requisitos e antecipar o planejamento do que será desenvolvido posteriormente. A Etapa 2 ainda não foi concluída, ficando pendente essa revisão final, os ajustes identificados durante os testes e a validação definitiva dos resultados.
-
-### Resumo do dia (escrito em conjunto)
-
-## **Entregamos hoje:**
-
-## **Ficou pendente:**
-
-## **Bloqueios em aberto:**
-
-## **Próximo passo (início do encontro 3):**
-
-## **Uso de assistentes de IA:**
-
----
-
-## Encontro 3 - AAAA-MM-DD
-
-**Etapa:** 3 - Síntese estruturada, evidência e guardrails de LGPD
-
-### Relato individual - [Nome do Integrante 1]
-
-### Relato individual - Luciano Oliveira da Costa
-
 Hoje dei início à Etapa 3, buscando entender melhor o fluxo proposto e como cada parte da etapa será integrada. Essa foi uma das principais dificuldades do início da implementação, principalmente para definir onde cada análise e função deveria entrar dentro do fluxo.
 
 Comecei então a desenvolver a primeira parte do tratamento da pergunta, criando funções para analisar informações como assunto, intenção, entidades, atributos e outros dados relevantes presentes na consulta. Também implementei as primeiras verificações relacionadas às políticas de LGPD, buscando identificar situações em que a pergunta deve ser recusada ou em que determinados dados precisam ser tratados ou mascarados.
@@ -371,6 +343,34 @@ Dar continuidade à implementação da Etapa 3, avançando a partir da análise 
 ## **Uso de assistentes de IA:**
 
 Utilizamos IA principalmente para auxiliar na compreensão e organização do fluxo da Etapa 3, revisar e conferir o código implementado, esclarecer dúvidas sobre funções e buscar orientações para a implementação de recursos específicos, como expressões regulares (regex).
+
+---
+
+## Encontro 5.1 - 2026-09-04
+
+**Etapa:** 3 - Síntese estruturada, evidência e guardrails de LGPD
+
+### Relato individual - [Nome do Integrante 1]
+
+### Relato individual - Luciano Oliveira da Costa
+
+Hoje dei continuidade à implementação da Etapa 3, dedicando aproximadamente 6 horas ao desenvolvimento. Trabalhei principalmente na parte de escopo, análise da pergunta, normalização e validação dos dados e, posteriormente, na realização das buscas.
+
+Depois de implementar essas partes, criei uma pipeline de testes para executar todo esse fluxo, realizar as buscas no banco de dados e verificar os resultados retornados. Dessa forma, consegui testar na prática como as diferentes etapas estavam se comportando em conjunto e identificar pontos que ainda precisam ser revisados.
+
+A Etapa 3 ainda não foi finalizada, mas já está próxima da conclusão. Agora falta dar continuidade às partes finais do fluxo, realizar os ajustes necessários e finalizar os testes para validar a implementação como um todo.
+
+### Resumo do dia (escrito em conjunto)
+
+## **Entregamos hoje:**
+
+## **Ficou pendente:**
+
+## **Bloqueios em aberto:**
+
+## **Próximo passo (início do encontro 4):**
+
+## **Uso de assistentes de IA:**
 
 ---
 

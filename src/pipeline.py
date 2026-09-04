@@ -1,7 +1,8 @@
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from retrieval.filters import combinar_filtros, extract_metadata, extrair_filtros_automatico, extrair_filtros_manuais, filtrar_documento
-from retrieval.hybrid import busca_hibrida
+# No arquivo src/pipeline.py, mude a linha 3 para:
+from src.retrieval.filters import combinar_filtros, extract_metadata, extrair_filtros_automatico, extrair_filtros_manuais, filtrar_documento
+from src.retrieval.hybrid import busca_hibrida
 
 model = HuggingFaceEmbeddings(
     model_name='paraphrase-multilingual-MiniLM-L12-v2')

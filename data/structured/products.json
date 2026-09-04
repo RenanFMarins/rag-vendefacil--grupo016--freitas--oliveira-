@@ -41,11 +41,7 @@
         "Sangria e Suprimento de Caixa",
         "Integração com Balanças Eletrônicas"
       ],
-      "supported_os": [
-        "Windows 10/11",
-        "Linux Ubuntu",
-        "Android POS"
-      ],
+      "supported_os": ["Windows 10/11", "Linux Ubuntu", "Android POS"],
       "sla_uptime": "99.9%"
     },
     {
@@ -67,10 +63,7 @@
         "Inventário Cego e com Coletor",
         "Alerta de Estoque Mínimo e Ruptura"
       ],
-      "supported_os": [
-        "Web Cloud",
-        "Android App"
-      ],
+      "supported_os": ["Web Cloud", "Android App"],
       "sla_uptime": "99.8%"
     },
     {
@@ -92,9 +85,7 @@
         "Checkout Transparente",
         "Integração com Mercado Livre e Shopee"
       ],
-      "supported_os": [
-        "Web Cloud"
-      ],
+      "supported_os": ["Web Cloud"],
       "sla_uptime": "99.9%"
     },
     {
@@ -116,10 +107,7 @@
         "Projeção de Fluxo de Caixa",
         "Exportação de Relatórios em Excel/PDF"
       ],
-      "supported_os": [
-        "Web Cloud",
-        "iOS / Android Mobile App"
-      ],
+      "supported_os": ["Web Cloud", "iOS / Android Mobile App"],
       "sla_uptime": "99.5%"
     },
     {
@@ -146,10 +134,7 @@
         "Conciliação Automática de Vendas",
         "Taxas Customizadas por Volume"
       ],
-      "supported_os": [
-        "Windows",
-        "Android POS Hardware"
-      ],
+      "supported_os": ["Windows", "Android POS Hardware"],
       "sla_uptime": "99.95%"
     }
   ]

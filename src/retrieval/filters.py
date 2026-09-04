@@ -61,7 +61,7 @@ def extrair_filtros_manuais(pergunta):
     # modulo
     for termo, valor in modulos.items():
         if termo in pergunta:
-            filtros["module"] = valor
+            filtros["active_modules"] = valor
             break
     print(filtros)
 
@@ -136,12 +136,12 @@ def filtrar_documento(documentos, filtros):
             if metadata.get('state') != filtros["state"]:
                 atende_filtros = False
 
-        if "module" in filtros:
+        if "active_modules" in filtros:
             modulos_do_doc = metadata.get(
-                'active_modules') or metadata.get('module') or []
+                'active_modules') or metadata.get('active_modules') or []
             if isinstance(modulos_do_doc, list):
 
-                termo_procurado = filtros['module'].lower()
+                termo_procurado = filtros['active_modules'].lower()
                 encontrou_modulo = any(termo_procurado in mod.lower()
                                        for mod in modulos_do_doc)
                 if not encontrou_modulo:
