@@ -3,15 +3,10 @@ import bm25s
 
 def busca_bm25(pergunta, documentos_filtrados, top_k=5):
 
-    textos = [documento.page_content for documento in documentos_filtrados]
+    if not documentos_filtrados:
+        return []
 
-    mapa_documentos = {
-        texto: documento
-        for texto, documento in zip(
-            textos,
-            documentos_filtrados
-        )
-    }
+    textos = [documento.page_content for documento in documentos_filtrados]
 
     retriever = bm25s.BM25()
 

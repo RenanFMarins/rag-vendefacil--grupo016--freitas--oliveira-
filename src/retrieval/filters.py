@@ -37,14 +37,55 @@ def extrair_filtros_manuais(pergunta):
 
     filtros = {}
 
-    tipos_documento = {"tickets": "ticket", "ticket": "ticket", "clientes": "customer", "cliente": "customer", "lojas": "store", "loja": "store",
-                       "vendas": "sale", "venda": "sale", "produtos": "product", "produto": "product", "funcionários": "employee", "funcionários": "employee"}
+    tipos_documento = {
+        "tickets": "ticket", "ticket": "ticket", "chamado": "ticket", "chamados": "ticket",
+        "clientes": "customer", "cliente": "customer",
+        "lojas": "store", "loja": "store",
+        "vendas": "sale", "venda": "sale",
+        "produtos": "product", "produto": "product",
+        "funcionários": "employee", "funcionário": "employee", "funcionario": "employee",
+        "logs": "log", "log": "log", "servidor": "log",
+        "manual": "manual", "manuais": "manual", "documentação": "manual", "documentacao": "manual", "módulo": "manual", "modulo": "manual",
+        "ata": "ata", "atas": "ata", "reunião": "ata", "reuniao": "ata",
+        "política": "policy", "politica": "policy", "norma": "policy",
+        "email": "email", "e-mail": "email",
+    }
 
-    estados = {"minas gerais": "MG", "minas": "MG",
-               "rio de janeiro": "RJ", "são paulo": "SP", "espírito santo": "ES"}
+    estados = {"acre": "AC",
+               "alagoas": "AL",
+               "amapá": "AP",
+               "amazonas": "AM",
+               "bahia": "BA",
+               "ceará": "CE",
+               "distrito federal": "DF",
+               "espírito santo": "ES",
+               "goiás": "GO",
+               "maranhão": "MA",
+               "mato grosso": "MT",
+               "mato grosso do sul": "MS",
+               "minas gerais": "MG",
+               "pará": "PA",
+               "paraíba": "PB",
+               "paraná": "PR",
+               "pernambuco": "PE",
+               "piauí": "PI",
+               "rio de janeiro": "RJ",
+               "rio grande do norte": "RN",
+               "rio grande do sul": "RS",
+               "rondônia": "RO",
+               "roraima": "RR",
+               "santa catarina": "SC",
+               "são paulo": "SP",
+               "sergipe": "SE",
+               "tocantins": "TO"}
 
-    modulos = {"pdv": "pdv", "ponto de venda": "pdv", "estoque": "estoque",
-               "inventário": "estoque", "pay": "pay", "pagamento": "pay"}
+    modulos = {
+        "pdv": "pdv", "ponto de venda": "pdv",
+        "estoque": "estoque", "inventário": "estoque", "inventario": "estoque",
+        "pay": "pay", "pagamento": "pay",
+        "analytics": "analytics", "análise": "analytics", "analise de dados": "analytics",
+        "ecommerce": "ecommerce", "e-commerce": "ecommerce", "loja virtual": "ecommerce",
+    }
 
     # documentos
     for termo, valor in tipos_documento.items():
@@ -63,7 +104,6 @@ def extrair_filtros_manuais(pergunta):
         if termo in pergunta:
             filtros["active_modules"] = valor
             break
-    print(filtros)
 
     return filtros
 
@@ -128,28 +168,30 @@ def filtrar_documento(documentos, filtros):
 
         atende_filtros = True
 
-        if "doc_type" in filtros:
+        if "doc_type" in filtros and "doc_type" in metadata:
             if metadata.get("doc_type") != filtros["doc_type"]:
-                atende_filtros = False
+                continue
 
-        if "state" in filtros:
-            if metadata.get('state') != filtros["state"]:
-                atende_filtros = False
+        for campo, valor_esperado in filtros.items():
+            if campo == "doc_type":
+                continue  # já tratado no passo 1
 
-        if "active_modules" in filtros:
-            modulos_do_doc = metadata.get(
-                'active_modules') or metadata.get('active_modules') or []
-            if isinstance(modulos_do_doc, list):
+            if campo not in metadata:
+                continue  # campo não existe nesse tipo de doc -> ignora
 
-                termo_procurado = filtros['active_modules'].lower()
-                encontrou_modulo = any(termo_procurado in mod.lower()
-                                       for mod in modulos_do_doc)
-                if not encontrou_modulo:
+            valor_doc = metadata.get(campo)
+
+            if isinstance(valor_doc, list):
+                termo = str(valor_esperado).lower()
+                encontrou = any(termo in str(item).lower()
+                                for item in valor_doc)
+                if not encontrou:
                     atende_filtros = False
+                    break
             else:
-
-                if filtros['module'].lower() not in str(modulos_do_doc).lower():
+                if str(valor_doc).lower() != str(valor_esperado).lower():
                     atende_filtros = False
+                    break
 
         if atende_filtros:
             documentos_filtrados.append(documento)

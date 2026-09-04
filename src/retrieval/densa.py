@@ -18,6 +18,9 @@ def similaridade_cosseno(vec1: np.ndarray, vec2: np.ndarray) -> np.ndarray:
 
 def busca_densa(pergunta, documentos_filtrados, top_k=5):
 
+    if not documentos_filtrados:
+        return []
+
     model = HuggingFaceEmbeddings(
         model_name='paraphrase-multilingual-MiniLM-L12-v2')
 

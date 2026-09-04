@@ -10,17 +10,16 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
-from src.query.query_analyzer import processar_pergunta
-from src.retrieval.filters import  extract_metadata
+from src.query.query_analyzer import analisar_pergunta
+from src.query.pipeline_rag import pipeline_rag
+from src.retrieval.filters import  extract_metadata, processar_filtros
 from src.carregar_banco import abrir_banco
-
-
 
 
 db = abrir_banco()
 
 
-documentos = list(db.docstore._dict.values())[:10]
+documentos = list(db.docstore._dict.values())
 
 vocabulario = extract_metadata(documentos)
 """
@@ -65,6 +64,8 @@ for pergunta in perguntas:
 
     """
 
+
+"""
 perguntas = [
     "Qual o salário do funcionario João Pereira?",
     "Qual a média salarial da equipe de suporte?",
@@ -73,10 +74,36 @@ perguntas = [
     "Quero buscar os produtos ativos.",
     "Onde fica a loja de Juiz de Fora?"
 ]
-
 for pergunta in perguntas:
     resultado = processar_pergunta(pergunta, vocabulario={})
     print("Pergunta:", resultado["pergunta"])
     print("Análise:", resultado["analise"])
     print("Política:", resultado["politica"])
     print()
+
+"""
+"""
+for pergunta in perguntas:
+    analise = analisar_pergunta(pergunta, vocabulario)
+
+    print("\n" + "=" * 60)
+    print("Pergunta: ",pergunta)
+    print("\n" + "=" * 60)
+    print("filtros_manuais:", analise)
+    print()
+"""
+
+perguntas = "Quais produtos a VendeFácil oferece?"
+
+
+resultado = pipeline_rag(perguntas, vocabulario, documentos)
+print("\n" + "=" * 60)
+print("Começo")
+print("\n" + "+" * 60)
+print("Pergunta: ", perguntas)
+print("\n" + "+" * 60)
+print("Resultado: ",resultado)
+print("FIM")
+print("\n" + "=" * 60)
+print()
+

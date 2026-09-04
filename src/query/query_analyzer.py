@@ -1,7 +1,26 @@
-from src.retrieval.filters import extrair_filtros_automatico, extrair_filtros_manuais, extract_metadata
+from src.retrieval.filters import extrair_filtros_automatico, extrair_filtros_manuais
+
 from rapidfuzz import fuzz
 import unicodedata
 import re
+
+
+PALAVRAS_AGREGADO = [
+    "media",
+    "medio",
+    "total",
+    "quantos",
+    "quantas",
+    "soma",
+    "media geral",
+    "no geral",
+    "em geral",
+    "todos os",
+    "todas as",
+    "por equipe",
+    "por setor",
+    "por departamento",
+]
 
 DADOS_RECUSAR = [
     "salario",
@@ -22,23 +41,6 @@ DADOS_MASCARAR = [
     "endereco_residencial",
     "endereco",
     "numero_cartao"
-]
-
-PALAVRAS_AGREGADO = [
-    "media",
-    "medio",
-    "total",
-    "quantos",
-    "quantas",
-    "soma",
-    "media geral",
-    "no geral",
-    "em geral",
-    "todos os",
-    "todas as",
-    "por equipe",
-    "por setor",
-    "por departamento",
 ]
 
 
@@ -80,6 +82,55 @@ def identificar_assunto(pergunta, corte_similaridade=80):
         "cliente": [
             "cliente",
             "consumidor"
+        ],
+
+        "venda": [
+            "venda",
+            "vendas",
+            "pedido",
+            "faturamento"
+        ],
+
+        "log": [
+            "log",
+            "logs",
+            "servidor",
+            "erro do sistema"
+        ],
+
+        "ticket": [
+            "ticket",
+            "chamado",
+            "suporte"
+        ],
+
+        "documentacao": [
+            "manual",
+            "documentação",
+            "documentacao",
+            "módulo",
+            "modulo",
+            "como funciona"
+        ],
+
+        "reuniao": [
+            "reunião",
+            "reuniao",
+            "ata",
+            "atas"
+        ],
+
+        "email": [
+            "email",
+            "e-mail",
+            "correio eletronico"
+        ],
+
+        "politica": [
+            "política",
+            "politica",
+            "norma",
+            "regra interna"
         ],
     }
 
@@ -141,14 +192,46 @@ def identificar_atributos(pergunta):
 
     ATRIBUTOS = {
         "salario": [
-            "salari",
-            "remuneraca",
-            "vencimento"
+            "salari",       # cobre salario/salário/salarial/salariais
+            "remuneraca",   # cobre remuneração/remunerações
+            "vencimento",
+            "holerite",
+            "folha de pagamento"
         ],
 
         "cpf": [
             "cpf",
-            "documento"
+        ],
+
+        "dados_bancarios": [
+            "conta bancaria",
+            "conta corrente",
+            "agencia bancaria",
+            "dados bancarios",
+            "banco",
+            "iban"
+        ],
+
+        "chave_pix": [
+            "chave pix"
+        ],
+
+        "credencial": [
+            "senha",
+            "credencial",
+            "token",
+            "chave de api",
+            "api key",
+            "login e senha"
+        ],
+
+        "dados_saude": [
+            "saude",
+            "atestado",
+            "exame medico",
+            "doenca",
+            "cid ",
+            "laudo medico"
         ],
 
         "telefone": [
@@ -159,13 +242,20 @@ def identificar_atributos(pergunta):
 
         "endereco": [
             "endereco",
-            "residencia"
+            "residencia",
+            "logradouro"
         ],
 
         "email": [
             "email",
             "e-mail",
             "correio eletronico"
+        ],
+
+        "numero_cartao": [
+            "numero do cartao",
+            "cartao de credito",
+            "cartao de debito"
         ]
     }
 
@@ -258,69 +348,6 @@ não só interpretar a intenção da pergunta.
 """
 
 
-def verificar_sensibilidade_chunks(chunks):
-
-    chunk_restrito = False
-    atributos_no_conteudo = set()
-
-    for chunk in chunks:
-        metadata = getattr(chunk, "metada", {}) or {}
-        conteudo = getattr(chunk, "page_content", "") or ""
-
-        if metadata.get("sensitivity") == "restrito":
-            chunk_restrito = True
-
-        atributos_no_conteudo.update(identificar_atributos(conteudo))
-
-    return {
-        "tem_chunk_restrito": chunk_restrito,
-        "atributos_no_conteudo": list(atributos_no_conteudo),
-    }
-
-
-def verificar_politica_lgpd(analise, chunks=None):
-
-    RECUSAR = "recusar"
-    MASCARAR = "mascarar"
-    RESPONDER = "responder"
-
-    atributos = analise["atributos"]
-
-    chunks = chunks or []
-
-    atributos_pergunta = set(analise["atributos"])
-
-    sesibilidade = verificar_sensibilidade_chunks(chunks)
-    atributos_chunks = set(sesibilidade["atributos_no_conteudo"])
-
-    atributos_totais = atributos_pergunta | atributos_chunks
-
-    if sesibilidade["tem_chunk_restrito"] or any(
-        atributo in DADOS_RECUSAR for atributo in atributos_totais
-    ):
-        return {
-            "comportamento": RECUSAR,
-            "is_refusal": True,
-            "refusal_reason": "lgpd",
-            "atributos_detectados": list(atributos_totais),
-        }
-
-    if any(atributo in DADOS_MASCARAR for atributo in atributos):
-        return {
-            "comportamento": MASCARAR,
-            "is_refusal": False,
-            "refusal_reason": None,
-            "atributos_detectados": list(atributos_totais),
-        }
-
-    return {
-        "comportamento": RESPONDER,
-        "is_refusal": False,
-        "refusal_reason": None,
-        "atributos_detectados": list(atributos_totais),
-    }
-
-
 """
 perguntas = [
     "Qual o salário do funcionario João Pereira?",
@@ -340,47 +367,6 @@ for pergunta in perguntas:
 """
 
 
-def mascarar_email(email):
-    if "@" not in email:
-        return email
-
-    usuario, dominio = email.split("@")
-    if len(usuario) > 2:
-        email_mascarado = usuario[:2] + "***"
-    else:
-        email_mascarado = usuario[0] + "***" if usuario else "***"
-
-    return f"{email_mascarado}@{dominio}"
-
-
-def mascarar_telefone(telefone):
-
-    digitos = re.sub(r'\D', '', telefone)
-
-    if len(digitos) == 11:
-        return f"({digitos[:2]}) {digitos[2]}****-**{digitos[-2:]}"
-
-    elif len(digitos) == 10:
-        return f"({digitos[:2]}) ****-**{digitos[-2:]}"
-
-    return digitos
-
-
-def mascarar_cartao(cartao):
-    digitos = re.sub(r'\D', '', cartao)
-
-    if len(digitos) >= 12:
-        return f"**** **** **** {digitos[-4:]}"
-
-    return cartao
-
-
-def mascarar_endereco(endereco):
-    if len(endereco) <= 10:
-        return "Rua *********"
-    return f"{endereco[:5]}********* n° ***"
-
-
 """
 email_teste = "mariasilva@gmail.com"
 telefone_teste = "(31) 98765-4321"
@@ -395,22 +381,6 @@ print("Endereço:", mascarar_endereco(endereco_teste))
 """
 
 
-def aplicar_mascaramento(atributo, valor):
-    MASCARADORES = {
-        "email": mascarar_email,
-        "telefone": mascarar_telefone,
-        "numero_cartao": mascarar_cartao,
-        "endereco": mascarar_endereco
-    }
-
-    mascarador = MASCARADORES.get(atributo)
-
-    if mascarador:
-        return mascarador(valor)
-
-    return valor
-
-
 def identificar_filtros(pergunta, vocabulario):
 
     filtros_manuais = extrair_filtros_manuais(pergunta)
@@ -421,7 +391,6 @@ def identificar_filtros(pergunta, vocabulario):
     )
 
     filtros_combinados = filtros_automaticos | filtros_manuais
-
     return filtros_combinados
 
 
@@ -472,6 +441,7 @@ def analisar_pergunta(pergunta, vocabulario):
     return analise
 
 
+"""
 def processar_pergunta(pergunta, vocabulario):
 
     analise = analisar_pergunta(pergunta, vocabulario)
@@ -485,7 +455,8 @@ def processar_pergunta(pergunta, vocabulario):
 
     }
 
-
+"""
+"""
 perguntas = [
     "Qual o salário do funcionario João Pereira?",
     "Qual a média salarial da equipe de suporte?",
@@ -496,14 +467,14 @@ perguntas = [
 ]
 
 for pergunta in perguntas:
-    resultado = processar_pergunta(pergunta, vocabulario={})
-    print("Pergunta:", resultado["pergunta"])
-    print("Análise:", resultado["analise"])
-    print("Política:", resultado["politica"])
+    resultado = analisar_pergunta(pergunta, vocabulario={})
+    print("Pergunta:", pergunta)
+    print("Análise:", resultado["filtros"])
+
     print()
 
 
-"""
+
 pergunta = "Qual o salário do funcionário João Pereira?"
 
 resultado = processar_pergunta(pergunta)
