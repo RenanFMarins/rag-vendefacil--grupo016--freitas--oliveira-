@@ -10,13 +10,13 @@ def sinal_fraco_fora_de_escopo(analise):
     return sem_assunto and sem_filtros and sem_entidades
 
 
-def verificar_escopo(analise, resultadados_busca, k_rff=60, rank_maximo=5):
+def verificar_escopo(analise, resultadados_busca, k_rrf=60, rank_maximo=5):
     """
     Decisão real de escopo, chamada DEPOIS da busca híbrida (RRF)
     """
     sinal_fraco = sinal_fraco_fora_de_escopo(analise)
 
-    limiar_score = 1 / (k_rff + rank_maximo)
+    limiar_score = 1 / (k_rrf + rank_maximo)
 
     if not resultadados_busca:
         motivo = FORA_DE_ESCOPO if sinal_fraco else SEM_EVIDENCIA

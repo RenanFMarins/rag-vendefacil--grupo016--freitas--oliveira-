@@ -92,13 +92,12 @@ def extrair_filtros_manuais(pergunta):
     for termo, valor in tipos_documento.items():
 
         if termo in pergunta and valor not in tipos_encontrados:
-            print(valor)
             tipos_encontrados.append(valor)
 
     # documentos
     if tipos_encontrados:
         filtros["doc_type"] = tipos_encontrados
-        print("+++++", filtros)
+
     # estado
     for termo, valor in estados.items():
         if termo in pergunta:
@@ -110,10 +109,62 @@ def extrair_filtros_manuais(pergunta):
         if termo in pergunta:
             filtros["active_modules"] = valor
             break
-    print("+++++", filtros)
     return filtros
 
 
+def extrair_filtros_automatico(pergunta, vocabulario, doc_types_permitidos=None, limiar=75):
+    pergunta = pergunta.lower()
+    filtros = {}
+
+    # Mapeamento universal de quais metadados estruturados pertencem a cada escopo
+    CAMPOS_POR_DOC_TYPE = {
+        "product": ["product_id", "category", "product_manager", "tech_lead"],
+        "store": ["store_id", "customer_id", "active_modules"],
+        "log": ["timestamp", "level", "service", "module", "event", "error_code"],
+        "customer": ["segment", "plan", "main_product", "status"],
+        "employee": ["employee_id", "department", "role", "status"],
+        "sale": ["sale_id", "company_name", "store_name", "product_name", "payment_method"]
+    }
+
+    # Consolida quais campos de metadados são válidos para os tipos que a LLM aprovou
+    campos_permitidos_por_contexto = set()
+    for doc_type in doc_types_permitidos:
+        campos_permitidos_por_contexto.update(
+            CAMPOS_POR_DOC_TYPE.get(doc_type, []))
+
+    for campo, valores in vocabulario.items():
+        # TRAVA DE SEGURANÇA GERAL: Se o campo do vocabulário não pertence ao escopo
+        # definido pela LLM, ignora completamente para evitar falsos positivos
+        if campo not in campos_permitidos_por_contexto:
+            continue
+
+        if campo == "state" or not valores:
+            continue
+
+        melhor_resultado = None
+        melhor_score = 0
+
+        for valor in valores:
+            valor = str(valor).lower().strip()
+            if len(valor) < 3:
+                continue
+
+            if valor in pergunta.split():
+                score = 100
+            else:
+                score = fuzz.token_set_ratio(valor, pergunta)
+
+            if score > melhor_score:
+                melhor_score = score
+                melhor_resultado = valor
+
+        if melhor_score >= limiar:
+            filtros[campo] = melhor_resultado
+
+    return filtros
+
+
+"""
 def extrair_filtros_automatico(pergunta, vocabulario, limiar=75):
 
     pergunta = pergunta.lower()
@@ -154,6 +205,7 @@ def extrair_filtros_automatico(pergunta, vocabulario, limiar=75):
             filtros[campo] = melhor_resultado
 
     return filtros
+"""
 
 
 def combinar_filtros(filtros_manuais, filtros_automaticos):

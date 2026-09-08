@@ -1,8 +1,17 @@
 from src.retrieval.filters import extrair_filtros_automatico, extrair_filtros_manuais
-
+from src.query.doc_type_via_llm import classificar_doc_type_via_llm
 from rapidfuzz import fuzz
 import unicodedata
 import re
+from groq import Groq
+import os
+import getpass
+
+
+if not os.getenv("GROQ_API_KEY"):
+    os.environ["GROQ_API_KEY"] = getpass.getpass("Enter API key for GROQ: ")
+
+cliente = Groq()
 
 
 PALAVRAS_AGREGADO = [
@@ -383,14 +392,19 @@ print("Endereço:", mascarar_endereco(endereco_teste))
 
 def identificar_filtros(pergunta, vocabulario):
 
+    doc_types_identificados = classificar_doc_type_via_llm(
+        pergunta, cliente)
+
     filtros_manuais = extrair_filtros_manuais(pergunta)
 
     filtros_automaticos = extrair_filtros_automatico(
         pergunta,
-        vocabulario
+        vocabulario, doc_types_permitidos=doc_types_identificados
     )
 
     filtros_combinados = filtros_automaticos | filtros_manuais
+    filtros_combinados["doc_type"] = doc_types_identificados
+
     return filtros_combinados
 
 
@@ -437,7 +451,7 @@ def analisar_pergunta(pergunta, vocabulario):
         atributo in DADOS_RECUSAR + DADOS_MASCARAR
         for atributo in analise["atributos"]
     )
-
+    print("analise", analise["filtros"])
     return analise
 
 

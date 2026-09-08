@@ -1,16 +1,31 @@
+import os
+import sys
+# fmt: off
+# isort: skip
+
+RAIZ_PROJETO = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if RAIZ_PROJETO not in sys.path:
+    sys.path.append(RAIZ_PROJETO)
+
 from langchain_core.documents import Document
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 import glob
 import os
 
-from json_mod.json_utils import leitor_json
-from csv_mod.csv_utils import leitor_csv
+from src.json_mod.json_utils import leitor_json
+from src.csv_mod.csv_utils import leitor_csv
+from src.jsonl_mod.jsonl_utils import leitor_jsonl
+from src.md_mod.md_utils import leitor_markdown 
+from src.txt_mod.txt_utils import leitor_txt_emails 
+from src.carregar_banco import abrir_banco
 
-# pegar os caminhos dos arquivos
-arquivos_recebidos = glob.glob(os.path.join(
-    "../data/", "**/", "*"), recursive=True)
+
+
+PASTA_DATA = os.path.join(RAIZ_PROJETO, "data")
+arquivos_recebidos = glob.glob(os.path.join(PASTA_DATA, "**", "*"), recursive=True)
 dados_arquivos = []
+
 
 #
 for doc in arquivos_recebidos:
@@ -58,6 +73,7 @@ for doc in arquivos_recebidos:
         {"caminho": doc, "doc_type": doc_type, "sensitivity": sensitivity})
 
 
+
 def criar_documento(texto, caminho, doc_type, sensitivity, chunk_id, **kwargs):
     metadata = {
         "source_file": caminho,
@@ -73,36 +89,35 @@ def criar_documento(texto, caminho, doc_type, sensitivity, chunk_id, **kwargs):
         metadata=metadata
     )
 
-
 model = HuggingFaceEmbeddings(
     model_name='paraphrase-multilingual-MiniLM-L12-v2')
-
+"""
 
 def salvar_banco_faiss():
 
     dados_json = leitor_json(dados_arquivos, criar_documento)
     dados_csv = leitor_csv(dados_arquivos, criar_documento)
-    arquivos_banco = dados_json + dados_csv
+    dados_jsonl = leitor_jsonl(dados_arquivos, criar_documento) 
+    dados_markdown = leitor_markdown(dados_arquivos, criar_documento)
+    dados_txt = leitor_txt_emails(dados_arquivos, criar_documento) 
+
+
+    arquivos_banco = dados_json + dados_csv + dados_jsonl + dados_markdown + dados_txt
+
+
 
     db = FAISS.from_documents(arquivos_banco, model)
     db.save_local('banco_faiss')
 
 
 salvar_banco_faiss()
+"""
 
-
-def abrir_banco():
-
-    db = FAISS.load_local(
-        'banco_faiss',
-        model,
-        allow_dangerous_deserialization=True)
-
-    return db
-
-
-query = "quais os nomes dos colaboradores do departamento de Suporte Técnic?"
+query = "Quais são os produtos oferecidos pela empresa VendeFácil?"
 db = abrir_banco()
 docs = db.similarity_search(query)
 
 print(docs[0].page_content)
+
+
+

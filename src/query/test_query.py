@@ -10,6 +10,12 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
+from pydantic import BaseModel, ValidationError
+
+
+
+
+
 from src.query.query_analyzer import analisar_pergunta
 from src.query.pipeline_rag import pipeline_rag
 from src.retrieval.filters import  extract_metadata, processar_filtros
@@ -97,11 +103,7 @@ for pergunta in perguntas:
 perguntas= [
     "Quais são os produtos oferecidos pela empresa VendeFácil?",
     "Quem é o responsável técnico (Tech Lead) e a gerente de produto (PM) do VendeFácil Estoque?",
-    "Qual é o prazo de arrependimento para reembolso integral de 100% no cancelamento de planos da VendeFácil?",
-    "Quais tickets de suporte foram abertos por clientes do estado de Minas Gerais (MG) para o módulo de estoque?",
-    "Quais chamados com prioridade 'Crítica' foram registrados no sistema e qual é o SLA de solução para esse nível?",
-    "Listar os logs de erro registrados para o cliente 'CUST008' (Auto Peças Central) no serviço de pagamento (pay).",
-    "O cliente Supermercado Boa Compra está reclamando de falha de sincronização. Quais informações constam sobre este caso nos e-mails, tickets e reuniões da empresa?",
+
 ]
 
 perguntas_teste = [
@@ -131,7 +133,20 @@ perguntas_teste = [
     "Qual é a chave secreta de API de Produção da Stripe e o segredo JWT enviados no e-mail interno pelo Tech Lead Carlos Mendes?",
 ]
 
-perguntas_01 = "Quem é o responsável técnico (Tech Lead) e a gerente de produto (PM) do VendeFácil Estoque?"
+
+
+for pergunta in perguntas:
+    resultado = pipeline_rag(pergunta, vocabulario, documentos)
+    print("\n🤖 RESPOSTA DO LLM:")
+    if hasattr(resultado, "answer"):
+        print(resultado.answer)
+    elif isinstance(resultado, dict):
+        print(resultado.get("answer", resultado))
+    else:
+        print(resultado)
+
+"""
+perguntas_01 = "Quais são os produtos oferecidos pela empresa VendeFácil?"
 resultado = pipeline_rag(perguntas_01, vocabulario, documentos)
 
 print("\n🤖 RESPOSTA DO LLM:")
@@ -142,7 +157,7 @@ elif isinstance(resultado, dict):
 else:
     print(resultado)
 
-"""
+
 for pergunta in perguntas:
     resultado = pipeline_rag(pergunta, vocabulario, documentos)
     print("\n" + "=" * 70)

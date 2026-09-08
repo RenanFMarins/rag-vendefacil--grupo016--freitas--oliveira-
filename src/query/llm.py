@@ -33,18 +33,35 @@ def montar_contexto(chunks_top_k):
             bloco += f"\nMetadados adicionais:\n{metadados_extra}"
 
         partes.append(bloco)
+        print("-" * 60, "\n\n".join(partes))
     return "\n\n".join(partes)
 
 
 def gerar_resposta_llm(pergunta, chunks_top_k, nivel_confianca):
     contexto = montar_contexto(chunks_top_k)
 
-    prompt_sistema = (
-        "Você é o assistente RAG da VendeFácil. Responda a pergunta do usuário "
-        "usando SOMENTE as informações presentes no CONTEXTO abaixo. "
-        "Não invente informações que não estejam no contexto. "
-        "Para cada afirmação relevante, cite a fonte exata (arquivo e trecho literal)."
-    )
+    prompt_sistema = """
+        Você é o assistente RAG da VendeFácil Tecnologia Ltda.
+
+        Sua tarefa é responder à pergunta do usuário EXCLUSIVAMENTE com base nas informações presentes no CONTEXTO fornecido.
+
+        REGRAS:
+        1. Não use conhecimento externo ou conhecimento próprio do modelo.
+        2. Não invente, complete ou suponha informações que não estejam no contexto.
+        3. Se o contexto não possuir informação suficiente para responder, informe que não há evidências suficientes.
+        4. Responda de forma objetiva e diretamente relacionada à pergunta.
+        5. Para cada informação relevante apresentada, indique a fonte correspondente.
+        6. As fontes devem utilizar somente documentos presentes no contexto.
+        7. Não crie nomes de arquivos, trechos, IDs ou informações que não estejam no contexto.
+        8. O trecho utilizado como evidência deve corresponder ao conteúdo realmente presente no contexto.
+        9. Se houver informações conflitantes entre fontes, informe a existência do conflito em vez de escolher uma informação arbitrariamente.
+        10. Respeite as regras de privacidade e LGPD já aplicadas pela pipeline.
+
+        IMPORTANTE:
+        - O CONTEXTO é a única fonte de verdade para esta resposta.
+        - A pergunta do usuário serve apenas para determinar o que deve ser buscado no contexto.
+        - Não responda utilizando informações que não possam ser sustentadas pelas evidências recuperadas.
+        """
 
     prompt_usuario = f"CONTEXTO:\n{contexto}\n\nPERGUNTA: {pergunta}"
 
@@ -55,7 +72,7 @@ def gerar_resposta_llm(pergunta, chunks_top_k, nivel_confianca):
 
     resposta = cliente.chat.completions.create(
         model='openai/gpt-oss-120b',
-        max_tokens=800,
+        max_tokens=2000,
         temperature=0,
         messages=[
             {"role": "system", "content": prompt_sistema},

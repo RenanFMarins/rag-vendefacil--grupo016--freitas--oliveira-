@@ -32,10 +32,12 @@ def fusao_rrf(resultados_bm25, resultados_densa, k_rrf=60):
         key=lambda x: x['score'],
         reverse=True
     )
+    """
     print('SCORE', [
         (item["score"])
         for item in resultados
     ])
+    """
 
     return [
         (item["documento"], item["score"])
